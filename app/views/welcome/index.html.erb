@@ -1,0 +1,13 @@
+  <%= link_to image_tag 'kalendar-logo.png', class: 'calendar' %>
+  <%= image_tag 'kruh.png', class: 'calendar_red' %>
+  <button type="button" class="btn btn-default btn-danger rezervace">Rezervace</button>
+  <div class="col-sm-6 gladiator">
+    <%= image_tag 'gladiator_logo.png'%>
+  </div>
+  <div class="col-sm-6 predator">
+    <%= image_tag 'predator_logo.png'%>
+  </div>
+  
+  <script>
+    $( ".calendar_red" ).toggle( "pulsate" );
+  </script>

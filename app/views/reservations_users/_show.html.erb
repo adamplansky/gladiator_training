@@ -1,0 +1,6 @@
+
+<table>
+<% @reservation.users.each_with_index do |all_users,index|%>
+  <tr><td> <%= index + 1%>.</td><td> <%= all_users.first_name %> <%= all_users.surname %></td></tr>
+<% end%>
+</table>

@@ -1,0 +1,48 @@
+.welcome_index{
+  background: image-url("gladiator_vs_predator_bg.jpg");
+  .gladiator{
+    background: image-url("gladiator.png") no-repeat ;
+    background-position:left bottom;
+  }
+  .predator{
+    background: image-url("predator.png") no-repeat;
+    background-position:right bottom;
+  }
+  .gladiator, .predator{
+    height:100vh;
+    background-size: 70% auto;
+    img{
+      position:absolute;
+      bottom:20%;
+      width:50%;
+      left:20%;
+
+    }
+  }
+  main{
+    background:transparent;
+    color:#fff;
+    padding-left:0;
+    padding-right:0;
+    padding-bottom:0;
+    a{
+      position:absolute;
+      left: 44%;
+      top: 35%;
+      width:200px;
+      z-index: 100;
+    }
+    .calendar_red{
+      position:absolute;
+      left: 44%;
+      top: 35%;
+      width:200px;
+      z-index: 1000;
+      display:block;    
+    }
+    a:hover{
+      background:red;
+    }
+    
+  }
+}

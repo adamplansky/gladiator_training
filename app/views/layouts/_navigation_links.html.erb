@@ -1,2 +1,7 @@
-<%# add navigation links to this file %>
-<li><%= link_to 'About', page_path('about') %></li>
+<% if logged_in? %>
+<li><%= link_to "Rezervace", reservations_path %></li>
+<li><%= link_to "Odhlásit se", signout_path, method: "delete" %></li>
+<% else %>
+  <li class="first"><%= link_to "New account", signup_path,class: "first" %></li>
+  <li><%= link_to "Sign in", signin_path %></li>
+<% end %>
