@@ -16,7 +16,7 @@ end
 gem 'bootstrap-sass'
 gem 'high_voltage'
 gem 'pg'
-gem 'puma'
+gem 'thin'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
