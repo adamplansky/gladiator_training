@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   
   def destroy 
     log_out if logged_in?
-    redirect_to unsigned_index_path
+    redirect_to :root
   end
   
 end
