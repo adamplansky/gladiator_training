@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to reservations_path, notice: 'Rezervace vytvořena.' }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to reservations_url, notice: 'Rezervace zrušena.' }
       format.json { head :no_content }
     end
   end
@@ -56,6 +56,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:time_from, :time_to, :money, :capacity)
+      params.require(:reservation).permit(:time_from, :time_to, :money, :capacity, :place_id)
     end
 end

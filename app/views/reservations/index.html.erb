@@ -1,40 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class='col-sm-12'>
 
-<h1>REZERVACE</h1>
+    <% if logged_in? %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Datum</th>
-      <th>Čas</th>
-      <th>Cena</th>
-      <th>Kapacita</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.time_from.to_date %></td>
-        <td><%= reservation.time_from.strftime("%I:%M") %> - <%= reservation.time_to.strftime("%I:%M") %></td>
-        <td><%= "#{reservation.money},-"
- %></td>
-        <td><%= reservation.users.count %> / <%= reservation.capacity %></td>
-        <% if reservation.users.include? current_user%>
-        <td><%= link_to "Odhlasit", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
-        <% else %>
-        <td><%= link_to "Přihlásit", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
-        
-        <% end %>
-        <td><%= link_to 'Detail', reservation %></td>
-        <!-- <td><%# link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%# link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
+    <%= render 'index' %>
+    <% if admin_in? %>
+    <%= link_to 'Nová rezervace', new_reservation_path, class:"btn btn-success" %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Reservation', new_reservation_path %>
+    <% else %>
+    
+    <%= render 'sessions/new' %>
+    <% end %>
+  </div>
+</div>

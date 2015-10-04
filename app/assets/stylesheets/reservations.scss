@@ -7,5 +7,32 @@ table{
       padding:5px;
       border:1px solid #000;
     }
+    .red{
+      background-color:red;
+    }
+    .green{
+      background-color:green;
+    }
+    .yellow{
+      background-color:yellow;
+    }
+    
   }
+}
+.reservations_index,.reservations_show{
+  
+  .red,.green{& a {color:#fff;}}
+  td{
+    text-align:center;
+    a{text-decoration:underline;}
+  }
+}
+.reservations_show{
+  main .container div{
+      margin:20px auto;
+  }
+
+}
+.reservation{
+  color:red !important;
 }

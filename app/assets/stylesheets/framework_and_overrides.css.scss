@@ -47,3 +47,9 @@ section {
 body, html {
   height: 100%;
 }
+.btn-success,.btn-danger,.btn-info{
+  color:#fff;
+  &:visited{
+    color:#fff;
+  }
+}

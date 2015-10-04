@@ -1,25 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class='col-sm-12'>
 
-<p>
-  <strong>Time from:</strong>
-  <%= @reservation.time_from %>
-</p>
+  <%= link_to 'Seznam rezervací', reservations_path, class:"btn btn-info" %>
+  <% if @reservation.users.include? current_user%>
+  <%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:@reservation}, method: :delete, class:"btn btn-danger" %>
+   <% elsif @reservation.users.count < @reservation.capacity %>
+  <%= link_to "Přihlásit", {controller: "reservations_users", action: "create", id:@reservation}, method: :post, class:"btn btn-success" %>
+  
+  <% end %>
+  </div>
+  <div class='col-sm-12'>
+  <p>
+    <strong>Datum:</strong>
+    <%= l(@reservation.created_at, format: "%A")
+     %> <%= @reservation.time_from.to_date.strftime("%d-%m-%Y") %>
+  </p>
+  <p>
+    <strong>Čas:</strong>
+    <%= @reservation.time_from.strftime("%H:%M") %> - <%= @reservation.time_to.strftime("%H:%M") %>
+  </p>
 
-<p>
-  <strong>Time to:</strong>
-  <%= @reservation.time_to %>
-</p>
+  <p>
+    <strong>Kapacita:</strong>
+    <%= @reservation.users.count %> / <%= @reservation.capacity %>
+  </p>
+  <%= render 'reservations_users/show' %>
+  <% if admin_in? %>
+  <%# link_to 'editace', edit_reservation_path(@reservation), class:"btn btn-success" %>
+  <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Money:</strong>
-  <%= @reservation.money %>
-</p>
 
-<p>
-  <strong>Capacity:</strong>
-  <%= @reservation.capacity %>
-</p>
-
-<%= render 'reservations_users/show' %>
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>

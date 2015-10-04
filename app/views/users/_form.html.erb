@@ -16,22 +16,22 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :first_name %><br>
+    <%= f.label :first_name, "jméno" %><br>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :surname %><br>
+    <%= f.label :surname, "příjmení" %><br>
     <%= f.text_field :surname %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
+    <%= f.label :password, "heslo" %><br>
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br>
+    <%= f.label :password_confirmation, "heslo" %><br>
     <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "vytvořit účet" %>
   </div>
 <% end %>

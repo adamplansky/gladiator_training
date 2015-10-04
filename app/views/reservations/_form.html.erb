@@ -1,3 +1,4 @@
+
 <%= form_for(@reservation) do |f| %>
   <% if @reservation.errors.any? %>
     <div id="error_explanation">
@@ -12,20 +13,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :time_from %><br>
-    <%= f.datetime_select :time_from %>
+    <%= f.label :time_from, "OD" %><br>
+    <%= f.datetime_select :time_from, order: [:day, :month, :year], :default => { :hour => 19, :minute => 00 }%>
   </div>
   <div class="field">
-    <%= f.label :time_to %><br>
-    <%= f.datetime_select :time_to %>
+    <%= f.label :time_to, "DO" %><br>
+    <%= f.datetime_select :time_to, order: [:day, :month, :year], :default => { :hour => 20, :minute => 00 } %>
   </div>
   <div class="field">
-    <%= f.label :money %><br>
-    <%= f.text_field :money %>
-  </div>
-  <div class="field">
-    <%= f.label :capacity %><br>
+    <%= f.label :capacity, "Kapacita" %><br>
     <%= f.number_field :capacity %>
+  </div>
+  <div class="field">
+    <%= f.label :place, "Místo" %><br>
+     <%= f.collection_select(:place_id, Place.all, :id, :name, {}, {class: "form-control"}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

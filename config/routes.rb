@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :places
   get 'welcome/index'
 
   get 'reservations_users/index'
