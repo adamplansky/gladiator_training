@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-
+    @reservation.user = current_user
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to reservations_path, notice: 'Rezervace vytvořena.' }
