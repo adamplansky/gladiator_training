@@ -17,7 +17,7 @@
       <tr>
 
         <td><%= l(reservation.time_from, format: "%A") %></td>
-        <td><%= reservation.time_from.to_date %></td>
+        <td><%= l reservation.time_from.to_date %></td>
         <td><%= reservation.time_from.strftime("%I:%M") %> - <%= reservation.time_to.strftime("%I:%M") %></td>
         <td> <%= link_to reservation.place.name,reservation.place.map_url  %></td>
         <td><%= reservation.users.count %> / <%= reservation.capacity %></td>

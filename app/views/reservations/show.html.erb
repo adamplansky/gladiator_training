@@ -13,7 +13,7 @@
   <p>
     <strong>Datum:</strong>
     <%= l(@reservation.time_from, format: "%A")
-     %> <%= @reservation.time_from.to_date.strftime("%d-%m-%Y") %>
+     %> <%=l @reservation.time_from.to_date %>
   </p>
   <p>
     <strong>Čas:</strong>
