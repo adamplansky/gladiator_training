@@ -11,14 +11,63 @@
   .gladiator, .predator{
     height:100vh;
     background-size: 70% auto;
-    img{
+    .wrapper_glad,.wrapper_pred{
       position:absolute;
-      bottom:20%;
+      bottom:10%;
       width:50%;
       left:20%;
-
     }
   }
+  .texts{
+    background-color: rgba(0,0,0,0.5);
+    padding:10px 30px;
+    h2{
+      text-align:center;
+      font-size:17px;
+      text-transform:uppercase;
+      font-weight:bold;
+      a{
+        color:#fff;
+        text-decoration:underline;
+      }
+    }
+  }
+//  .predator .texts{
+//    position:absolute;
+//    bottom:8%;
+//    left:25%;
+//
+//  }
+//  .gladiator .texts{
+//    position:absolute;
+//    bottom:15%;
+//    left:25%;
+//  }
+  
+  @media (max-width: 767px) {
+     .gladiator, .predator{
+       padding-left:0;
+       padding-right:0;
+       height:100vh;
+       background-size: 100% auto;
+       .wrapper_glad,.wrapper_pred{
+         width:100%;
+         left:0;
+       }
+     }
+  }
+//  @media (max-width: 480px) {
+//    .gladiator, .predator{
+//      height:100vh;
+//      background-size: 100% auto;
+//      img{
+//        position:absolute;
+//        bottom:20%;
+//        width:50%;
+//        left:20%;
+//      }
+//    }
+//  }
   main{
     background:transparent;
     color:#fff;
@@ -26,14 +75,20 @@
     padding-right:0;
     padding-bottom:0;
     a{
-      position:absolute;
-      left: 44%;
-      top: 35%;
+      //    position:absolute;
+      //      left: 44%;
+      //      top: 35%;
+      text-align:center;
       width:200px;
       z-index: 100;
     }
     a:hover{
       background-color:transparent;
+    }
+    .cal{
+      position:absolute;
+      z-index:10;
+      padding-top:20px;
     }
     .calendar_red{
       position:absolute;
