@@ -19,7 +19,7 @@ class ReservationsUsersController < ApplicationController
     
     
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to reservations_url, notice: 'Reservation zrušena.' }
       format.json { head :no_content }
     end
   end
