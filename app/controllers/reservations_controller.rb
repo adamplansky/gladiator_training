@@ -41,6 +41,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation.users.each(&:destroy)
     @reservation.destroy
     respond_to do |format|
       format.html { redirect_to reservations_url, notice: 'Rezervace zrušena.' }

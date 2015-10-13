@@ -2,14 +2,13 @@
   <div class='col-sm-12'>
 
     <% if logged_in? %>
-
-    <%= render 'index' %>
-    <% if admin_in? %>
-    <%= link_to 'Nová rezervace', new_reservation_path, class:"btn btn-success" %>
-    <% end %>
+      <%= render 'index' %>
+      <% if admin_in? %>
+        <%= link_to 'Nová rezervace', new_reservation_path, class:"btn btn-success" %>
+      <% end %>
     <% else %>
-    
-    <%= render 'sessions/new' %>
+      <h1>neprihlasenej</h1>
+      <%= render 'sessions/new' %>
     <% end %>
   </div>
 </div>
