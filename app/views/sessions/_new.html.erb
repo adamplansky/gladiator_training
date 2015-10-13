@@ -13,18 +13,20 @@
            <br class="clear" />
         </div>
         <div class="form-group">
-          <%= f.label :password, 'heslo', class:"control-label col-sm-4" %>
+          <%= f.label :password, 'Heslo:', class:"control-label col-sm-4" %>
           <div class="col-sm-8">
             <%= f.password_field :password %>
           </div>
            <br class="clear" />
         </div>
         <div class="form-group">
-        <%= f.submit "Přihlásit se", class: "btn btn-large btn-primary green-button" %>
+        <%= link_to 'Registrace','signup', class: "btn btn-large btn-primary btn-info" %>
+        <%= f.submit "Přihlásit se", class: "btn btn-large btn-primary btn-success" %>
+        
         </div>
       <% end %>
     </div>
-    <%= link_to 'registrace','signup'%>
+
      <br class="clear" />
   </div>
 </div>
