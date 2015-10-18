@@ -12,7 +12,16 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
+        <li><%= link_to "Rezervace", reservations_path, class: 'reservation' %></li>
+        <li><%= link_to "Fotogalerie", "http://gladiatorstraining.rajce.idnes.cz/"%></li>
+     
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+         <%= render 'layouts/navigation_links' %>    
+        <li><%= link_to  "https://www.facebook.com/Gladiator-training-Kralupy-668361683249635/", target: "_blank", alt: "facebook" do %>
+          <%= image_tag "fb_logo.png", width:"20px"%>
+          <% end %></li>
       </ul>
     </div>
   </div>

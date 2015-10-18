@@ -1,9 +1,7 @@
 <% if logged_in? %>
-<li><%= link_to "Rezervace", reservations_path, class: 'reservation' %></li>
-
 <li><%= link_to "Odhlásit se", signout_path, method: "delete" %></li>
 <% else %>
-<li><%= link_to "Rezervace", reservations_path, class: 'reservation' %></li>
-  <li class="first"><%= link_to "Registrace", signup_path,class: "first" %></li>
   <li><%= link_to "Přihlásit se", signin_path %></li>
+  <li class="first"><%= link_to "Registrace", signup_path,class: "first" %></li>
+
 <% end %>
