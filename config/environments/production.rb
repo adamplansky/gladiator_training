@@ -76,4 +76,19 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'gladiatortraining.cz'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.secrets.email_address,
+    port: "25",
+    domain: Rails.application.secrets.email_domain,
+    authentication: 'plain',
+    enable_starttls_auto: false,
+    user_name: Rails.application.secrets.email_username,
+    password: Rails.application.secrets.email_password,
+  }
 end
