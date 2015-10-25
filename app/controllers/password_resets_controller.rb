@@ -2,7 +2,6 @@ class PasswordResetsController < ApplicationController
 
   before_action :get_user,   only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
-  before_action :check_expiration, only: [:edit, :update]
 
   def new
   end
@@ -55,11 +54,5 @@ class PasswordResetsController < ApplicationController
       end
     end
 
-    # Checks expiration of reset token.
-   def check_expiration
-     if @user.password_reset_expired?
-       flash[:danger] = "Password reset has expired."
-       redirect_to new_password_reset_url
-     end
-   end
+
 end
