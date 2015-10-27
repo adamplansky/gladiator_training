@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :reservations
   resources :sessions, only: [:new, :create, :destroy]
   resources :reservations_users
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :password_resets,only: [:new, :create, :edit, :update]
 
   match '/signup', to: 'users#new', via: 'get', as:"signup"
   match '/signin', to: 'sessions#new', via: 'get', as: "signin"

@@ -29,7 +29,7 @@ class PasswordResetsController < ApplicationController
     elsif @user.update_attributes(user_params)
       log_in @user
       flash[:success] = "Password has been reset."
-      redirect_to new_new_game_path
+      redirect_to :root
     else
       render 'edit'
     end
@@ -48,8 +48,7 @@ class PasswordResetsController < ApplicationController
 
     # Confirms a valid user.
     def valid_user
-      unless (@user &&
-        @user.authenticated?(:reset, params[:id]))
+      unless (@user && @user.authenticated?(:reset, params[:id]))
         redirect_to '/signin'
       end
     end
