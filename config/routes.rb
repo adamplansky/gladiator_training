@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
+  get '/password_resets/new'
 
-  get 'password_resets/edit'
+  get '/password_resets/edit'
 
   resources :places
   get 'welcome/index'
@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   root to: 'welcome#index'
+  match ':controller(/:action(/:id))', :via => :get
 end
