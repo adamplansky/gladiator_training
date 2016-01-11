@@ -28,7 +28,13 @@
     <%= f.label :place, "Místo" %><br>
      <%= f.collection_select(:place_id, Place.all, :id, :name, {}, {class: "form-control"}) %>
   </div>
+  <div class="field">
+    <%= f.label :category, "Kategorie" %><br>
+     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: "form-control"}) %>
+     <%= link_to 'Vytvořit novou kategorii', new_category_path, class:"btn" %>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'submit', class:"btn btn-success" %>
   </div>
 <% end %>

@@ -8,6 +8,7 @@
       <th>Čas</th>
       <th>Místo</th>
       <th>Kapacita</th>
+      <th>Typ</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <td><%= reservation.time_from.strftime("%H:%M") %> - <%= reservation.time_to.strftime("%H:%M") %></td>
         <td> <%= link_to reservation.place.name,reservation.place.map_url  %></td>
         <td><%= reservation.users.count %> / <%= reservation.capacity %></td>
+        <td><%= reservation.category.name %> </td>
         <% if reservation.users.include? current_user%>
         <td class="green"><%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
         <% elsif reservation.users.count < reservation.capacity %>
