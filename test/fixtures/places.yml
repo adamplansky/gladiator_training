@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  map_url: MyString
+  name: Misto1
+  map_url: https://www.google.com/maps/@50.0337172,14.4782453,15z
 
 two:
-  name: MyString
-  map_url: MyString
+  name: Misto2
+  map_url: https://www.google.com/maps/@50.0337172,14.4782454,15z

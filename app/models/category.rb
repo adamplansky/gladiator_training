@@ -1,3 +1,4 @@
 class Category < ActiveRecord::Base
-  has_many :revervations
+  has_many :reservations
+  validates :name, presence: true
 end

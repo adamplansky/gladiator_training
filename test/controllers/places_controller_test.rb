@@ -20,7 +20,6 @@ class PlacesControllerTest < ActionController::TestCase
     assert_difference('Place.count') do
       post :create, place: { map_url: @place.map_url, name: @place.name }
     end
-
     assert_redirected_to place_path(assigns(:place))
   end
 

@@ -24,7 +24,8 @@ module GladiatorTraining
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.enabled = true
 
-    config.action_controller.default_url_options = { :trailing_slash => true }
+    #config.action_controller.default_url_options = { :trailing_slash => true }
+    #config.action_controller.default_url_options = { trailing_slash: true }
 
   end
 end

@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   get 'sessions/index'
 
   resources :users
-  resources :workouts
-  resources :groups
   resources :reservations
   resources :sessions, only: [:new, :create, :destroy]
   resources :reservations_users
