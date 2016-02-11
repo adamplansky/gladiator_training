@@ -6,6 +6,7 @@ class ReservationsControllerTest < ActionController::TestCase
     @place = places(:one)
     @user = users(:adam)
     @category = categories(:one)
+    log_in_as(@user)
   end
 
   test "should get index" do
@@ -21,9 +22,10 @@ class ReservationsControllerTest < ActionController::TestCase
 
   test "should create reservation" do
     assert_difference('Reservation.count') do
-      post :create, reservation: { capacity: 30, time_from: (DateTime.now).to_s(:db), time_to: (DateTime.now).to_s(:db), place_id: @place.id, category_id: @category.id}
+      post :create, reservation: { time_from: DateTime.now.to_s(:db),time_to: DateTime.now.to_s(:db),
+          capacity: 30,place_id: @place.id, category_id: @category.id }
     end
-    assert_redirected_to reservation_path
+    assert_redirected_to reservations_path
   end
 
 

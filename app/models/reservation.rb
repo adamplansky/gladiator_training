@@ -16,19 +16,4 @@ class Reservation < ActiveRecord::Base
   validates_datetime :time_from
   validates_datetime :time_to
 
-
-
-
-  # def time_from_is_datetime?
-  #   if !time_from.is_a?(Datetime)
-  #     errors.add(:time_from, 'must be a valid date')
-  #   end
-  # end
-  #
-  # def time_to_is_datetime?
-  #   if !time_to.is_a?(Datetime)
-  #     errors.add(:time_to, 'must be a valid date')
-  #   end
-  # end
-
 end
