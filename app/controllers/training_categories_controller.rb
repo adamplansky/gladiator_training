@@ -69,6 +69,6 @@ class TrainingCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def training_category_params
-      params.require(:training_category).permit(:name, :koef, :minimum, :description, :units, :image)
+      params.require(:training_category).permit(:name, :koef, :minimum, :description, :units, :image, :points)
     end
 end

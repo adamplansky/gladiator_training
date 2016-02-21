@@ -27,6 +27,8 @@ class TrainingsController < ApplicationController
     @training.user = current_user
     @category = TrainingCategory.find(params[:training][:training_category_id])
     @training.points = (@category.koef * @training.distance).round(2)
+    @training.points = 0 if @category.minimum > @training.distance
+    @training.points = @category.points if @category.koef == 0
     @training.period = Period.where("time_from < ? AND time_to > ?", Time.now, Time.now).first
     respond_to do |format|
       if @training.save
