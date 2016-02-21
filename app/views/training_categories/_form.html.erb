@@ -10,37 +10,42 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
+  <p></p>
+    <%= f.label "jmeno sportu" %><br>
     <%= f.text_field :name %>
   </div>
+  <p>koeficient pro behani 1bod = 7km -> koeficient je 1/7 = 0.14285714285714285</p>
+  <p>pokud je koeficient 0, tak se vzdy vemou body (nutne pro zavody / gladiator training)</p>
   <div class="field">
-    <%= f.label :koef %><br>
+    <%= f.label "koeficient" %><br>
     <%= f.text_field :koef %>
   </div>
+  <p>pokud neni koeficient 0, body muzou byt cokoli (nezapocitava se pri vyhodnocovani bodu)</p>
   <div class="field">
-    <%= f.label :points %><br>
+    <%= f.label "body" %><br>
     <%= f.text_field :points %>
   </div>
-
+  <p>jake je minimum, pro ktere se zapocitavaji body</p>
   <div class="field">
-    <%= f.label :minimum %><br>
+    <%= f.label "minimum" %><br>
     <%= f.number_field :minimum %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label "popisek" %><br>
     <%= f.text_area :description %>
   </div>
+  <p>jake jsou jednotky, ktere se budou zobrazovat pri sportu (typicky m, km)</p>
   <div class="field">
-    <%= f.label :units %><br>
+    <%= f.label "jednotky" %><br>
     <%= f.text_field :units %>
   </div>
+  <p>ikona pro sport</p>
   <div class="field">
+    <%= f.label "ikona sportu" %><br>
     <%= f.hidden_field :image_cache %><br>
     <%= f.file_field :image %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit  %>
   </div>
 <% end %>
