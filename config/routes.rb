@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :periods
+  resources :trainings
+  resources :training_categories
   resources :categories
   get '/password_resets/new'
 

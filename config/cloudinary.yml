@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dwsdcyfxg
+  api_key:  <%= ENV["GLAD_CLOUDINARY_KEY"] %>
+  api_secret: <%= ENV["GLAD_CLOUDINARY_SECRET"] %>
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dwsdcyfxg
+  api_key: <%= ENV["GLAD_CLOUDINARY_KEY"] %>
+  api_secret: <%= ENV["GLAD_CLOUDINARY_SECRET"] %>
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dwsdcyfxg
+  api_key: <%= ENV["GLAD_CLOUDINARY_KEY"] %>
+  api_secret: <%= ENV["GLAD_CLOUDINARY_SECRET"] %>
+  enhance_image_tag: true
+  static_image_support: false

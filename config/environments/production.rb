@@ -91,4 +91,5 @@ Rails.application.configure do
     user_name: Rails.application.secrets.email_username,
     password: Rails.application.secrets.email_password,
   }
+  config.i18n.available_locales = :cs
 end

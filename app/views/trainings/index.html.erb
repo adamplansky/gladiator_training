@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tréninky</h1>
+<h2>Celkem bodů: <%= @all_my_points %>b</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trainings.each do |training| %>
+      <tr>
+        <td><%= cl_image_tag training.training_category.image, alt: training.training_category.name,:width => 50, :height => 50 %></td>
+        <td><%= training.distance %><%=training.training_category.units%></td>
+        <td><%= training.points %>b</td>
+        <td><%= training.description %></td>
+        <td><%= link_to 'odstranit', training, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'New Training', new_training_path %>

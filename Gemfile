@@ -13,6 +13,9 @@ gem 'high_voltage'
 gem 'pg'
 gem 'thin'
 gem 'validates_timeliness', '~> 4.0'
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @training_category.name %>
+</p>
+
+<p>
+  <strong>Koef:</strong>
+  <%= @training_category.koef %>
+</p>
+
+<p>
+  <strong>Minimum:</strong>
+  <%= @training_category.minimum %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @training_category.description %>
+</p>
+
+<p>
+  <strong>Units:</strong>
+  <%= @training_category.units %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= cl_image_tag @training_category.image, alt: @training_category.name,:width => 100, :height => 100 %>
+</p>
+
+
+<%= link_to 'Edit', edit_training_category_path(@training_category) %> |
+<%= link_to 'Back', training_categories_path %>

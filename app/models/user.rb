@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 #  has_and_belongs_to_many :reservations
   has_many :reservations, :through => :reservations_users
   has_many :reservations
+  has_many :trainings
 
 
 #  before_create :create_activation_digest

@@ -4,7 +4,5 @@ class CreateReservationsUsersJoinTable < ActiveRecord::Migration
       t.integer :reservation_id
       t.integer :user_id
     end
-
-    
   end
 end

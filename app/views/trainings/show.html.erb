@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Training category:</strong>
+  <%= @training.training_category_id %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @training.points %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @training.description %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @training.distance %>
+</p>
+
+<%= link_to 'Edit', edit_training_path(@training) %> |
+<%= link_to 'Back', trainings_path %>

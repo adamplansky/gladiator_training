@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Training Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Koef</th>
+      <th>Minimum</th>
+      <th>Description</th>
+      <th>Units</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @training_categories.each do |training_category| %>
+      <tr>
+        <td><%= training_category.name %></td>
+        <td><%= training_category.koef %></td>
+        <td><%= training_category.minimum %></td>
+        <td><%= training_category.description %></td>
+        <td><%= training_category.units %></td>
+        <td><%= link_to 'Show', training_category %></td>
+        <td><%= link_to 'Edit', edit_training_category_path(training_category) %></td>
+        <td><%= link_to 'Destroy', training_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Training category', new_training_category_path %>
