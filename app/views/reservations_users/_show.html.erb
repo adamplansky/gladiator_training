@@ -1,5 +1,15 @@
 <table>
-<% @reservation.reservation_users.each_with_index do |ru,index|%>
+<% @regular_users.each_with_index do |ru,index|%>
+  <tr>
+    <td> <%= index + 1%>.</td>
+    <td> <%= ru.user.first_name %> <%= ru.user.surname %></td>
+    <td> <%= (l ru.created_at, format: :short) %></td>
+  </tr>
+<% end%>
+</table>
+<h2>Náhradníci</h2>
+<table>
+<% @nahradnici.each_with_index do |ru,index|%>
   <tr>
     <td> <%= index + 1%>.</td>
     <td> <%= ru.user.first_name %> <%= ru.user.surname %></td>

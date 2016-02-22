@@ -28,7 +28,7 @@
         <% elsif reservation.users.count < reservation.capacity %>
         <td class="red"><%= link_to "Přihlásit", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
         <% else %>
-        <td class="yellow">PLNO</td>
+        <td class="yellow"><%= link_to "Přihlásit se jako náhradník", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
         <% end %>
         <td><%= link_to 'Detail', reservation %></td>
           <% if admin_in? %>

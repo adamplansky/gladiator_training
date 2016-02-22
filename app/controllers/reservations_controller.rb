@@ -1,10 +1,13 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:edit, :update, :destroy]
 
   def index
     @reservations = Reservation.where("time_from > ?", Time.now)
   end
   def show
+    @reservation = Reservation.find(params[:id])
+    @regular_users =  @reservation.reservation_users.limit(@reservation.capacity)
+    @nahradnici = @reservation.reservation_users.offset(@reservation.capacity)
   end
 
   def new
