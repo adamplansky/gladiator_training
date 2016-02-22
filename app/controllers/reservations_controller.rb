@@ -8,6 +8,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @regular_users =  @reservation.reservation_users.limit(@reservation.capacity)
     @nahradnici = @reservation.reservation_users.offset(@reservation.capacity)
+    @nahradnici_include = @nahradnici.include? current_user
   end
 
   def new

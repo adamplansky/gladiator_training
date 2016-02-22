@@ -16,15 +16,23 @@
   <tbody>
     <% @reservations.each do |reservation| %>
       <tr>
-
+        <% x = ReservationUser.where(reservation: reservation).to_ary %>
+        <% y = ReservationUser.where(reservation: reservation, user: current_user).first %>
+        <%= (x.map{|x| x.user_id}.find_index(y.try(:user_id)))||-1 %>
+        <% @my_index = (x.map{|x| x.user_id}.find_index(y.try(:user_id)))||-1  %>
+        <%= @my_index %>
         <td><%= l(reservation.time_from, format: "%A") %></td>
         <td><%= l reservation.time_from.to_date %></td>
         <td><%= reservation.time_from.strftime("%H:%M") %> - <%= reservation.time_to.strftime("%H:%M") %></td>
         <td> <%= link_to reservation.place.name,reservation.place.map_url  %></td>
         <td><%= reservation.users.count %> / <%= reservation.capacity %></td>
         <td><%= reservation.category.name %> </td>
-        <% if reservation.users.include? current_user%>
+
+        <% if @my_index < reservation.capacity && @my_index >= 0%>
         <td class="green"><%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
+        <% elsif @my_index >=  reservation.capacity%>
+          <td class="yellow"><%= link_to "Odhlásit se (náhradník)", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
+
         <% elsif reservation.users.count < reservation.capacity %>
         <td class="red"><%= link_to "Přihlásit", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
         <% else %>
