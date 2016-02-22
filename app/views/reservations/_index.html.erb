@@ -18,9 +18,7 @@
       <tr>
         <% x = ReservationUser.where(reservation: reservation).to_ary %>
         <% y = ReservationUser.where(reservation: reservation, user: current_user).first %>
-        <%= (x.map{|x| x.user_id}.find_index(y.try(:user_id)))||-1 %>
         <% @my_index = (x.map{|x| x.user_id}.find_index(y.try(:user_id)))||-1  %>
-        <%= @my_index %>
         <td><%= l(reservation.time_from, format: "%A") %></td>
         <td><%= l reservation.time_from.to_date %></td>
         <td><%= reservation.time_from.strftime("%H:%M") %> - <%= reservation.time_to.strftime("%H:%M") %></td>
