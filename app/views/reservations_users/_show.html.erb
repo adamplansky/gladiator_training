@@ -1,10 +1,9 @@
-
 <table>
-<% @reservation.users.each_with_index do |all_users,index|%>
+<% @reservation.reservation_users.each_with_index do |ru,index|%>
   <tr>
     <td> <%= index + 1%>.</td>
-    <td> <%= all_users.first_name %> <%= all_users.surname %></td>
-    <td> <%= (l all_users.created_at, format: :short) %></td>
+    <td> <%= ru.user.first_name %> <%= ru.user.surname %></td>
+    <td> <%= (l ru.created_at, format: :short) %></td>
   </tr>
 <% end%>
 </table>
