@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
   has_secure_password
 
+
+  def fullname
+    "#{self.first_name} #{self.surname}"
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)

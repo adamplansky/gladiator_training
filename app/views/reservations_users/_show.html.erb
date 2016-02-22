@@ -2,7 +2,12 @@
 <% @regular_users.each_with_index do |ru,index|%>
   <tr>
     <td> <%= index + 1%>.</td>
-    <td> <%= ru.user.first_name %> <%= ru.user.surname %></td>
+    <% if ru.user == current_user %>
+      <td> <strong><%= ru.user.fullname %></strong></td>
+    <% else%>
+      <td> <%= ru.user.fullname %></td>
+    <% end %>
+
     <td> <%= (l ru.created_at, format: :short) %></td>
   </tr>
 <% end%>
@@ -12,7 +17,11 @@
 <% @nahradnici.each_with_index do |ru,index|%>
   <tr>
     <td> <%= index + 1%>.</td>
-    <td> <%= ru.user.first_name %> <%= ru.user.surname %></td>
+    <% if ru.user == current_user %>
+      <td> <strong><%= ru.user.fullname %></strong></td>
+    <% else%>
+      <td> <%= ru.user.fullname %></td>
+    <% end %>
     <td> <%= (l ru.created_at, format: :short) %></td>
   </tr>
 <% end%>
