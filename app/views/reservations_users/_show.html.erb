@@ -15,9 +15,12 @@
 </table>
 </div>
 <div class='col-sm-6'>
-<h2>Náhradníci</h2>
+
 <table class='table'>
 <% @nahradnici.each_with_index do |ru,index|%>
+<% if index == 0%>
+<h2>Náhradníci</h2>
+<% end %>
   <tr>
     <td> <%= index + 1%>.</td>
     <% if ru.user == current_user %>
