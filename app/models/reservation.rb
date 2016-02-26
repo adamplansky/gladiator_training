@@ -16,4 +16,10 @@ class Reservation < ActiveRecord::Base
   validates_datetime :time_from
   validates_datetime :time_to
 
+
+  def week
+    self.time_from.strftime('%W')
+  end
+
+
 end

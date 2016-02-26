@@ -1,11 +1,22 @@
 // Place all the styles related to the Reservations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.table > tbody + tbody {
+  border-top:0;
+}
 table{
+
+  tbody::before
+  {
+    content: '';
+    display: block;
+    height: 30px;
+
+  }
+
   tr{
-    td{
-      padding:5px;
-      border:1px solid #000;
+    th{
+      background-color:#fff;
     }
     .red{
       background-color:red;
@@ -16,11 +27,11 @@ table{
     .yellow{
       background-color:yellow;
     }
-    
+
   }
 }
 .reservations_index,.reservations_show{
-  
+
   .red,.green{& a {color:#fff;}}
   td{
     text-align:center;

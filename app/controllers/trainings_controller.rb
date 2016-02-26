@@ -1,4 +1,5 @@
 class TrainingsController < ApplicationController
+  layout 'subapplication'
   before_action :set_training, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   # GET /trainings
