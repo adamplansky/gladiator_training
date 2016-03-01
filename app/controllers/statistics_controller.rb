@@ -1,5 +1,6 @@
 class StatisticsController < ApplicationController
   layout 'subapplication'
+  before_action :logged_in_user
   def index
     @categories = TrainingCategory.all
     @users = User.all
