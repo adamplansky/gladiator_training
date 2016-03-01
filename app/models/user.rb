@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def my_points
-    Training.where(user: self).map(&:points).reduce(:+).try(round(2))
+    Training.where(user: self).map(&:points).reduce(:+).try(:round,2)
   end
 
   def my_rank

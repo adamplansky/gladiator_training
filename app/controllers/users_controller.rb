@@ -15,11 +15,6 @@ class UsersController < ApplicationController
     h = Training.unscope(:order).joins(:user).select('users.*, sum_points').where(user: current_user).group("training_category_id").sum(:points)
     @ary = [['a','b']]
     h.each {|k,v| @ary << [TrainingCategory.find(k).name, v]}
-    puts "@ary: #{@ary}"
-
-    #@all_my_points = @trainings.map(&:points).reduce(:+)
-    #sums = Training.joins(:user).group("user_id").sum(:points).sort{|a1,a2| a2[1] <=> a1[1]}
-    #@my_rank =
   end
 
   # GET /users/new
