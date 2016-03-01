@@ -34,6 +34,13 @@ module SessionsHelper
     end
   end
 
+  def logged_in_admin
+    unless admin_in?
+      store_location
+      redirect_to signin_path, notice: "Nemáte dostatečné oprávnění."
+    end
+  end
+
   def admin_in?
     return true if !current_user.nil? && current_user.admin == true
     return false
