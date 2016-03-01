@@ -6,7 +6,7 @@ class TrainingsController < ApplicationController
   # GET /trainings.json
   def index
     @trainings = Training.all.page(params[:page])
-    @all_my_points = @trainings.map(&:points).reduce(:+).try(round(2))
+    @all_my_points = @trainings.map(&:points).reduce(:+).try(:round,2)
     @categories = TrainingCategory.all
   end
 
@@ -34,7 +34,7 @@ class TrainingsController < ApplicationController
     if @category.minimum > (@training.distance || 0)
       @training.points = 0
     else
-      @training.points = (@category.koef * (@training.distance || 0)).try(round(2))
+      @training.points = (@category.koef * (@training.distance || 0)).try(:round,2)
     end
 
     @training.points = @category.points if @category.koef == 0

@@ -5,4 +5,7 @@ class Training < ActiveRecord::Base
   paginates_per 20
 
   default_scope { order('created_at DESC') }
+
+  validates :user, presence: true
+  validates :period, presence: true
 end
