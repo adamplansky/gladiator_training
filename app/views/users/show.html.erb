@@ -1,23 +1,45 @@
-<% if admin_in? %>
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class='col-sm-12'>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.fullname %>
+      </h1>
+      <h2>Pořadí: <%= @user.my_rank %>.</h2>
+      <h3>Celkem si získal: <%= @user.my_points %> bodů</h3>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+      <div id="orders_chart" style="width: 100%; "></div>
 
-<p>
-  <strong>Surname:</strong>
-  <%= @user.surname %>
-</p>
+    </section>
+  </aside>
+  <div class="col-md-8">
 
+    <table class="table table-striped table-hover">
+    <% @trainings.each do |training| %>
+        <%= render training %>
+    <% end %>
 
+    </table>
+    <%= paginate @trainings %>
+  </div>
+ </div>
+</div>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+   google.charts.load('current', {'packages':['corechart']});
+   google.charts.setOnLoadCallback(drawChart);
+   ary = JSON.parse('<%= raw @ary %>')
+   function drawChart() {
+     var data = google.visualization.arrayToDataTable(ary);
+     var options = {
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-<% end %>
+       backgroundColor: '#eee'
+     };
+
+     var chart = new google.visualization.PieChart(document.getElementById('orders_chart'));
+
+     chart.draw(data, options);
+   }
+ </script>
+

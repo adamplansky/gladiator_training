@@ -21,6 +21,15 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.surname}"
   end
 
+  def my_points
+    Training.where(user: self).map(&:points).reduce(:+).round(2)
+  end
+
+  def my_rank
+    sums = Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points)
+    sums.keys.index(self.id)+1
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)

@@ -1,14 +1,16 @@
 <div class="navbar subnav" role="navigation">
-    <div class="navbar-inner">
-        <div class="container">
-        <ul class="pager subnav-pager">
-            <div class="btn-group-wrap">
-                <button type="button" class="btn btn-success">sub 1</button>
-                <button type="button" class="btn btn-success">sub 2</button>
-                <button type="button" class="btn btn-success">sub 3</button>
-                <button type="button" class="btn btn-success">sub 4</button>
-                <button type="button" class="btn btn-success">sub 5</button>
-                <button type="button" class="btn btn-success">sub 6</button>
-             </div>
-        </ul>
+  <div class="navbar-inner">
+    <div class="container sub-nav-container">
+      <ul class="nav navbar-nav ">
+        <li role=""><%= link_to trainings_path do %><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>Tréninky<% end %></li>
+        <li role="">
+          <%= link_to user_path(current_user) do %>
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>Moje tréninky
+          <% end %>
+        </li>
+        <li role=""><%= link_to statistics_path do %><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Statistiky<% end %></li>
+        <li role=""> <%= link_to new_training_path do %> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Přidat trénink<% end %></li>
+      </ul>
+    </div>
+  </div>
 </div>

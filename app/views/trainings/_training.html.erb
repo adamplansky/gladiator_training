@@ -1,0 +1,11 @@
+<tr>
+  <td><%= training.created_at.to_date %></td>
+  <td><%= cl_image_tag training.training_category.image, alt: training.training_category.name,:width => 50, :height => 50 %></td>
+  <td><%= training.distance %><%=training.training_category.units%></td>
+  <td valign="bottom"><%= training.points %>b</td>
+  <td valign="bottom"><%= training.description %></td>
+  <td><%= link_to training.user.fullname, user_path(training.user) %></td>
+  <% if training.user == current_user%>
+    <td><%= link_to 'Smazat', training, method: :delete, data: { confirm: 'Opravdu chcete smazat položku?' } %></td>
+  <% end %>
+</tr>

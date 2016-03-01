@@ -5,14 +5,17 @@ class TrainingsController < ApplicationController
   # GET /trainings
   # GET /trainings.json
   def index
-    @trainings = Training.where(user: current_user)
+    @trainings = Training.all.page(params[:page])
+    @all_my_points = @trainings.map(&:points).reduce(:+).round(2)
     @categories = TrainingCategory.all
-    @all_my_points = @trainings.map(&:points).reduce(:+)
   end
 
   # GET /trainings/1
   # GET /trainings/1.json
   def show
+    # @training = Training.find(user: current_user)
+    # @categories = TrainingCategory.all
+    # @all_my_points = @trainings.map(&:points).reduce(:+)
   end
 
   # GET /trainings/new
@@ -26,14 +29,19 @@ class TrainingsController < ApplicationController
   def create
     @training = Training.new(training_params)
     @training.user = current_user
+
     @category = TrainingCategory.find(params[:training][:training_category_id])
-    @training.points = (@category.koef * @training.distance).round(2)
-    @training.points = 0 if @category.minimum > @training.distance
+    if @category.minimum > (@training.distance || 0)
+      @training.points = 0
+    else
+      @training.points = (@category.koef * (@training.distance || 0)).round(2)
+    end
+
     @training.points = @category.points if @category.koef == 0
     @training.period = Period.where("time_from < ? AND time_to > ?", Time.now, Time.now).first
     respond_to do |format|
       if @training.save
-        format.html { redirect_to @training, notice: 'Training was successfully created.' }
+        format.html { redirect_to trainings_url, notice: 'Training was successfully created.' }
         format.json { render :show, status: :created, location: @training }
       else
         format.html { render :new }
@@ -48,7 +56,7 @@ class TrainingsController < ApplicationController
   def destroy
     @training.destroy
     respond_to do |format|
-      format.html { redirect_to trainings_url, notice: 'Training was successfully destroyed.' }
+      format.html { redirect_to current_user, notice: 'Training was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,3 +1,32 @@
-// Place all the styles related to the trainings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.sub-nav-container{
+  background-color:yellow;
+  background-color:#dcdcdc;
+  ul li{
+    a {color:black;}
+  }
+  .glyphicon{
+    margin-right:5px;
+  }
+}
+.new-training-click{
+  .hidden_info{
+    .field{
+      width:50%;
+      margin:0 auto;
+    }
+  }
+  h1{
+    font-size:15px;
+  }
+  form {
+    text-align: center;
+  }
+  min-height: 220px;
+  border:1px solid #dcdcdc;
+  .info{
+    text-align:center;
+
+  }
+}

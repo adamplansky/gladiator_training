@@ -30,7 +30,7 @@ module SessionsHelper
     puts '--------------------'
     unless logged_in?
       store_location
-      redirect_to signin_path, notice: "Please sign in."
+      redirect_to signin_path, notice: "Musíte se přihlásit."
     end
   end
 
