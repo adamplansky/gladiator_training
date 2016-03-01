@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   def my_rank
     sums = Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points)
+    return '---' unless sums.keys.index(self.id)
     sums.keys.index(self.id)+1
   end
 
