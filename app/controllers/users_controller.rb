@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trainings = @user.trainings.page(params[:page])
-    h = Training.unscope(:order).joins(:user).select('users.*, sum_points').where(user: current_user).group("training_category_id").sum(:points)
+    h = Training.unscope(:order).joins(:user).select('users.*, sum_points').where(user: @user).group("training_category_id").sum(:points)
     @ary = [['a','b']]
     h.each {|k,v| @ary << [TrainingCategory.find(k).name, v]}
   end
