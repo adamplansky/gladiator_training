@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'about_us/index'
+
   resources :dictionaries
   resources :periods
   resources :trainings
