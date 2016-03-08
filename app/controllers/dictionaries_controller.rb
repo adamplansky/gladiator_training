@@ -1,6 +1,6 @@
 class DictionariesController < ApplicationController
   before_action :set_dictionary, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_admin, only: [:show, :new, :edit, :update, :destroy]
   # GET /dictionaries
   # GET /dictionaries.json
   def index

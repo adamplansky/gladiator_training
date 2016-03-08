@@ -38,6 +38,7 @@
 </table>
 
 <br>
-
+<% if admin_in? %>
 <%= link_to 'Nový pojem', new_dictionary_path, class: 'btn btn-default btn-success' %>
+<% end %>
 </div>
