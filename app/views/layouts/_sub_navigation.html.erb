@@ -10,6 +10,14 @@
         </li>
         <li role=""><%= link_to statistics_path do %><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Statistiky<% end %></li>
         <li role=""> <%= link_to new_training_path do %> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Přidat trénink<% end %></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to  "https://www.facebook.com/groups/963959860339955/", target: "_blank", alt: "facebook" do %>
+            <%= image_tag "fb_logo_black.png", width:"20px", class:'vertical-al'%>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
