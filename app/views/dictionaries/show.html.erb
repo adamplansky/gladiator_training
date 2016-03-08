@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>En name:</strong>
+  <%= @dictionary.en_name %>
+</p>
+
+<p>
+  <strong>Cz name:</strong>
+  <%= @dictionary.cz_name %>
+</p>
+
+<p>
+  <strong>Abr:</strong>
+  <%= @dictionary.abr %>
+</p>
+
+<%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
+<%= link_to 'Back', dictionaries_path %>

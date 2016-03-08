@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Dictionaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Název cviku AJ</th>
+      <th>Název cviku ČJ</th>
+      <th>zkratka</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dictionaries.each do |dictionary| %>
+      <tr>
+        <td><%= dictionary.en_name %></td>
+        <td><%= dictionary.cz_name %></td>
+        <td><%= dictionary.abr %></td>
+        <td><%= link_to 'Show', dictionary %></td>
+        <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
+        <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nový pojem', new_dictionary_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dictionaries
   resources :periods
   resources :trainings
   resources :training_categories
