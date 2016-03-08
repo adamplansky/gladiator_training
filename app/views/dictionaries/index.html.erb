@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Listing Dictionaries</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
+    <tr>
+      <% if admin_in? %>
+        <th colspan="6" class="crossfit-header">CROSSFIT</th>
+      <% else %>
+        <th colspan="3" class="crossfit-header">CROSSFIT</th>
+      <% end%>
+
+    </tr>
+
     <tr>
       <th>Název cviku AJ</th>
       <th>Název cviku ČJ</th>
       <th>zkratka</th>
+     <% if admin_in? %>
       <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -18,9 +27,11 @@
         <td><%= dictionary.en_name %></td>
         <td><%= dictionary.cz_name %></td>
         <td><%= dictionary.abr %></td>
+        <% if admin_in? %>
         <td><%= link_to 'Show', dictionary %></td>
         <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
         <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +39,5 @@
 
 <br>
 
-<%= link_to 'Nový pojem', new_dictionary_path %>
+<%= link_to 'Nový pojem', new_dictionary_path, class: 'btn btn-default btn-success' %>
+</div>
