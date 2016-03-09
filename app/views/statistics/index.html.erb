@@ -9,8 +9,11 @@
         <td><%= r[1] %></td>
       </tr>
       <% end %>
+      <tr>
+        <td colspan="3" class="link_stats"><%= link_to "vše", statistic_path(0) %></td>
+      </tr>
     </table>
-      <%= link_to "vše", statistic_path(0) %>
+
   </div>
 
   <% @results.each do |result| %>
@@ -24,8 +27,10 @@
         <td><%= r[1] %></td>
       </tr>
       <% end %>
+      <tr>
+        <td colspan="3" class="link_stats"><%= link_to "vše", statistic_path(result[0]) %></td>
+      </tr>
     </table>
-    <%= link_to "vše", statistic_path(result[0]) %>
   </div>
   <% end %>
 
