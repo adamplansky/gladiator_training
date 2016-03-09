@@ -18,7 +18,7 @@ class StatisticsController < ApplicationController
     if @category
       @result = Training.unscope(:order).joins(:user).where(training_category: @category.id).group("user_id").order("sum_points DESC").sum(:points)
     else
-      @result =  Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points).take(10)
+      @result =  Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points)
     end
   end
 end
