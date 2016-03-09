@@ -3,10 +3,10 @@
 
   <%= link_to 'Seznam rezervací', reservations_path, class:"btn btn-info" %>
   <% if @reservation.users.include? current_user%>
-  <%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:@reservation}, method: :delete, class:"btn btn-danger" %>
+  <%= link_to "Odhlásit se", reservations_user_path(@reservation), method: :delete, class:"btn btn-danger" %>
    <% elsif @reservation.users.count < @reservation.capacity %>
   <%= link_to "Přihlásit", {controller: "reservations_users", action: "create", id:@reservation}, method: :post, class:"btn btn-success" %>
-  
+
   <% end %>
   </div>
   <div class='col-sm-12'>

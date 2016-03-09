@@ -12,21 +12,20 @@ class ReservationsUsersController < ApplicationController
 
   def destroy
     r = Reservation.find_by_id(params[:id])
-    if r.time_from - 1.hours < Time.now
+    u = User.find_by_id(params[:format]) if current_user.admin?
+    if r.time_from - 40.minutes < Time.now
       flash[:success] = "Odhlášení zamítnuto."
       redirect_to reservations_path
       return
     end
-    u = current_user
+    u = current_user if u.nil?
+
     if r
       r.users.delete(u)
     end
 
 
-    respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Rezervace zrušena.' }
-      format.json { head :no_content }
-    end
+    redirect_to reservations_url, notice: 'Rezervace zrušena.'
   end
 
 
