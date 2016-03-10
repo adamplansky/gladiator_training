@@ -6,7 +6,7 @@ class TrainingsController < ApplicationController
   # GET /trainings.json
   def index
     @trainings = Training.all.page(params[:page])
-    @all_my_points = @trainings.map(&:points).reduce(:+).try(:round,2)
+    #@all_my_points = @trainings.map(&:points).reduce(:+).try(:round,2)
     @categories = TrainingCategory.all
   end
 
