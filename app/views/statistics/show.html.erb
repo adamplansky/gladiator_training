@@ -8,7 +8,7 @@
     <% @result.each_with_index do |r,index| %>
     <tr>
       <td><%= index + 1 %>.</td>
-      <td><%= @users.find(r[0]).fullname %></td>
+      <td><%= link_to @users.find(r[0]).fullname, @users.find(r[0]) %></td>
       <td><%= r[1] %></td>
     </tr>
     <% end %>

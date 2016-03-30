@@ -20,6 +20,7 @@ gem 'ransack'
 gem 'kaminari'
 gem 'highcharts-rails'
 gem 'googlecharts'
+gem 'google_drive'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
