@@ -69,6 +69,6 @@ class PeriodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def period_params
-      params.require(:period).permit(:time_from, :time_to, :name)
+      params.require(:period).permit(:time_from, :time_to, :name, :time_from_1, :time_from_2, :time_from_3, :time_to_1, :time_to_2, :time_to_3)
     end
 end

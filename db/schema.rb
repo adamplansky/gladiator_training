@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316154704) do
+ActiveRecord::Schema.define(version: 20160401091642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,14 @@ ActiveRecord::Schema.define(version: 20160316154704) do
     t.datetime "time_from"
     t.datetime "time_to"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "time_from_1"
+    t.datetime "time_to_1"
+    t.datetime "time_from_2"
+    t.datetime "time_to_2"
+    t.datetime "time_from_3"
+    t.datetime "time_to_3"
   end
 
   create_table "places", force: :cascade do |t|

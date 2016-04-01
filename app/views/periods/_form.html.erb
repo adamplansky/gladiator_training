@@ -12,13 +12,44 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :time_from %><br>
+    <%= f.label "Zacatek obdobi:" %><br>
     <%= f.datetime_select :time_from, include_seconds:true %>
   </div>
   <div class="field">
-    <%= f.label :time_to %><br>
+    <%= f.label "Konec obdobi:" %><br>
     <%= f.datetime_select :time_to, include_seconds:true %>
   </div>
+
+
+  <div class="field">
+    <%= f.label "Zacatek prvniho mesice:" %><br>
+    <%= f.datetime_select :time_from_1, include_seconds:true %>
+  </div>
+  <div class="field">
+    <%= f.label "Konec prvniho mesice:" %><br>
+    <%= f.datetime_select :time_to_1, include_seconds:true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Zacatek druheho mesice:" %><br>
+    <%= f.datetime_select :time_from_2, include_seconds:true %>
+  </div>
+  <div class="field">
+    <%= f.label "Konec druheho mesice:" %><br>
+    <%= f.datetime_select :time_to_2, include_seconds:true %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label "Zacatek tretiho mesice:" %><br>
+    <%= f.datetime_select :time_from_3, include_seconds:true %>
+  </div>
+  <div class="field">
+    <%= f.label "Zacatek tretiho mesice:" %><br>
+    <%= f.datetime_select :time_to_3, include_seconds:true %>
+  </div>
+
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
