@@ -41,6 +41,7 @@ class PeriodsController < ApplicationController
   # PATCH/PUT /periods/1.json
   def update
     respond_to do |format|
+      logger.debug "@period.update(period_params): #{period_params}"
       if @period.update(period_params)
         format.html { redirect_to @period, notice: 'Period was successfully updated.' }
         format.json { render :show, status: :ok, location: @period }
