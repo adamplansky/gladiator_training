@@ -21,6 +21,7 @@ gem 'kaminari'
 gem 'highcharts-rails'
 gem 'googlecharts'
 gem 'google_drive'
+gem 'bootstrap-table-rails'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
