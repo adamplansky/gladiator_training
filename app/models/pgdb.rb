@@ -5,6 +5,11 @@ class Pgdb < ActiveRecord::Base
     return connection.execute("select * from get_statistics(#{prm[:training_category_id]}, #{prm[:period_id]});").to_a
   end
 
+  def self.get_all_statistics(period_id)
+    prm = filter_handle(0, period_id)
+    return connection.execute("select * from get_statistics_overall(#{prm[:period_id]});").to_a
+  end
+
 
   private
   def self.remove_blank x

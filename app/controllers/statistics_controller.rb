@@ -21,7 +21,8 @@ class StatisticsController < ApplicationController
       @result = Pgdb.get_statistics(@category.id,@period.id)
       #@result = Training.unscope(:order).joins(:user).where(training_category: @category.id).group("user_id").order("sum_points DESC").sum(:points)
     else
-      @result =  Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points)
+      #@result =  Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points)
+      @result = Pgdb.get_all_statistics(@period.id)
     end
   end
 end
