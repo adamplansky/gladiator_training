@@ -8,9 +8,9 @@
     <thead>
       <tr>
           <th colspan="5" class="msum">Celkově</th>
-          <th colspan="2" class="m1">1. měsíc</th>
-          <th colspan="2" class="m2">2. měsíc</th>
-          <th colspan="2" class="m3">3. měsíc</th>
+          <th colspan="4" class="m1">1. měsíc</th>
+          <th colspan="4" class="m2">2. měsíc</th>
+          <th colspan="4" class="m3">3. měsíc</th>
       </tr>
       <tr>
         <th class='col-xs-1 msum'>Jméno</th>
@@ -19,14 +19,20 @@
         <th class='msum' >Bonus</th>
         <th class='msum' data-sortable="true">Celkové body</th>
 
-        <th class='m1' data-sortable="true">Skóre</th>
-        <th class='m1' >Pořadí</th>
+        <th class='m1' data-sortable="true">Sk</th>
+        <th class='m1' >Poř</th>
+        <th class='m1' >Bod</th>
+        <th class='m1' data-sortable="true">Cel</th>
 
-        <th class='m2' data-sortable="true">Skóre</th>
+        <th class='m2' data-sortable="true">Sk</th>
         <th class='m2' >Pořadí</th>
+        <th class='m2' >Bod</th>
+        <th class='m2' data-sortable="true">Cel</th>
 
-        <th class='m3' data-sortable="true">Skóre</th>
-        <th class='m3' >Pořadí</th>
+        <th class='m3' data-sortable="true">Sk</th>
+        <th class='m3' >Poř</th>
+        <th class='m3' >Bod</th>
+        <th class='m3' data-sortable="true">Cel</th>
 
       </tr>
     </thead>
@@ -42,12 +48,18 @@
 
         <td class='m1'><%= r["score1"] %></td>
         <td class='m1'><%= r["rank1"] %></td>
+        <td class='m1'>+<%= r["bonus1"] %></td>
+        <td class='m1'><strong><%= r["sum_points1"] %></strong></td>
 
         <td class='m2'><%= r["score2"] %></td>
         <td class='m2'><%= r["rank2"] %></td>
+        <td class='m2'>+<%= r["bonus2"] %></td>
+        <td class='m2'><strong><%= r["sum_points1"] %></strong></td>
 
         <td class='m3'><%= r["score3"] %></td>
         <td class='m3'><%= r["rank3"] %></td>
+        <td class='m3'>+<%= r["bonus3"] %></td>
+        <td class='m3'><strong><%= r["sum_points1"] %></strong></td>
 
 
       </tr>
