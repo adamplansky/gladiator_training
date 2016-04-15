@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   match '/signup', to: 'users#new', via: 'get', as:"signup"
   match '/signin', to: 'sessions#new', via: 'get', as: "signin"
   match '/signout', to: 'sessions#destroy', via: 'delete'
+  get '/.well-known/acme-challenge/:id' => 'reservations#letsencrypt'
+
 
   root to: 'welcome#index'
   match ':controller(/:action(/:id))', :via => :get
