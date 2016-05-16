@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :reservations, :through => :reservations_users
   has_many :reservations
   has_many :trainings
+  has_many :events, through: :registration
 
 
 #  before_create :create_activation_digest

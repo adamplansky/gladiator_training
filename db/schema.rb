@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405135110) do
+ActiveRecord::Schema.define(version: 20160516125745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,31 @@ ActiveRecord::Schema.define(version: 20160405135110) do
     t.string   "abr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "event_users", force: :cascade do |t|
+    t.boolean  "payed"
+    t.datetime "registration_time"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "event_users", ["event_id"], name: "index_event_users_on_event_id", using: :btree
+  add_index "event_users", ["user_id"], name: "index_event_users_on_user_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "event_date"
+    t.datetime "registration_end"
+    t.string   "url"
+    t.string   "image"
+    t.text     "description"
+    t.decimal  "min_money"
+    t.text     "contact"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "links", force: :cascade do |t|
@@ -62,6 +87,23 @@ ActiveRecord::Schema.define(version: 20160405135110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "reacttests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.boolean  "payed",             default: false
+    t.datetime "registration_time"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "registrations", ["event_id"], name: "index_registrations_on_event_id", using: :btree
+  add_index "registrations", ["user_id"], name: "index_registrations_on_user_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.datetime "time_from"
@@ -127,6 +169,10 @@ ActiveRecord::Schema.define(version: 20160405135110) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "event_users", "events"
+  add_foreign_key "event_users", "users"
+  add_foreign_key "registrations", "events"
+  add_foreign_key "registrations", "users"
   add_foreign_key "reservations_users", "reservations"
   add_foreign_key "reservations_users", "users"
   add_foreign_key "trainings", "periods"

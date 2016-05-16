@@ -16,4 +16,7 @@
 //= require bootstrap-table
 //= require highcharts
 //= require highcharts/highcharts-more
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .

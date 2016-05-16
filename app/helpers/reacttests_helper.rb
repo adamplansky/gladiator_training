@@ -1,0 +1,2 @@
+module ReacttestsHelper
+end

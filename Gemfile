@@ -22,6 +22,7 @@ gem 'highcharts-rails'
 gem 'googlecharts'
 gem 'google_drive'
 gem 'bootstrap-table-rails'
+gem 'react-rails', '~> 1.7.0'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

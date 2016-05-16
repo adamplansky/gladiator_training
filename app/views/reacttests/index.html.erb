@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Reacttests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reacttests.each do |reacttest| %>
+    <tr>
+      <td><%= link_to 'Show', reacttest %></td>
+      <td><%= link_to 'Edit', edit_reacttest_path(reacttest) %></td>
+      <td><%= link_to 'Destroy', reacttest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reacttest', new_reacttest_path %>
+<%= react_component("HelloWorld") %>
+<%= react_component("Comment",props={author: "Adam", children: "Children"}) %>
