@@ -1,7 +1,9 @@
 <div class="container">
   <div class='col-sm-12'>
 <%= link_to 'Seznam závodů', events_path, class:"btn btn-info" %>
-<% if @event.users.include? current_user%>
+<% if @event.registration_end < DateTime.now %>
+<%= link_to "Registrace skončila", nil, class:"btn btn-warning" %>
+<% elsif @event.users.include? current_user%>
 <%= link_to "Odhlásit se", {controller: "registrations", action: "destroy", id:@event}, method: :delete, class:"btn btn-danger" %>
  <% else %>
 <%= link_to "Přihlásit", {controller: "registrations", action: "create", id:@event}, method: :post, class:"btn btn-success" %>
@@ -53,7 +55,7 @@
 
 <%= render 'registrations/show' %>
 
-<%# link_to 'Edit', edit_event_path(@event) %> 
+<%# link_to 'Edit', edit_event_path(@event) %>
 <%# link_to 'Back', events_path %>
 </div>
 </div>

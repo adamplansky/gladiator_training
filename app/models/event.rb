@@ -7,4 +7,5 @@ class Event < ActiveRecord::Base
   validates :place, presence: true
   validates :place_url, presence: true
   validates :image, presence: true
+
 end

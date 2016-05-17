@@ -32,7 +32,7 @@ class RegistrationsController < ApplicationController
   end
 
   private
-    def set_registration
-      @reg = Registration.find(params[:id])
-    end
+  def set_registration
+    @reg = Registration.find(params[:id])
+  end
 end
