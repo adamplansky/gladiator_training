@@ -7,6 +7,7 @@
     <% else%>
       <td> <%= r.user.fullname %></td>
     <% end %>
+    <td> <%= l r.created_at.to_date %></td>
     <td>
       <% if r.payed %>
         <button type="button" class="btn btn-success">zaplaceno</button>
