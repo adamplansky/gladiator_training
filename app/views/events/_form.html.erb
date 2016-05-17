@@ -28,6 +28,14 @@
     <%= f.text_field :url %>
   </div>
   <div class="field">
+    <%= f.label "místo" %><br>
+    <%= f.text_field :place %>
+  </div>
+  <div class="field">
+    <%= f.label "místo url" %><br>
+    <%= f.text_field :place_url %>
+  </div>
+  <div class="field">
     <%= f.label "ikona sportu" %><br>
     <%= f.hidden_field :image_cache %><br>
     <%= f.file_field :image %>
