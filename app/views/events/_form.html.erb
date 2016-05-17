@@ -36,9 +36,11 @@
     <%= f.text_field :place_url %>
   </div>
   <div class="field">
-    <%= f.label "ikona sportu" %><br>
+    <%= f.label "logo" %><br>
     <%= f.hidden_field :image_cache %><br>
     <%= f.file_field :image %>
+    <!-- <%= cl_image_upload_tag(:image_id, :crop => :limit, :width => 1000, :height => 1000,
+                          :html => {:class => "image_upload"}) %> -->
   </div>
   <div class="field">
     <%= f.label "Popisek" %><br>
