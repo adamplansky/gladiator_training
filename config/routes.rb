@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :reservations_users
   resources :password_resets,only: [:new, :create, :edit, :update]
-  resources :registrations, only: [:edit, :update]
+  resources :registrations, only: [:edit, :update, :show, :create, :destroy]
   resources :statistics, only: [:index, :show]
   match '/signup', to: 'users#new', via: 'get', as:"signup"
   match '/signin', to: 'sessions#new', via: 'get', as: "signin"

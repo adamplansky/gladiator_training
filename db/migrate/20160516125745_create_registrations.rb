@@ -8,7 +8,7 @@ class CreateRegistrations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    
+    add_index(:registrations, [:user_id, :event_id], unique: true)
 
   end
 end

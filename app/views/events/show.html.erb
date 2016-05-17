@@ -1,44 +1,56 @@
+<div class="container">
+  <div class='col-sm-12'>
+<%= link_to 'Seznam závodů', events_path, class:"btn btn-info" %>
+<% if @event.users.include? current_user%>
+<%= link_to "Odhlásit se", {controller: "registrations", action: "destroy", id:@event}, method: :delete, class:"btn btn-danger" %>
+ <% else %>
+<%= link_to "Přihlásit", {controller: "registrations", action: "create", id:@event}, method: :post, class:"btn btn-success" %>
+
+<% end %>
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @event.title %>
+  <%= cl_image_tag @event.image, alt: @event.title,:width => 100, :height => 100, class: 'logo-event' %>
+  <h1><%= @event.title %></h1>
 </p>
 
 <p>
-  <strong>Event date:</strong>
+  <strong>Datum:</strong>
   <%= @event.event_date %>
 </p>
 
 <p>
-  <strong>Registration end:</strong>
+  <strong>Konec registrace:</strong>
   <%= @event.registration_end %>
 </p>
 
 <p>
   <strong>Url:</strong>
-  <%= @event.url %>
+  <%= link_to @event.url, @event.url%>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= cl_image_tag @event.image, alt: @event.title,:width => 100, :height => 100 %>
-</p>
+
 
 <p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Min money:</strong>
+  <strong>Mimimální cena:</strong>
   <%= @event.min_money %>
 </p>
 
 <p>
-  <strong>Contact:</strong>
+  <strong>Kontaktní osoba:</strong>
   <%= @event.contact %>
 </p>
+<p>
+  <strong>Popis:</strong>
+  <%= @event.description %>
+</p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+
+<%= render 'registrations/show' %>
+
+<%# link_to 'Edit', edit_event_path(@event) %> |
+<%# link_to 'Back', events_path %>
+</div>
+</div>

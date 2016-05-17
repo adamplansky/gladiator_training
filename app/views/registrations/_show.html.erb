@@ -1,0 +1,23 @@
+<table class='table table-striped table-hover'>
+
+  <% @registration.registration.each do |r| %>
+  <tr>
+    <% if r.user == current_user %>
+      <td> <strong><%= r.user.fullname %></strong></td>
+    <% else%>
+      <td> <%= r.user.fullname %></td>
+    <% end %>
+    <td>
+      <% if r.payed %>
+        <button type="button" class="btn btn-success">zaplaceno</button>
+      <% else %>
+        <button type="button" class="btn btn-danger">nezaplaceno</button>
+      <% end %>
+      <% if current_user && current_user.admin?%>
+        <%= link_to( "změnit stav", registration_path(r),:method => :patch, remote: true, class: "btn btn-warning") %>
+
+       <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

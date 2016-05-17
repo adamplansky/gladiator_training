@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_user
   # GET /events
   # GET /events.json
   def index
@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @registration = Event.find_by(id: params[:id])
   end
 
   # GET /events/new
