@@ -11,7 +11,6 @@ class Registration < ActiveRecord::Base
   def now_is_greater_then_registration_end
     if self.event.registration_end < DateTime.now
       errors.add(:base, "Registrace byly uzavřeny.")
-
     end
   end
 

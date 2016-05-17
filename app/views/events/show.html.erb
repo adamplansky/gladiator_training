@@ -45,7 +45,7 @@
 
 <p>
   <strong>Kontaktní osoba:</strong>
-  <%= @event.contact %>
+  <%= link_to @event.contact, @event.contact_url %>
 </p>
 <p>
   <strong>Popis:</strong>

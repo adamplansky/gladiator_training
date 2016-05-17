@@ -10,6 +10,7 @@
           <th>Název</th>
           <th>Datum</th>
           <th>Konec registrace</th>
+          <th>Kontaktní osoba</th>
           <% if current_user && current_user.admin? %>
           <th colspan="3"></th>
           <% else %>
@@ -25,6 +26,7 @@
           <td><%= event.title %></td>
           <td><%= l event.event_date.to_date %></td>
           <td><%= l event.registration_end.to_date %></td>
+          <td><%= link_to event.contact, event.contact_url %></td>
           <% if current_user && current_user.admin? %>
             <% if event.registration_end < DateTime.now %>
             <td class="warning">Registrace skončila</td>
