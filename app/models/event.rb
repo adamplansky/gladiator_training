@@ -12,9 +12,12 @@ class Event < ActiveRecord::Base
   validates_processing_of :image
   validate :image_size_validation
 
+  default_scope -> { order('event_date asc') }
+
   private
-  def image_size_validation
-    errors[:image] << "obrazek by mel mit maximalne 1MB " if image.size > 1.megabytes
-  end
+
+    def image_size_validation
+      errors[:image] << "obrazek by mel mit maximalne 1MB " if image.size > 1.megabytes
+    end
 
 end
