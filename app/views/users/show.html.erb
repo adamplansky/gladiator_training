@@ -6,8 +6,8 @@
       <h1>
         <%= @user.fullname %>
       </h1>
-      <h2>Pořadí: <%= @user.my_rank %>.</h2>
-      <h3>Celkem si získal: <%= @user.my_points %> bodů</h3>
+      <!-- <h2>Pořadí: <%= @user.my_rank %>.</h2>
+      <h3>Celkem si získal: <%= @user.my_points %> bodů</h3> -->
 
       <div id="orders_chart" style="width: 100%; "></div>
 
@@ -42,4 +42,3 @@
      chart.draw(data, options);
    }
  </script>
-
