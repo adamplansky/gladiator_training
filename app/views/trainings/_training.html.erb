@@ -8,4 +8,7 @@
   <% if training.user == current_user%>
     <td><%= link_to 'Smazat', training, method: :delete, data: { confirm: 'Opravdu chcete smazat položku?' } %></td>
   <% end %>
+  <% if admin_in?%>
+    <td><%= link_to 'editovat', edit_super_training_path(training) %></td>
+  <% end %>
 </tr>

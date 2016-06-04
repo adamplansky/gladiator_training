@@ -1,0 +1,27 @@
+<%= form_for @training,  url: update_super_training_path , method: "put"  do |f| %>
+  <% if @training.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training_category from being saved:</h2>
+
+      <ul>
+      <% @training.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label "description" %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label "vytvoreno" %><br>
+    <%= f.datetime_field :created_at %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit  %>
+  </div>
+<% end %>

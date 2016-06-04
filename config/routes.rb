@@ -20,6 +20,14 @@ Rails.application.routes.draw do
 
   get 'sessions/index'
 
+
+  resources :trainings do
+    member do
+      put :update_super
+      get :edit_super
+    end
+  end
+
   resources :users
   resources :reservations
   resources :sessions, only: [:new, :create, :destroy]

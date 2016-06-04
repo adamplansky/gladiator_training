@@ -13,38 +13,38 @@
   </div>
   <% end %>
 
-<div class='info'>
-  <h1>  <%= category.name %></h1>
-  <h2><%= cl_image_tag category.image, alt: category.name,:width => 60, :height => 60 %></h2>
-  <p><%= category.description %>  </p>
-  <% if category.koef != 0%><p>(minimum: <%= category.minimum%><%= category.units%>)</p> <% end %>
-  <%= link_to 'zapsat', '#', class: 'zapsat' %>
-</div>
-<div class='hidden_info'>
-  <div class="field">
-    <h1><%= f.label category.name %></h1>
+  <div class='info'>
+    <h1>  <%= category.name %></h1>
+    <h2><%= cl_image_tag category.image, alt: category.name,:width => 60, :height => 60 %></h2>
+    <p><%= category.description %>  </p>
+    <% if category.koef != 0%><p>(minimum: <%= category.minimum%><%= category.units%>)</p> <% end %>
+    <%= link_to 'zapsat', '#', class: 'zapsat' %>
+  </div>
+  <div class='hidden_info'>
+    <div class="field">
+      <h1><%= f.label category.name %></h1>
 
-    <%= f.hidden_field :training_category_id, :value => category.id %>
+      <%= f.hidden_field :training_category_id, :value => category.id %>
+    </div>
+    <% if category.koef != 0%>
+    <div class="field">
+      <%= f.label "vzdálenost" %><br>
+      <%= f.text_field :distance, placeholder: category.units, class: "form-control"  %>
+    </div>
+    <% else %>
+    <div class="field">
+      <%= f.hidden_field :distance, :value => "" %>
+    </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :popisek %><br>
+      <%= f.text_field :description, placeholder: 'volitelné ', class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.submit 'zapsat', class: "btn btn-default"%>
+      <%= link_to 'zrušit', '#', class: 'cancel' %>
+    </div>
   </div>
-  <% if category.koef != 0%>
-  <div class="field">
-    <%= f.label "vzdálenost" %><br>
-    <%= f.text_field :distance, placeholder: category.units, class: "form-control"  %>
-  </div>
-  <% else %>
-  <div class="field">
-    <%= f.hidden_field :distance, :value => "" %>
-  </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :popisek %><br>
-    <%= f.text_field :description, placeholder: 'volitelné ', class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.submit 'zapsat', class: "btn btn-default"%>
-    <%= link_to 'zrušit', '#', class: 'cancel' %>
-  </div>
-</div>
   <% end %>
 </div>
 <% end %>
@@ -58,17 +58,7 @@ $('.zapsat').on('click', function()
 });
 $('.cancel').on('click', function()
 {
-//  $(this).closest('.new-training-click').css('background','red');
-//  $(this).closest('.new-training-click').find('.info').show();
-$(this).closest('.new-training-click').find('.info').show();
+  $(this).closest('.new-training-click').find('.info').show();
   $(this).closest('.new-training-click').find('.hidden_info').hide();
-//  $(this).closest('.new-training-click').find('.info').show();
-//  $(this).closest('.new-training-click').find('.hidden_info').hide();
 });
 </script>
-
-
-
-
-
-

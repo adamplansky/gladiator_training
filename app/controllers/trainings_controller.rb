@@ -1,6 +1,6 @@
 class TrainingsController < ApplicationController
   layout 'subapplication'
-  before_action :set_training, only: [:show, :edit, :update, :destroy]
+  before_action :set_training, only: [:show, :edit, :update, :destroy, :edit_super, :update_super]
   before_action :logged_in_user
   # GET /trainings
   # GET /trainings.json
@@ -22,6 +22,21 @@ class TrainingsController < ApplicationController
   def new
     @training = Training.new
     @categories = TrainingCategory.all
+  end
+
+  def update_super
+    respond_to do |format|
+      if @training.update(training_params)
+        format.html { redirect_to trainings_url, notice: 'Training was successfully created.' }
+        format.json { render :index, status: :ok, location: @training }
+      else
+        format.html { render :edit }
+        format.json { render json: @training.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  def edit_super
+
   end
 
   # POST /trainings
@@ -69,6 +84,6 @@ class TrainingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def training_params
-      params.require(:training).permit(:training_category_id, :points, :description, :distance)
+      params.require(:training).permit(:training_category_id, :points, :description, :distance, :created_at)
     end
 end
