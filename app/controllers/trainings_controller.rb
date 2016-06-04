@@ -25,8 +25,11 @@ class TrainingsController < ApplicationController
   end
 
   def update_super
+
+    @training.update(training_params)
+    @training.period = Period.where("time_from < ? AND time_to > ?", @training.created_at, @training.created_at).first
     respond_to do |format|
-      if @training.update(training_params)
+      if @training.save
         format.html { redirect_to trainings_url, notice: 'Training was successfully created.' }
         format.json { render :index, status: :ok, location: @training }
       else
