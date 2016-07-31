@@ -47,6 +47,8 @@ class TrainingsController < ApplicationController
   def create
     @training = Training.new(training_params)
     @training.user = current_user
+    reg = /(\d{1,2}).(\d{1,2}).(\d{0,4})$/.match(@training.description)
+    @training.created_at = DateTime.new(reg[3].empty? ? DateTime.now.year : reg[3].to_i, reg[2].to_i,reg[1].to_i) if reg
 
     @category = TrainingCategory.find(params[:training][:training_category_id])
     if @category.minimum > (@training.distance || 0)
