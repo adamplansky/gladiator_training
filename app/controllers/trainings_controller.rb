@@ -45,6 +45,7 @@ class TrainingsController < ApplicationController
   # POST /trainings
   # POST /trainings.json
   def create
+    puts "training_params: #{training_params}"
     @training = Training.new(training_params)
     @training.user = current_user
     reg = /(\d{1,2}).(\d{1,2}).(\d{0,4})/.match(@training.description)

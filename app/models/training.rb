@@ -8,4 +8,9 @@ class Training < ActiveRecord::Base
 
   validates :user, presence: true
   validates :period, presence: true
+
+  def distance=(val)
+    val.sub!(',', '.') if val.is_a?(String)
+    self['distance'] = val
+  end
 end
