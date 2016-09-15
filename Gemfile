@@ -23,6 +23,7 @@ gem 'googlecharts'
 gem 'google_drive'
 gem 'bootstrap-table-rails'
 gem 'react-rails', '~> 1.7.0'
+gem 'will_paginate-bootstrap'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
