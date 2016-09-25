@@ -27,7 +27,6 @@ module SessionsHelper
     !current_user.nil?
   end
   def logged_in_user
-    puts '--------------------'
     unless logged_in?
       store_location
       redirect_to signin_path, notice: "Musíte se přihlásit."
