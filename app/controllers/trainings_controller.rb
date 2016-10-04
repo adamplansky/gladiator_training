@@ -50,7 +50,10 @@ class TrainingsController < ApplicationController
     @training.user = current_user
     #reg = /(\d{1,2}).(\d{1,2}).(\d{0,4})/.match(@training.description)
     #@training.created_at = DateTime.new(reg[3].empty? ? DateTime.now.year : reg[3].to_i, reg[2].to_i,reg[1].to_i) if reg
-    @training.created_at = (Date.valid_date?(@training.description) || Date.valid_date?(@training.description,'%d.%m.'))
+    @training.description.split(" ").each do |description|
+      x = (Date.valid_date?(description) || Date.valid_date?(description,'%d.%m.'))
+      @training.created_at = x if x
+    end
     @category = TrainingCategory.find(params[:training][:training_category_id])
     if @category.minimum > (@training.distance || 0)
       @training.points = 0
