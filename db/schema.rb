@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160517095332) do
   end
 
   add_index "registrations", ["event_id"], name: "index_registrations_on_event_id", using: :btree
+  add_index "registrations", ["user_id", "event_id"], name: "index_registrations_on_user_id_and_event_id", unique: true, using: :btree
   add_index "registrations", ["user_id"], name: "index_registrations_on_user_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
@@ -163,13 +164,6 @@ ActiveRecord::Schema.define(version: 20160517095332) do
     t.boolean  "admin",           default: false
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-  end
-
-  create_table "workouts", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "event_users", "events"

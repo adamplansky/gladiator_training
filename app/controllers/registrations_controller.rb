@@ -24,11 +24,16 @@ class RegistrationsController < ApplicationController
   end
   def destroy
     e = Event.find_by_id(params[:id])
+    u = User.find_by_id(params[:format]) if current_user.admin?
     u = current_user if u.nil?
     if e
       e.users.delete(u)
     end
-    redirect_to events_url, notice: 'Registrace zrušena.'
+    if current_user == u
+      redirect_to events_url, notice: 'Registrace zrušena.'
+    else
+      redirect_to e, notice: 'Registrace zrušena.'
+    end
   end
 
   private

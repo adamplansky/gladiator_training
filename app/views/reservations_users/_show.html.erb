@@ -10,8 +10,10 @@
     <% end %>
     <td> <%= (l ru.created_at, format: :short) %></td>
     <% if current_user.admin?%>
-    <td><%= link_to 'Smazat', reservations_user_path(@reservation, ru.user), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %></td>
+    <td>
+      <%= link_to 'Smazat', reservations_user_path(@reservation, ru.user), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+    <% end %>
 
   </tr>
 <% end%>

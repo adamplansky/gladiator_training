@@ -16,8 +16,13 @@
       <% end %>
       <% if current_user && current_user.admin? && current_user.email == 'hege8400@seznam.cz'%>
         <%= link_to( "změnit stav", registration_path(r),:method => :patch, remote: true, class: "btn btn-warning") %>
+      <% end %>
+      <% if current_user.admin?%>
+      <td>
+        <%= link_to 'Smazat', registration_path(@registration, r.user), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+      <% end %>
 
-       <% end %>
     </td>
   </tr>
   <% end %>
