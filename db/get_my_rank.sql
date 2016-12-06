@@ -18,7 +18,7 @@ CREATE OR REPLACE FUNCTION get_rank_score(integer, timestamp without time zone, 
  WITH global_rank as (
    with global_score as (
      select user_id, sum(points) as score from trainings
-     WHERE (training_category_id = $1 or $1 is null)  AND created_at > $2 AND created_at <= $3
+     WHERE (training_category_id = $1 or $1 is null)  AND created_at >= $2 AND created_at <= $3
      group by user_id
      order by score desc
    )
@@ -109,15 +109,3 @@ CREATE OR REPLACE FUNCTION get_statistics_overall(integer)
  from get_all_statistics($1) group by user_id order by sum(sum_points) DESC;
 $function$
 LANGUAGE sql;
-
-
-
-
-
-
-
-
-
-
-
-
