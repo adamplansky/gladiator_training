@@ -14,3 +14,20 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+@font-face {
+    font-family: 'urban_jungleregular';
+    src: font-url('urbanjungledemo-webfont.woff2') format('woff2'),
+         font-url('urbanjungledemo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.gym_wars{
+   font-family:'urban_jungleregular';
+}
+// body{
+//   font-family:'urban_jungleregular';
+// }

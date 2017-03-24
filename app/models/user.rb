@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :reservations
   has_many :trainings
   has_many :events, through: :registration
+  belongs_to :gym
 
 
 #  before_create :create_activation_digest
@@ -14,8 +15,11 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },   uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
+  validates :gender, presence: true
   attr_accessor :remember_token, :activation_token, :reset_token
   has_secure_password
+
+  attr_accessor :updating_password
 
 
   def fullname

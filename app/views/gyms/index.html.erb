@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Gyms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gyms.each do |gym| %>
+      <tr>
+        <td><%= gym.name %></td>
+        <td><%= cl_image_tag gym.image, alt: gym.name, :height=>100,  :crop=>"scale" %></td>
+        <% if current_user && current_user.admin? %>
+          <td><%= link_to 'Show', gym %></td>
+          <td><%= link_to 'Edit', edit_gym_path(gym) %></td>
+          <td><%= link_to 'Destroy', gym, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gym', new_gym_path %>

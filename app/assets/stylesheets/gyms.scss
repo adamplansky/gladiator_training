@@ -1,0 +1,33 @@
+// Place all the styles related to the gyms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.x_gym{
+  color:red !important;
+  font-size:30px;
+}
+.welcome_index{
+  .x_gym{
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+  }
+
+}
+.pulsate {
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+}
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}

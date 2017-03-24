@@ -27,6 +27,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    puts @user.inspect, current_user.inspect
+    redirect_to edit_user_path(current_user) if @user != current_user
   end
 
   # POST /users
@@ -48,6 +50,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    #puts "@params[:gym]: #{params[:user][:gym]}"
+    #@gym = Gym.find(params[:user][:gym])
+
+    redirect_to edit_user_path(current_user) if @user != current_user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -77,6 +83,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :first_name, :surname, :password, :password_confirmation)
+      params.require(:user).permit(:email, :first_name, :surname, :password, :password_confirmation, :gym_id, :gender)
     end
 end

@@ -1,4 +1,5 @@
 <% if logged_in? %>
+<li role=""><%= link_to edit_user_path(current_user) do %><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <%= current_user.fullname%> <% end %></li>
 <li><%= link_to "Odhlásit se", signout_path, method: "delete" %></li>
 <% else %>
   <li><%= link_to "Přihlásit se", signin_path %></li>

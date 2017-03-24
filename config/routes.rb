@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :gyms
   resources :events
   resources :reacttests
   resources :links

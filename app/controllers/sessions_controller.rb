@@ -7,9 +7,10 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     # puts "#{params[:session][:email]}:#{params[:session][:password]}"
      if user && user.authenticate(params[:session][:password])
-         remember user
-         #redirect_to reservations_path
-         redirect_back_or reservations_path
+        flash[:notice] = "You have been successfully logged in"
+        remember user
+        #redirect_to reservations_path
+        redirect_back_or reservations_path
      else
        flash[:error] = 'Invalid email/password combination' # Not quite right!
        render 'new'

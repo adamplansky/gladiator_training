@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517095332) do
+ActiveRecord::Schema.define(version: 20170324112619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 20160517095332) do
     t.string   "place"
     t.string   "place_url"
     t.string   "contact_url"
+  end
+
+  create_table "gyms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "links", force: :cascade do |t|
@@ -164,6 +171,8 @@ ActiveRecord::Schema.define(version: 20160517095332) do
     t.boolean  "admin",           default: false
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.integer  "gym_id"
+    t.integer  "gender"
   end
 
   add_foreign_key "event_users", "events"
