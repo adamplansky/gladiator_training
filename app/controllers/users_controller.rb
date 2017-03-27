@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    puts @user.inspect, current_user.inspect
     redirect_to edit_user_path(current_user) if @user != current_user
   end
 
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
     redirect_to edit_user_path(current_user) if @user != current_user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to challenges_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

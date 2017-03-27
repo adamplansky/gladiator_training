@@ -265,6 +265,8 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     timeliness (0.3.8)
+    trix (0.10.1)
+      rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -319,6 +321,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   spring
   thin
+  trix
   uglifier (>= 1.3.0)
   validates_timeliness (~> 4.0)
   web-console (~> 2.0)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324112619) do
+ActiveRecord::Schema.define(version: 20170327132255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,30 @@ ActiveRecord::Schema.define(version: 20170324112619) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "challenge_scores", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "user_id"
+    t.integer  "challenge_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "gym_id"
+    t.integer  "challenge_time"
+  end
+
+  add_index "challenge_scores", ["challenge_id"], name: "index_challenge_scores_on_challenge_id", using: :btree
+  add_index "challenge_scores", ["gym_id"], name: "index_challenge_scores_on_gym_id", using: :btree
+  add_index "challenge_scores", ["user_id"], name: "index_challenge_scores_on_user_id", using: :btree
+
+  create_table "challenges", force: :cascade do |t|
+    t.string   "url"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "from_time"
+    t.datetime "to_time"
   end
 
   create_table "dictionaries", force: :cascade do |t|
@@ -137,6 +161,13 @@ ActiveRecord::Schema.define(version: 20170324112619) do
 
   add_index "reservations_users", ["reservation_id", "user_id"], name: "index_reservations_users_on_reservation_id_and_user_id", unique: true, using: :btree
 
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "logo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "training_categories", force: :cascade do |t|
     t.string   "name"
     t.float    "koef"
@@ -160,6 +191,11 @@ ActiveRecord::Schema.define(version: 20170324112619) do
     t.integer  "period_id"
   end
 
+  create_table "user_teams", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "first_name"
@@ -175,6 +211,9 @@ ActiveRecord::Schema.define(version: 20170324112619) do
     t.integer  "gender"
   end
 
+  add_foreign_key "challenge_scores", "challenges"
+  add_foreign_key "challenge_scores", "gyms"
+  add_foreign_key "challenge_scores", "users"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
   add_foreign_key "registrations", "events"

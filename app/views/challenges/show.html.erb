@@ -1,0 +1,16 @@
+
+<div class="container">
+  <div class='col-sm-12'>
+    <p id="notice"><%= notice %></p>
+
+    <h1><%= @challenge.name %></h1>
+
+    <iframe width="560" height="315"  src=<%= "https://www.youtube.com/embed/#{@challenge.url.split('/').last}?ecver=1" %> frameborder="0" allowfullscreen></iframe>
+    <p>
+      <%= raw @challenge.description %>
+    </p>
+<%= link_to 'Zapsat skore', new_challenge_score_path(@challenge.id), class: 'btn btn-success' %>
+    <%# link_to 'Edit', edit_challenge_path(@challenge) %>
+    <%# link_to 'Back', challenges_path %>
+  </div>
+</div>

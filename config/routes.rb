@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :challenge_scores
+  resources :user_teams
+  resources :teams
+  get 'challenges/leaderboard'
+  resources :challenges
+
   resources :gyms
   resources :events
   resources :reacttests

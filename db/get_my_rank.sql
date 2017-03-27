@@ -85,11 +85,6 @@ $BODY$
 LANGUAGE plpgsql;
 
 
-
-
-
-
-
 CREATE OR REPLACE FUNCTION get_statistics_overall(integer)
  RETURNS TABLE(
    user_id integer,

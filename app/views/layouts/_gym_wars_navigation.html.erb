@@ -2,13 +2,11 @@
   <div class="navbar-inner">
     <div class="container sub-nav-container">
       <ul class="nav navbar-nav ">
-        <li role=""><%= link_to trainings_path do %><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>O projektu<% end %></li>
+        <li role=""><%= link_to '#' do %><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>O projektu<% end %></li>
         <li role="">
-          <%= link_to user_path(current_user) do %><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Moje tréninky<% end %>
+          <%= link_to challenges_path do %><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Výzvy<% end %>
         </li>
-        <li role=""><%= link_to statistics_path do %><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Statistiky<% end %></li>
-        <li role=""> <%= link_to '/Gladiator_gladiatorka-2.pdf' do %> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Pravidla<% end %></li>
-        <li role=""> <%= link_to new_training_path do %> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Přidat výzvu<% end %></li>
+        <li role=""><%= link_to challenges_leaderboard_path do %><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Aktuální pořadí<% end %></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

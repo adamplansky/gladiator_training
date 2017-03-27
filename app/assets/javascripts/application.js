@@ -18,5 +18,6 @@
 //= require highcharts/highcharts-more
 //= require react
 //= require react_ujs
+//= require trix
 //= require components
 //= require_tree .
