@@ -1,1 +1,35 @@
-<h1>leaderboard</h1>
+
+<% @challenge_ary.each do |x| %>
+  <h1><%= link_to x[:challenge][:name], challenge_path(x[:challenge])%></h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>body</th>
+      <th>čas</th>
+      <th></th>
+    </tr>
+  <% x[:male].first(10).each do |male| %>
+    <tr>
+      <td><%= male["points"] %></td>
+      <td><%= get_challenge_time male["challenge_time"] %></td>
+      <td><%= @users.find(male["user_id"]).fullname %></td>
+    </tr>
+  <% end %>
+  </table>
+
+
+
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>body</th>
+      <th>čas</th>
+      <th></th>
+    </tr>
+  <% x[:female].first(10).each do |male| %>
+    <tr>
+      <td><%= male["points"] %></td>
+      <td><%= get_challenge_time male["challenge_time"] %></td>
+      <td><%= @users.find(male["user_id"]).fullname %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

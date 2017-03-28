@@ -1,0 +1,4 @@
+<h1>Muži</h1>
+<h2><%= link_to @challenge.name,challenge_path(@challenge) %></h2>
+
+<%= render partial: 'table',  locals: {data_set: @data_set} %>

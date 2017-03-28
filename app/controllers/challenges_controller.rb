@@ -8,6 +8,7 @@ class ChallengesController < ApplicationController
     @challenges = Challenge.all
   end
 
+
   # GET /challenges/1
   # GET /challenges/1.json
   def show
@@ -63,7 +64,17 @@ class ChallengesController < ApplicationController
   end
 
   def leaderboard
+    @challenges = Challenge.all
+    @users = User.all
+    @challenge_ary = []
+    @challenges.each do |challenge|
+      @challenge_ary << {
+        challenge: challenge,
+        male: Pgdb.get_points_gyms_wars(Gender::Male, challenge.id),
+        female: Pgdb.get_points_gyms_wars(Gender::Female, challenge.id),
+      }
 
+    end
   end
 
   private

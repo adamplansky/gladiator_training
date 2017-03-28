@@ -11,6 +11,6 @@ class Gym < ActiveRecord::Base
     private
 
     def image_size_validation
-      errors[:image] << "obrazek by mel mit maximalne 1MB " if image.size > 1.megabytes
+      errors[:image] << "obrazek by musi mit maximalne 1MB " if image.size > 1.megabytes
     end
 end

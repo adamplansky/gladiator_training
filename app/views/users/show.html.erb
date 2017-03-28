@@ -5,6 +5,7 @@
     <section class="user_info">
       <h1>
         <%= @user.fullname %>
+        <%= cl_image_tag @user.image, alt: @user.fullname, :height=>100,  :crop=>"scale" %>
       </h1>
       <!-- <h2>Pořadí: <%= @user.my_rank %>.</h2>
       <h3>Celkem si získal: <%= @user.my_points %> bodů</h3> -->

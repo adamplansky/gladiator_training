@@ -35,8 +35,6 @@ class ChallengeScore < ActiveRecord::Base
      errors.add(:base,"Výzva ještě nebyla otevřena #{c.from_time.to_date}")
    elsif c.present? && Date.today > c.to_time.to_date
      errors.add(:base,"Výzva již neprobíhá #{c.to_time.to_date}")
-   else
-     errors.add(:base,"Nemůžete se zůčastnít výzvy")
    end
  end
 end

@@ -10,6 +10,14 @@ class Pgdb < ActiveRecord::Base
     return connection.execute("select * from get_statistics_overall(#{prm[:period_id]});").to_a
   end
 
+  def self.get_points_gyms_wars(gender, challenge_id)
+    return connection.execute("select * from get_points_gyms_wars(#{gender}, #{challenge_id});").to_a
+  end
+
+  def self.get_gym_points_gyms_wars(challenge_id)
+    return connection.execute("select * from get_gym_points_gyms_wars(#{challenge_id});").to_a
+  end
+
 
   private
   def self.remove_blank x

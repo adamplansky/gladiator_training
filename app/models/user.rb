@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-
-#  has_and_belongs_to_many :reservations
+  mount_uploader :image, ImageUploader
+  #  has_and_belongs_to_many :reservations
   has_many :reservations, :through => :reservations_users
   has_many :reservations
   has_many :trainings
@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :gym
 
 
-#  before_create :create_activation_digest
+  #  before_create :create_activation_digest
   before_save { self.email = email.downcase }
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :surname, presence: true, length: { maximum: 50 }
@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
   has_secure_password
 
   attr_accessor :updating_password
+
+  validates :image, presence: true
+  validates_processing_of :image
+  validate :image_size_validation
+
 
 
   def fullname
@@ -66,15 +71,19 @@ class User < ActiveRecord::Base
     Notifier.password_reset(self).deliver_now
   end
   # Forgets a user.
-   def forget
-     update_attribute(:remember_digest, nil)
-   end
-   private
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+  private
 
-   def create_remember_token
-     self.remember_token = User.digest(User.new_remember_token)
-   end
-   def downcase_email
-     self.email = email.downcase
-   end
- end
+  def create_remember_token
+    self.remember_token = User.digest(User.new_remember_token)
+  end
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  def image_size_validation
+    errors[:image] << "obrazek by musi mit maximalne 1MB " if image.size > 1.megabytes
+  end
+end

@@ -2,8 +2,18 @@ Rails.application.routes.draw do
   resources :challenge_scores
   resources :user_teams
   resources :teams
-  get 'challenges/leaderboard'
-  resources :challenges
+
+  resources :leaderboards
+  resources :challenges do
+    resources :leaderboards, controller: 'challenge_leaderboards' do
+      collection do
+        get 'men'
+        get 'women'
+        get 'gyms'
+        get 'mixes'
+      end
+    end
+  end
 
   resources :gyms
   resources :events
@@ -17,7 +27,6 @@ Rails.application.routes.draw do
   resources :training_categories
   resources :categories
   get '/password_resets/new'
-
   get '/password_resets/edit'
 
   resources :places
