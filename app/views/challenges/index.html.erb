@@ -8,8 +8,6 @@
       <th>Datum</th>
       <th>Url</th>
       <th>Name</th>
-      <th>Description</th>
-
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,8 +18,6 @@
         <td><%= challenge.from_time %>-<%= challenge.to_time %></td>
         <td><%= challenge.url %></td>
         <td><%= challenge.name %></td>
-        <td><%= challenge.description %></td>
-
         <td><%= link_to 'Show', challenge, class:"btn btn-danger" %></td>
         <% if admin_in? %>
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>

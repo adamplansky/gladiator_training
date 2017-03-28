@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :gym_wars
   resources :challenge_scores
   resources :user_teams
   resources :teams

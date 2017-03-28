@@ -1,0 +1,21 @@
+<%= form_for(@gym_war) do |f| %>
+  <% if @gym_war.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gym_war.errors.count, "error") %> prohibited this gym_war from being saved:</h2>
+
+      <ul>
+      <% @gym_war.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.trix_editor :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
