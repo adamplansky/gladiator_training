@@ -4,7 +4,7 @@ class Challenge < ActiveRecord::Base
   validates :from_time, presence: true
   validates :to_time, presence: true
 
-
+  belongs_to :season
 
   def from_time
     if read_attribute(:from_time)

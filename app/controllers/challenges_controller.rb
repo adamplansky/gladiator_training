@@ -1,4 +1,5 @@
 class ChallengesController < ApplicationController
+  require "date"
   layout "gymwars"
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
@@ -27,7 +28,7 @@ class ChallengesController < ApplicationController
   # POST /challenges.json
   def create
     @challenge = Challenge.new(challenge_params)
-
+    @challenge.season = Season.where("from_time < ? AND to_time > ?", DateTime.now, DateTime.now).first
     respond_to do |format|
       if @challenge.save
         format.html { redirect_to @challenge, notice: 'Challenge was successfully created.' }

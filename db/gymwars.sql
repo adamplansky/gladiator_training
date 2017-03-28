@@ -150,3 +150,10 @@ AS $function$
   select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points), user_id, gym_id from leaderboard_men group by user_id, gym_id order by sum desc;
 $function$
 LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION get_full_leaderboard_women_gyms_wars(integer)
+RETURNS TABLE(rank bigint, points bigint,challenge_time int, user_id integer, gym_id integer)
+AS $function$
+  select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points), user_id, gym_id from leaderboard_men group by user_id, gym_id order by sum desc;
+$function$
+LANGUAGE sql;

@@ -16,12 +16,10 @@
     <% @gyms.each do |gym| %>
       <tr>
         <td><%= link_to gym.name, gym.web %></td>
-        <td><%= raw gym.description %></td>
         <td><%= cl_image_tag gym.image, alt: gym.name, :height=>100,  :crop=>"scale" %></td>
         <% if current_user && current_user.admin? %>
-          <td><%= link_to 'Show', gym %></td>
+          <td><%= link_to 'Show', gym, class: "btn btn-info" %></td>
           <td><%= link_to 'Edit', edit_gym_path(gym) %></td>
-          <td><%= link_to 'Destroy', gym, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
@@ -29,5 +27,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Gym', new_gym_path %>
+<% if current_user && current_user.admin? %>
+<%= link_to 'New Gym', new_gym_path, class: 'btn btn-success' %>
+<% end %>

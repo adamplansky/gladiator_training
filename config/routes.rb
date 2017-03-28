@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :seasons
   resources :challenge_scores
   resources :user_teams
   resources :teams
