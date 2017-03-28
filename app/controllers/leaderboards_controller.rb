@@ -1,17 +1,28 @@
 class LeaderboardsController < ApplicationController
+  layout "gymwars"
   before_action :set_leaderboard, only: [:show, :edit, :update, :destroy]
+  before_action :set_leaderboard
 
-  # GET /leaderboards
-  # GET /leaderboards.json
-  # def index
-  #   @leaderboards = Leaderboard.all
-  # end
   def index
-    render text: "LeaderboardsController"
+    @data_set = Pgdb.get_full_leaderboard_gyms_wars(@season.id)
+  end
+  def men
+    @data_set = Pgdb.get_full_leaderboard_men_gyms_wars(@season.id)
   end
 
-  # GET /leaderboards/1
-  # GET /leaderboards/1.json
+  def women
+    @data_set = Pgdb.get_full_leaderboard_women_gyms_wars(@season.id)
+  end
+
+  def gyms
+    @data_set = Pgdb.get_full_leaderboard_gyms_wars(@season.id)
+  end
+
+  def mixes
+    render text: "mixes"
+  end
+
+
   def show
   end
 
@@ -67,7 +78,9 @@ class LeaderboardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_leaderboard
-      @leaderboard = Leaderboard.find(params[:id])
+      @season = Season.find(params[:season_id])
+      @users = User.all
+      @gyms = Gym.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

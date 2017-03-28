@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
-  resources :seasons
   resources :challenge_scores
   resources :user_teams
   resources :teams
 
-  resources :leaderboards
+
+  resources :seasons do
+    resources :leaderboards do
+      collection do
+        get 'index'
+        get 'men'
+        get 'women'
+        get 'gyms'
+        get 'mixes'
+      end
+    end
+  end
+
   resources :challenges do
     resources :leaderboards, controller: 'challenge_leaderboards' do
       collection do

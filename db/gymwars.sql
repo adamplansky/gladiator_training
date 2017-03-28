@@ -60,7 +60,7 @@ with mega_super_query as(
       select count(*) as cnt, challenge_id
       from challenge_scores
       inner join users ON users.id = challenge_scores.user_id
-      where gender = 1
+      where gender = $1
       group by challenge_id
     )
     SELECT
@@ -70,7 +70,7 @@ with mega_super_query as(
         challenge_scores as cs
     inner join users ON users.id = cs.user_id
     inner join count_challenge_scores_by_gender as ccs ON ccs.challenge_id = cs.challenge_id
-    where gender = 1
+    where gender = $1
     Group By
         cs.challenge_time, user_id, cs.challenge_id, challenge_time, ccs.cnt
     Order by
@@ -87,7 +87,7 @@ order by rrank
 
 
 
-CREATE VIEW leaderboard_men AS
+CREATE OR REPLACE VIEW leaderboard_men AS
   with x as (
   with mega_super_query as(
       with count_challenge_scores_by_gender as (
@@ -110,13 +110,14 @@ CREATE VIEW leaderboard_men AS
       Order by
           ranks asc)
   select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
-  select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id from x as res
-  inner join users as u
-  on u.id = res.user_id
+  select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
+  from x as res
+  inner join users as u on u.id = res.user_id
+  inner join challenges on res.challenge_id = challenges.id
   order by rrank;
 
 
-  CREATE VIEW leaderboard_women AS
+  CREATE OR REPLACE VIEW leaderboard_women AS
     with x as (
     with mega_super_query as(
         with count_challenge_scores_by_gender as (
@@ -139,21 +140,40 @@ CREATE VIEW leaderboard_men AS
         Order by
             ranks asc)
     select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
-    select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id from x as res
-    inner join users as u
-    on u.id = res.user_id
+    select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
+    from x as res
+    inner join users as u on u.id = res.user_id
+    inner join challenges on res.challenge_id = challenges.id
     order by rrank;
 
 CREATE OR REPLACE FUNCTION get_full_leaderboard_men_gyms_wars(integer)
-RETURNS TABLE(rank bigint, points bigint,challenge_time int, user_id integer, gym_id integer)
+RETURNS TABLE(rank bigint, points numeric, user_id integer, gym_id integer)
 AS $function$
-  select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points), user_id, gym_id from leaderboard_men group by user_id, gym_id order by sum desc;
+  select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points), user_id, gym_id
+  from leaderboard_men
+  where season_id = $1
+  group by user_id, gym_id
+  order by sum desc;
 $function$
 LANGUAGE sql;
 
 CREATE OR REPLACE FUNCTION get_full_leaderboard_women_gyms_wars(integer)
-RETURNS TABLE(rank bigint, points bigint,challenge_time int, user_id integer, gym_id integer)
+RETURNS TABLE(rank bigint, points numeric, user_id integer, gym_id integer)
 AS $function$
-  select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points), user_id, gym_id from leaderboard_men group by user_id, gym_id order by sum desc;
+  select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points), user_id, gym_id
+  from leaderboard_women
+  where season_id = $1
+  group by user_id, gym_id
+  order by sum desc;
+$function$
+LANGUAGE sql;
+
+
+CREATE OR REPLACE FUNCTION get_full_leaderboard_gyms_wars(integer)
+RETURNS TABLE(rank bigint, points numeric, gym_id integer)
+AS $function$
+with full_men_and_women_points as (
+  select * from get_full_leaderboard_women_gyms_wars($1) UNION ALL select * from get_full_leaderboard_men_gyms_wars($1)
+) select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points) as sum_points, gym_id from full_men_and_women_points group by gym_id;
 $function$
 LANGUAGE sql;

@@ -18,6 +18,22 @@ class Pgdb < ActiveRecord::Base
     return connection.execute("select * from get_gym_points_gyms_wars(#{challenge_id});").to_a
   end
 
+  def self.get_full_leaderboard_men_gyms_wars(season_id)
+    return connection.execute("select * from get_full_leaderboard_men_gyms_wars(#{season_id});").to_a
+  end
+
+  def self.get_full_leaderboard_women_gyms_wars(season_id)
+    return connection.execute("select * from get_full_leaderboard_women_gyms_wars(#{season_id});").to_a
+  end
+
+  def self.get_full_leaderboard_gyms_wars(season_id)
+    return connection.execute("select * from get_full_leaderboard_gyms_wars(#{season_id});").to_a
+  end
+
+
+
+
+
 
   private
   def self.remove_blank x

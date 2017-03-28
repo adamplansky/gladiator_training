@@ -2,7 +2,6 @@
   <tr>
     <th>Pořadí</th>
     <th>Body</th>
-    <th>Čas</th>
     <th></th>
     <th>Gym</th>
   </tr>
@@ -10,8 +9,7 @@
     <tr>
       <td><%= data["rank"] %>.</td>
       <td><%= data["points"] %></td>
-      <td><%= get_challenge_time data["challenge_time"] %></td>
-      <td><%= @users.find(data["user_id"]).fullname  %></td>
+      <td><%= @users.find(data["user_id"]).fullname if data["user_id"] %></td>
       <td><%= @gyms.find(data["gym_id"]).name %></td>
     </tr>
   <% end %>
