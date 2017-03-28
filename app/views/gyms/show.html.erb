@@ -9,6 +9,14 @@
   <strong>Image:</strong>
   <%= @gym.image %>
 </p>
+<p>
+  <strong>Web:</strong>
+  <%= link_to @gym.web, @gym.web %>
+</p>
+<p>
+  <strong>description:</strong>
+  <%= raw @gym.description %>
+</p>
 
 <%= link_to 'Edit', edit_gym_path(@gym) %> |
 <%= link_to 'Back', gyms_path %>
