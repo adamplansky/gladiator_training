@@ -16,6 +16,14 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :web %><br>
+    <%= f.text_field :web %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.trix_editor :description %>
+  </div>
+  <div class="field">
     <%= f.label "logo" %><br>
     <%= f.hidden_field :image_cache %><br>
     <%= f.file_field :image %>

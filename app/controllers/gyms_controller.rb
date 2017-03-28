@@ -70,6 +70,6 @@ class GymsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gym_params
-      params.require(:gym).permit(:name, :image)
+      params.require(:gym).permit(:name, :image, :web, :description)
     end
 end
