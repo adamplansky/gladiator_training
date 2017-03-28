@@ -7,7 +7,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= @gym.image %>
+  <%= cl_image_tag @gym.image, alt: @user.fullname, :height=>100,  :crop=>"scale" %>
 </p>
 <p>
   <strong>Web:</strong>
