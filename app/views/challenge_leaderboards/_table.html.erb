@@ -10,8 +10,8 @@
     <tr>
       <td><%= data["rank"] %>.</td>
       <td><%= data["points"] %></td>
-      <td><%= get_challenge_time data["challenge_time"] %></td>
-      <td><%= @users.find(data["user_id"]).fullname  %></td>
+      <td><%= get_challenge_time data["challenge_time"] if data["challenge_time"] %></td>
+      <td><%= @users.find(data["user_id"]).fullname if data["user_id"]%></td>
       <td><%= @gyms.find(data["gym_id"]).name %></td>
     </tr>
   <% end %>

@@ -1,7 +1,6 @@
 
 
 <%= raw @gym_war.description %>
-
 <% if current_user && current_user.admin? %>
 <% if GymWar.all.count == 1 %>
   <%= link_to 'Upravit', edit_gym_war_path(@gym_war), class: "btn btn-success" %>

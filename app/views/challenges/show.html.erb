@@ -14,9 +14,12 @@
     <%# link_to 'Edit', edit_challenge_path(@challenge) %>
     <%# link_to 'Back', challenges_path %>
   </div>
-  <h2>Vysledky</h2>
-  <%= link_to 'Muži', men_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
-  <%= link_to 'Ženy', women_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
-  <%= link_to 'Gymy', gyms_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
-  <%= link_to 'Mixy', mixes_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
+
+
+  <%= render template: 'challenge_leaderboards/index' %>
+  <!-- <h2>Vysledky</h2> -->
+  <%# link_to 'Muži', men_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
+  <%# link_to 'Ženy', women_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
+  <%# link_to 'Gymy', gyms_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
+  <%# link_to 'Mixy', mixes_challenge_leaderboards_path(@challenge.id), class: 'btn btn-success' %>
 </div>
