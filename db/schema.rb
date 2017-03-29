@@ -11,12 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328201311) do
+ActiveRecord::Schema.define(version: 20170329060648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "challenge_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,13 +46,15 @@ ActiveRecord::Schema.define(version: 20170328201311) do
     t.string   "url"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.datetime "from_time"
     t.datetime "to_time"
     t.integer  "season_id"
+    t.integer  "challenge_category_id"
   end
 
+  add_index "challenges", ["challenge_category_id"], name: "index_challenges_on_challenge_category_id", using: :btree
   add_index "challenges", ["season_id"], name: "index_challenges_on_season_id", using: :btree
 
   create_table "dictionaries", force: :cascade do |t|
@@ -234,6 +242,7 @@ ActiveRecord::Schema.define(version: 20170328201311) do
   add_foreign_key "challenge_scores", "challenges"
   add_foreign_key "challenge_scores", "gyms"
   add_foreign_key "challenge_scores", "users"
+  add_foreign_key "challenges", "challenge_categories"
   add_foreign_key "challenges", "seasons"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"

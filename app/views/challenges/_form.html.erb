@@ -26,7 +26,10 @@
     <%= f.label :url, "Youtube odkaz na video" %><br>
     <%= f.text_field :url %>
   </div>
-
+  <div class="field">
+    <%= f.label "Kategorie" %><br>
+    <%= f.collection_select(:challenge_category_id, ChallengeCategory.all, :id, :name) %>
+  </div>
 
   <div class="field">
     <%= f.label :description, "Popis" %><br>

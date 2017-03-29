@@ -3,7 +3,7 @@
   <div class='col-sm-12'>
     <p id="notice"><%= notice %></p>
 
-    <h1><%= @challenge.name %></h1>
+    <h1><%= @challenge.name %> ( <%= @challenge.challenge_category.name %> )</h1>
 
     <iframe width="560" height="315"  src=<%= "https://www.youtube.com/embed/#{@challenge.url.split('/').last}?ecver=1" %> frameborder="0" allowfullscreen></iframe>
     <p>
