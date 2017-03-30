@@ -1,10 +1,16 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_user
+  layout 'gymwars'
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    #@teams = Team.includes(:user).all
+    @my_teams =  current_user.teams
+    @teams =Team.includes(:user).all - @my_teams
+    #@users_to_approve = Team.includes(:user_teams, :users).where(user: current_user)
+    my_admin_teams = Team.where(user: current_user)
+    @users_to_approve = UserTeam.where(team: my_admin_teams, status: Status::Waiting)
   end
 
   # GET /teams/1
@@ -25,16 +31,16 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
-
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to teams_path, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
+    @team.users << current_user
   end
 
   # PATCH/PUT /teams/1
@@ -69,6 +75,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :logo_url)
+      params.require(:team).permit(:name, :logo_url, :user_id)
     end
 end

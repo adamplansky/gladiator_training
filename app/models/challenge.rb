@@ -7,17 +7,8 @@ class Challenge < ActiveRecord::Base
   belongs_to :season
   belongs_to :challenge_category
 
-  # def from_time
-  #   if read_attribute(:from_time)
-  #     read_attribute(:from_time).strftime("%d.%m.%Y")
-  #   end
-  # end
-  #
-  # def to_time
-  #   if read_attribute(:to_time)
-  #     read_attribute(:to_time).strftime("%d.%m.%Y")
-  #   end
-  # end
-
+  def self.actual_challenges
+    self.where("from_time <= ? AND to_time >= ?", Date.today, Date.today )
+  end
 
 end

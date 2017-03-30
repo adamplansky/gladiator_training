@@ -1,24 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Challenges</h1>
+<h1>Aktuální výzvy</h1>
 
-<table>
+<table class='table table-striped table-hover'>
   <thead>
     <tr>
       <th>Datum</th>
-      <th>Url</th>
       <th>Name</th>
+      <th>Kategorie</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+    <% @actual_challenges.each do |challenge| %>
+      <tr>
+        <td><%= challenge.from_time.strftime("%d.%m.%Y") %>-<%= challenge.to_time.strftime("%d.%m.%Y") %></td>
+        <td><%= challenge.name %></td>
+        <td><%= challenge.challenge_category.name %></td>
+        <td><%= link_to 'Více', challenge, class:"btn btn-danger" %></td>
+        <% if admin_in? %>
+        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<h3>Neaktuální</h3>
+<table class='table table-striped table-hover'>
+  <tbody>
     <% @challenges.each do |challenge| %>
       <tr>
-        <td><%= challenge.from_time %>-<%= challenge.to_time %></td>
-        <td><%= challenge.url %></td>
+        <td><%= challenge.from_time.strftime("%d.%m.%Y") %>-<%= challenge.to_time.strftime("%d.%m.%Y") %></td>
         <td><%= challenge.name %></td>
-        <td><%= link_to 'Show', challenge, class:"btn btn-danger" %></td>
+        <td><%= challenge.challenge_category.name %></td>
+        <td><%= link_to 'Více', challenge, class:"btn btn-danger" %></td>
         <% if admin_in? %>
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
         <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,5 +50,6 @@
 </table>
 
 <br>
-
+  <% if admin_in? %>
 <%= link_to 'Nová výzva', new_challenge_path, class: 'btn btn-success' %>
+<% end %>

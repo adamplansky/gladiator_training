@@ -26,6 +26,10 @@ gem 'react-rails', '~> 1.7.0'
 gem 'will_paginate-bootstrap'
 gem 'trix'
 
+# important gems for developments
+gem 'pry-rails', group: 'development'
+gem 'bullet', group: 'development'
+gem 'brakeman', group: 'development', :require => false
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

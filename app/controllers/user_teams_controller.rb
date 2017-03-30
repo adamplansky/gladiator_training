@@ -1,5 +1,4 @@
 class UserTeamsController < ApplicationController
-  before_action :set_user_team, only: [:show, :edit, :update, :destroy]
 
   # GET /user_teams
   # GET /user_teams.json
@@ -28,8 +27,10 @@ class UserTeamsController < ApplicationController
 
     respond_to do |format|
       if @user_team.save
-        format.html { redirect_to @user_team, notice: 'User team was successfully created.' }
-        format.json { render :show, status: :created, location: @user_team }
+        #format.html { redirect_to @user_team, notice: 'User team was successfully created.' }
+        #format.json {} #render :show, status: :created, location: @user_team }
+        format.html { redirect_to teams_path, notice: 'Požádavek odeslán.' }
+
       else
         format.html { render :new }
         format.json { render json: @user_team.errors, status: :unprocessable_entity }
@@ -40,9 +41,11 @@ class UserTeamsController < ApplicationController
   # PATCH/PUT /user_teams/1
   # PATCH/PUT /user_teams/1.json
   def update
+    @user_team = UserTeam.where(user: params[:user_team][:user_id], team: params[:user_team][:team_id]).first
+    @user_team.status = params[:user_team][:status]
     respond_to do |format|
-      if @user_team.update(user_team_params)
-        format.html { redirect_to @user_team, notice: 'User team was successfully updated.' }
+      if @user_team.save
+        format.html { redirect_to teams_path, notice: 'User team was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_team }
       else
         format.html { render :edit }
@@ -54,21 +57,23 @@ class UserTeamsController < ApplicationController
   # DELETE /user_teams/1
   # DELETE /user_teams/1.json
   def destroy
-    @user_team.destroy
+    t = Team.find(params[:user_team][:team_id])
+    u = User.find(params[:user_team][:user_id])
+    if params[:user_team][:user_id].to_i == current_user.id || t.user_id == current_user.id
+      t.users.delete(u)
+    end
     respond_to do |format|
-      format.html { redirect_to user_teams_url, notice: 'User team was successfully destroyed.' }
+      format.html { redirect_to teams_path, notice: 'Uživatel již není v týmu.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user_team
-      @user_team = UserTeam.find(params[:id])
-    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_team_params
-      params.require(:user_team).permit(:user_id, :team_id)
+      params.require(:user_team).permit(:user_id, :team_id, :status)
     end
 end

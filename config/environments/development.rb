@@ -57,4 +57,15 @@ Rails.application.configure do
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
   config.i18n.available_locales = :cs
+
+  config.after_initialize do
+    Bullet.enable = false
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+
+    #Bullet.slack = { webhook_url: 'http://some.slack.url', channel: '#default', username: 'notifier' }
+  end
 end

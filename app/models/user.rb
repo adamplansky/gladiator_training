@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   #  has_and_belongs_to_many :reservations
-  has_many :reservations, :through => :reservations_users
   has_many :reservations
+  has_many :reservations, :through => :reservations_users
+
+  has_many :user_teams
+  has_many :teams, :through => :user_teams
+
   has_many :trainings
   has_many :events, through: :registration
   belongs_to :gym
+  belongs_to :team
 
 
   #  before_create :create_activation_digest
