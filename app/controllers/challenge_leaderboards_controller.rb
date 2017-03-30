@@ -19,6 +19,7 @@ class ChallengeLeaderboardsController < ApplicationController
   end
 
   def mixes
+    @data_set = Pgdb.get_points_mixes_gyms_wars(@challenge.id)
   end
 
   private
@@ -27,5 +28,6 @@ class ChallengeLeaderboardsController < ApplicationController
     @challenge = Challenge.find(params[:challenge_id])
     @users = User.all
     @gyms = Gym.all
+    @teams = Team.all
   end
 end

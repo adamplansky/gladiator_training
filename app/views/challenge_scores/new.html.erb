@@ -21,8 +21,12 @@
       <%= f.label "odkaz na video" %><br>
       <%= f.text_field :url, class: 'form-control' %>
     </div>
+    <% if @challenge.challenge_category == ChallengeCategory.last %>
+      <%= f.collection_select :team_id, current_user.teams, :id, :name %>
+    <% end %>
       <%= f.hidden_field :challenge_id, value: @challenge.id %>
       <%= f.hidden_field :gym_id, value: current_user.gym.id %>
+
 
 
     <div class="actions">

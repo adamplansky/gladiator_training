@@ -19,7 +19,7 @@ class LeaderboardsController < ApplicationController
   end
 
   def mixes
-    render text: "mixes"
+    @data_set = Pgdb.get_full_leaderboard_mixes_gyms_wars(@season.id)
   end
 
 

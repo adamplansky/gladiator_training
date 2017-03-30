@@ -2,16 +2,28 @@
   <tr>
     <th>Pořadí</th>
     <th>Body</th>
-    <th>Čas</th>
+
+    <% if data_set.first.key?("challenge_time")  %>
+      <th>Čas</th>
+    <% end %>
+
     <th></th>
     <th>Gym</th>
   </tr>
+
   <% data_set.each do |data| %>
+
     <tr>
       <td><%= data["rank"] %>.</td>
       <td><%= data["points"] %></td>
       <td><%= get_challenge_time data["challenge_time"] if data["challenge_time"] %></td>
-      <td><%= @users.find(data["user_id"]).fullname if data["user_id"]%></td>
+
+      <% if data["team_id"] %>
+      <td><%= @teams.find(data["team_id"]).name %></td>
+      <% elsif data["user_id"] %>
+      <td><%= @users.find(data["user_id"]).fullname %></td>
+      <% end %>
+
       <td><%= @gyms.find(data["gym_id"]).name %></td>
     </tr>
   <% end %>

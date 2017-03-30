@@ -3,8 +3,7 @@
   <li role="presentation" class="active"><%= link_to "Gyms", gyms_season_leaderboards_path(@season), remote: true %></a></li>
   <li role="presentation"><%= link_to "Muži", men_season_leaderboards_path(@season), remote: true %></a></li>
   <li role="presentation"><%= link_to "Ženy", women_season_leaderboards_path(@season), remote: true %></a></li>
-  <li role="presentation"><a href="#">Mixy</a></li>
-</ul>
+  <li role="presentation"><%= link_to "Mixy", mixes_season_leaderboards_path(@season), remote: true %></a></li>
 
 <%# render partial: "dozens", collection: @dozens  %>
 <div id="profile-content">
