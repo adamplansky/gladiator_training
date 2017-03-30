@@ -10,9 +10,8 @@
     <% @users_to_approve.each do |ut| %>
     <% if ut.status == Status::Waiting%>
     <tr>
-      <td>tým: <%= ut.team.name %></td>
-      <td><%= ut.user.fullname %></td>
-      <td><%= ut.user.fullname %></td>
+      <td>tým: <%= ut.team.name_with_gym %></td>
+
 
       <td><%= link_to 'Přijmout do týmu',{ user_team: { team_id: ut.team, user_id: ut.user.id, status: Status::Approved  }, controller: "user_teams", action: "update"}, method: :patch,  class: 'btn btn-success'%></td>
       <td><%= link_to 'Zamítnout žádost',{ user_team: { team_id: ut.team, user_id: ut.user.id }, controller: "user_teams", action: "destroy"}, method: :delete,  class: 'btn btn-danger'%></td>
@@ -36,7 +35,7 @@
   <tbody>
     <% @my_teams.each do |team| %>
     <tr>
-      <td><%= team.name %></td>
+      <td><%= team.name_with_gym %></td>
       <td><%= team.user.fullname %></td>
       <td><%= team.get_capacity %></td>
       <td><%= link_to 'Více', team, class: 'btn btn-info' %></td>
@@ -68,7 +67,7 @@
   <tbody>
     <% @teams.each do |team| %>
     <tr>
-      <td><%= team.name %></td>
+      <td><%= team.name_with_gym%></td>
       <td><%= team.user.fullname %></td>
       <td><%= team.get_capacity %></td>
       <td><%= link_to 'Více', team, class: 'btn btn-info' %></td>

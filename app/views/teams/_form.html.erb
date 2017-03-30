@@ -16,8 +16,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :logo_url %><br>
-    <%= f.text_field :logo_url %>
+    <%= f.label :gym %><br>
+    <%= f.collection_select :gym_id, Gym.all, :id, :name %>
   </div>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <div class="actions">

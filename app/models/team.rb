@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   belongs_to :user
-
+  belongs_to :gym
   has_many :user_teams
   has_many :users, :through => :user_teams
 
@@ -11,4 +11,8 @@ class Team < ActiveRecord::Base
   def get_capacity
     "#{self.users.count } / #{max_users_in_one_team}"
   end
+  def name_with_gym
+    "#{self.name} [#{self.gym.name}]"
+  end
+
 end
