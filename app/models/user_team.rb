@@ -12,4 +12,5 @@ class UserTeam < ActiveRecord::Base
     end
   end
 
+
 end

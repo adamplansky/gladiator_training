@@ -18,8 +18,11 @@ class ChallengeScoresController < ApplicationController
     redirect_to challenges_path unless params[:format]
     @challenge = Challenge.find(params[:format])
     redirect_to challenges_path unless @challenge
-    redirect_to edit_user_path(current_user), :flash => { :error => "Je nutné vyplnit GYM" } unless current_user.gym
+    redirect_to edit_user_path(current_user), :flash => { :error => "Je nutné vyplnit GYM",  notice: 'Je nutne vyplnit GYM.'} unless current_user.gym
     @challenge_score = ChallengeScore.new
+    if @challenge.challenge_category == ChallengeCategory.last && !current_user.has_team_and_is_approved?
+      redirect_to teams_path , :flash => { :error => "Je nutné mít TÝM",  notice: 'Je nutne mít TÝM.'}
+    end
   end
 
   # GET /challenge_scores/1/edit

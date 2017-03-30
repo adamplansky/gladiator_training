@@ -40,6 +40,23 @@ class User < ActiveRecord::Base
     Training.where(user: self).map(&:points).reduce(:+).try(:round,2)
   end
 
+  def has_team_and_is_approved?
+    self.user_teams.each do |ut|
+      return true if ut.status == Status::Approved
+    end
+    false
+  end
+
+  def my_teams
+    puts
+    my_teams = []
+    self.user_teams.each do |ut|
+      my_teams << ut.team if ut.status == Status::Approved
+    end
+    return my_teams
+  end
+
+
   def my_rank
     sums = Training.unscope(:order).joins(:user).group("user_id").order("sum_points DESC").sum(:points)
     return '---' unless sums.keys.index(self.id)
