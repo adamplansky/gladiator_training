@@ -1,17 +1,15 @@
 <h1>Výsledky</h1>
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><%= link_to "Gyms", gyms_challenge_leaderboards_path(@challenge.id), remote: true %></li>
-  <% if @challenge.challenge_category == Challenge.first %>
+  <% if @challenge.challenge_category == ChallengeCategory.first %>
     <li role="presentation"><%= link_to "Muži",  men_challenge_leaderboards_path(@challenge.id), remote: true %></li>
     <li role="presentation"><%= link_to "Ženy",  women_challenge_leaderboards_path(@challenge.id), remote: true %></li>
   <% else %>
     <li role="presentation"><%= link_to "Mixy",  mixes_challenge_leaderboards_path(@challenge.id), remote: true %></li>
   <% end %>
 </ul>
-
 <div id="profile-content">
 </div>
-
 
 <script>
   $.ajax('/challenges/<%=params[:id]%>/leaderboards/gyms.js')

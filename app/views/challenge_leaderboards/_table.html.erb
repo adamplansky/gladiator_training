@@ -3,12 +3,13 @@
     <th>Pořadí</th>
     <th>Body</th>
 
-    <% if data_set.first.key?("challenge_time")  %>
+    <% if data_set.first && data_set.first.key?("challenge_time")  %>
       <th>Čas</th>
     <% end %>
+<th>Gym</th>
+    <th></th>
 
     <th></th>
-    <th>Gym</th>
   </tr>
 
   <% data_set.each do |data| %>
@@ -17,14 +18,19 @@
       <td><%= data["rank"] %>.</td>
       <td><%= data["points"] %></td>
       <td><%= get_challenge_time data["challenge_time"] if data["challenge_time"] %></td>
-
+      <td><%= @gyms.find(data["gym_id"]).name %></td>
       <% if data["team_id"] %>
-      <td><%= @teams.find(data["team_id"]).name %></td>
+        <td><%= @teams.find(data["team_id"]).name %></td>
+        <td><%= link_to 'link', ChallengeScore.where(challenge: @challenge, team_id: data["team_id"]).first.url %></td>
       <% elsif data["user_id"] %>
-      <td><%= @users.find(data["user_id"]).fullname %></td>
+        <td><%= @users.find(data["user_id"]).fullname %></td>
+
+        <td>
+          <%= link_to 'link', ChallengeScore.where(challenge: @challenge, user_id: data["user_id"]).first.url %>
+        </td>
       <% end %>
 
-      <td><%= @gyms.find(data["gym_id"]).name %></td>
+
     </tr>
   <% end %>
 </table>

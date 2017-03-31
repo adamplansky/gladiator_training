@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
 
   def fullname
-    "#{self.first_name} #{self.surname}##{id}"
+    "#{self.first_name} #{self.surname}"
   end
 
   def my_points

@@ -1,39 +1,39 @@
 
 
-    <%= form_for(@challenge_score) do |f| %>
-    <% if @challenge_score.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@challenge_score.errors.count, "error") %> prohibited this challenge_score from being saved:</h2>
+<%= form_for(@challenge_score) do |f| %>
+<% if @challenge_score.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@challenge_score.errors.count, "error") %> prohibited this challenge_score from being saved:</h2>
 
-      <ul>
-        <% @challenge_score.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <ul>
+    <% @challenge_score.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
+  </ul>
+</div>
+<% end %>
 
-    <div class="form-group">
-      <%= f.label "čas výzvy" %><br>
-      <%= f.text_field :challenge_time, class: 'form-control', placeholder: "mm:ss" %>
-    </div>
-    <div class="form-group">
-      <%= f.label "odkaz na video" %><br>
-      <%= f.text_field :url, class: 'form-control' %>
-    </div>
-    <%= current_user.has_team_and_is_approved? %>
-    <% if @challenge.challenge_category == ChallengeCategory.last %>
-      <%= f.collection_select :team_id, current_user.my_teams, :id, :name %>
-    <% end %>
-      <%= f.hidden_field :challenge_id, value: @challenge.id %>
-      <%= f.hidden_field :gym_id, value: current_user.gym.id %>
-
-
-
-    <div class="actions">
-      <%= f.submit "Vložit", class: 'btn btn-success' %>
-    </div>
-    <% end %>
+<div class="form-group">
+  <%= f.label "čas výzvy" %><br>
+  <%= f.text_field :challenge_time, class: 'form-control', placeholder: "mm:ss" %>
+</div>
+<div class="form-group">
+  <%= f.label "odkaz na youtube" %><br>
+  <%= f.text_field :url, class: 'form-control', placeholder: "odkaz na youtube" %>
+</div>
+<%# current_user.has_team_and_is_approved? %>
+<% if @challenge.challenge_category == ChallengeCategory.last %>
+  <%= f.collection_select :team_id, current_user.my_teams, :id, :name %>
+<% end %>
+<%= f.hidden_field :challenge_id, value: @challenge.id %>
+<%= f.hidden_field :gym_id, value: current_user.gym.id %>
 
 
-    <%= link_to 'Back', challenge_scores_path %>
+
+<div class="actions">
+  <%= f.submit "Vložit", class: 'btn btn-success' %>
+</div>
+<% end %>
+
+
+<%= link_to 'Back', challenge_scores_path %>

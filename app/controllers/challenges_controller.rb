@@ -1,8 +1,10 @@
 class ChallengesController < ApplicationController
   require "date"
+  require "youtube_addy"
+
   layout "gymwars"
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_admin, only: [:new, :create,  :edit, :update, :destroy]
   # GET /challenges
   # GET /challenges.json
   def index
@@ -30,6 +32,8 @@ class ChallengesController < ApplicationController
   # POST /challenges.json
   def create
     @challenge = Challenge.new(challenge_params)
+
+
     @challenge.season = Season.where("from_time < ? AND to_time > ?", DateTime.now, DateTime.now).first
     respond_to do |format|
       if @challenge.save

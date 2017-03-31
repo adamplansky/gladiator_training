@@ -29,7 +29,7 @@ LANGUAGE sql;
 
 --SELECT * FROM challenge_scores where user_id IN ( select id from users limit 10);
 
-CREATE OR REPLACE FUNCTION get_points_mixes_gyms_wars( integer)
+CREATE OR REPLACE FUNCTION get_points_mixes_gyms_wars(integer)
 RETURNS TABLE(rank bigint, points bigint,challenge_time int, team_id integer, gym_id integer)
 AS $function$
 

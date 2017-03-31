@@ -2,14 +2,21 @@
   <tr>
     <th>Pořadí</th>
     <th>Body</th>
-    <th></th>
+    <% if data_set.first && (data_set.first["user_id"] || data_set.first["team_id"]) %>
+      <th>Název</th>
+      <% end %>
     <th>Gym</th>
   </tr>
+
   <% data_set.each do |data| %>
     <tr>
       <td><%= data["rank"] %>.</td>
       <td><%= data["points"] %></td>
-      <td><%= @users.find(data["user_id"]).fullname if data["user_id"] %></td>
+      <% if data["user_id"] %>
+      <td><%= @users.find(data["user_id"]).fullname %></td>
+      <% elsif data["team_id"] %>
+      <td><%= @users.find(data["team_id"]).fullname  %></td>
+      <% end %>
       <td><%= @gyms.find(data["gym_id"]).name %></td>
     </tr>
   <% end %>

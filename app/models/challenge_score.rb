@@ -27,7 +27,15 @@ class ChallengeScore < ActiveRecord::Base
     end
   end
 
+  def url=(value)
+    write_attribute(:url, YouTubeAddy.extract_video_id(value) )
+  end
 
+  def url
+    if read_attribute(:url) != nil
+      return "https://www.youtube.com/watch?v=#{read_attribute(:url)}"
+    end
+  end
 
  def date_today_is_between_time_from_and_time_to
    c = Challenge.find(challenge_id)

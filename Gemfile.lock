@@ -298,6 +298,7 @@ GEM
     will_paginate (3.1.0)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
+    youtube_addy (1.0.4)
 
 PLATFORMS
   ruby
@@ -342,6 +343,7 @@ DEPENDENCIES
   validates_timeliness (~> 4.0)
   web-console (~> 2.0)
   will_paginate-bootstrap
+  youtube_addy
 
 BUNDLED WITH
    1.10.6

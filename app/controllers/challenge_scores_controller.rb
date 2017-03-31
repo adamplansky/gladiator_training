@@ -25,19 +25,16 @@ class ChallengeScoresController < ApplicationController
     end
   end
 
-  # GET /challenge_scores/1/edit
   def edit
   end
 
-  # POST /challenge_scores
-  # POST /challenge_scores.json
   def create
     @challenge_score = ChallengeScore.new(challenge_score_params)
     @challenge_score.user = current_user
     @challenge = Challenge.find(params[:challenge_score][:challenge_id])
     respond_to do |format|
       if @challenge_score.save
-        format.html { redirect_to @challenge_score, notice: 'Challenge score was successfully created.' }
+        format.html { redirect_to challenge_path(@challenge), notice: 'Challenge score was successfully created.' }
         format.json { render :show, status: :created, location: @challenge_score }
       else
         format.html { render :new }

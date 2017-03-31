@@ -17,8 +17,6 @@ class Pgdb < ActiveRecord::Base
     return connection.execute("select * from get_points_mixes_gyms_wars(#{challenge_id});").to_a
   end
 
-
-
   def self.get_gym_points_gyms_wars(challenge_id)
     return connection.execute("select * from get_gym_points_gyms_wars(#{challenge_id});").to_a
   end
