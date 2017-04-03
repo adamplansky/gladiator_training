@@ -4,7 +4,9 @@ class ChallengesController < ApplicationController
 
   layout "gymwars"
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :logged_in_admin, only: [:new, :create,  :edit, :update, :destroy]
+
   # GET /challenges
   # GET /challenges.json
   def index
