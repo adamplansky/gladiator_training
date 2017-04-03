@@ -30,6 +30,7 @@
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 </div>
 <div class="form-group">
+  <p>Pro zaregistrování svého gymu nám napiš na <%= link_to "fb", "https://www.facebook.com/gymwarsgames/"%></p>
   <%= f.label :gym, "GYM" %>
   <%= f.collection_select :gym_id, Gym.all, :id, :name, {prompt: "Vyber GYM"}, { class: "form-control" } %>
 </div>

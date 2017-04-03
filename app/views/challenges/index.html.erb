@@ -8,7 +8,7 @@
       <th>Datum</th>
       <th>Název</th>
       <th>Kategorie</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -18,7 +18,8 @@
         <td>do: <%= challenge.to_time.strftime("%d.%m.%Y") %></td>
         <td><%= challenge.name %></td>
         <td><%= challenge.challenge_category.name %></td>
-        <td><%= link_to 'Více', challenge, class:"btn btn-info" %></td>
+        <td><%= link_to 'Info', challenge, class:"btn btn-info" %></td>
+        <td><%= link_to 'Zapsat výsledek', new_challenge_score_path(challenge.id), class: 'btn btn-success' %></td>
         <% if admin_in? %>
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
         <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -39,7 +40,7 @@
         <td>do: <%= challenge.to_time.strftime("%d.%m.%Y") %></td>
         <td><%= challenge.name %></td>
         <td><%= challenge.challenge_category.name %></td>
-        <td><%= link_to 'Více', challenge, class:"btn btn-info" %></td>
+        <td><%= link_to 'Info', challenge, class:"btn btn-info" %></td>
         <% if admin_in? %>
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
         <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>

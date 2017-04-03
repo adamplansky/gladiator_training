@@ -1,7 +1,7 @@
 class ChallengeScoresController < ApplicationController
   layout 'gymwars'
   before_action :set_challenge_score, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_user
   # GET /challenge_scores
   # GET /challenge_scores.json
   def index
