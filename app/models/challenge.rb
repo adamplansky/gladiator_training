@@ -1,6 +1,5 @@
 class Challenge < ActiveRecord::Base
   #require 'youtube_addy'
-  validates :url, presence: true
   validates :name, presence: true
   validates :from_time, presence: true
   validates :to_time, presence: true

@@ -22,10 +22,7 @@
     <%= f.label "Konec vyzvy:" %><br>
     <%= f.datetime_select :to_time,:default => { :hour => 23, :minute => 59 }%>
   </div>
-  <div class="field">
-    <%= f.label :url, "Youtube odkaz na video" %><br>
-    <%= f.text_field :url %>
-  </div>
+
   <div class="field">
     <%= f.label "Kategorie" %><br>
     <%= f.collection_select(:challenge_category_id, ChallengeCategory.all, :id, :name) %>
