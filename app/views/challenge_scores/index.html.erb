@@ -18,8 +18,8 @@
         <td><%= challenge_score.challenge.name %></td>
         <td><%= challenge_score.challenge_time %></td>
         <td><%= link_to "link", challenge_score.url %></td>
-        <td><%= challenge_score.user.fullname %></td>
-        <td><%= challenge_score.gym.name %></td>
+        <td><%= link_to challenge_score.user.fullname, user_gymwars_path(challenge_score.user) %></td>
+        <td><%= link_to challenge_score.gym.name, gym_path(challenge_score.gym) %></td>
         <% if challenge_score.user == current_user || admin_in?%>
           <td><%= link_to 'Smazat', challenge_score, method: :delete, data: { confirm: 'Opravdu chcete smazat položku?' } %></td>
         <% end %>

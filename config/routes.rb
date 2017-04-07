@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+
   resources :challenge_categories
   resources :gym_wars
   resources :challenge_scores
   resources :user_teams
   resources :teams
-
+  resources :users do
+    resources :gymwars, controller: 'user_gym_wars' do
+      collection do
+        get 'index'
+      end
+    end
+  end
 
   resources :seasons do
     resources :leaderboards do
@@ -58,7 +65,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+
   resources :reservations
   resources :sessions, only: [:new, :create, :destroy]
   resources :reservations_users

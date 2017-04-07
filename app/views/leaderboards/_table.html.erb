@@ -13,11 +13,11 @@
       <td><%= data["rank"] %>.</td>
       <td><%= data["points"] %></td>
       <% if data["user_id"] %>
-      <td><%= @users.find(data["user_id"]).fullname %></td>
+        <td><%= link_to @users.find(data["user_id"]).fullname, user_gymwars_path(data["user_id"]) %></td>
       <% elsif data["team_id"] %>
       <td><%= @users.find(data["team_id"]).fullname  %></td>
       <% end %>
-      <td><%= @gyms.find(data["gym_id"]).name %></td>
+      <td><%= link_to @gyms.find(data["gym_id"]).name, gym_path(data["gym_id"]) %></td>
     </tr>
   <% end %>
 </table>

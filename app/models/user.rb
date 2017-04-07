@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :user_teams
   has_many :teams, :through => :user_teams
 
+  has_many :challenge_scores
+  has_many :challenges, :through => :challenge_scores
+
   has_many :trainings
   has_many :events, through: :registration
   belongs_to :gym
@@ -29,8 +32,6 @@ class User < ActiveRecord::Base
   validates :image, presence: true
   validates_processing_of :image
   validate :image_size_validation
-
-
 
   def fullname
     "#{self.first_name} #{self.surname}"
