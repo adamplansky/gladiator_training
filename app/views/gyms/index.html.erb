@@ -1,21 +1,13 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing Gyms</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Popis</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<table class='table table-striped table-hover event'>
+
   <tbody>
     <% @gyms.each do |gym| %>
       <tr>
-        <td><%= link_to gym.name, gym.web %></td>
         <td><%= cl_image_tag gym.image, alt: gym.name, :height=>100,  :crop=>"scale" %></td>
+        <td><%= link_to gym.name, gym.web %></td>
+        <td><%= link_to 'Detail', gym, class: "btn btn-info" %></td>
         <% if current_user && current_user.admin? %>
-          <td><%= link_to 'Show', gym, class: "btn btn-info" %></td>
           <td><%= link_to 'Edit', edit_gym_path(gym) %></td>
         <% end %>
       </tr>
@@ -25,5 +17,5 @@
 
 <br>
 <% if current_user && current_user.admin? %>
-<%= link_to 'New Gym', new_gym_path, class: 'btn btn-success' %>
+  <%= link_to 'New Gym', new_gym_path, class: 'btn btn-success' %>
 <% end %>

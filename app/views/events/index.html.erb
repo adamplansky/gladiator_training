@@ -28,18 +28,17 @@
           <td><%= l event.registration_end.to_date %></td>
           <td><%= link_to event.contact, event.contact_url %></td>
 
-            <% if event.users.include? current_user %>
-              <td class="success"><%= link_to "Odhlásit se", {controller: "registrations", action: "destroy", id:event}, method: :delete %></td>
-            <% else %>
-              <td class="danger"><%= link_to "Přihlásit se", {controller: "registrations", action: "create", id:event}, method: :post %></td>
-            <% end %>
-          <% if current_user && current_user.admin? %>
-          <td><%= link_to 'Detail', event %></td>
-          <td><%= link_to 'Editovat', edit_event_path(event) %></td>
-          <td><%= link_to 'Smazat', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if event.users.include? current_user %>
+          <td class="success"><%= link_to "Odhlásit se", {controller: "registrations", action: "destroy", id:event}, method: :delete %></td>
           <% else %>
-          <td><%= link_to 'Detail', event %></td>
-
+          <td class="danger"><%= link_to "Přihlásit se", {controller: "registrations", action: "create", id:event}, method: :post %></td>
+          <% end %>
+          <% if current_user && current_user.admin? %>
+            <td><%= link_to 'Detail', event %></td>
+            <td><%= link_to 'Editovat', edit_event_path(event) %></td>
+            <td><%= link_to 'Smazat', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Detail', event %></td>
           <% end %>
         </tr>
         <% end %>
@@ -48,7 +47,7 @@
 
     <br>
     <% if current_user && current_user.admin? %>
-      <%= link_to 'Nový závod', new_event_path, class:"btn btn-success" %>
+    <%= link_to 'Nový závod', new_event_path, class:"btn btn-success" %>
     <% end %>
   </div>
 </div>
