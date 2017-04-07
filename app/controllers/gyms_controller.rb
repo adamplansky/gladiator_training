@@ -11,6 +11,7 @@ class GymsController < ApplicationController
   # GET /gyms/1
   # GET /gyms/1.json
   def show
+    
   end
 
   # GET /gyms/new

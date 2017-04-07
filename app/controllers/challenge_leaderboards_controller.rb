@@ -6,7 +6,7 @@ class ChallengeLeaderboardsController < ApplicationController
   end
 
   def men
-    @data_set = Pgdb.get_points_gyms_wars(Gender::Men,@challenge.id)
+      @data_set = Pgdb.get_points_gyms_wars(Gender::Men,@challenge.id)
   end
 
   def women

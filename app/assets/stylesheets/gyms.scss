@@ -1,7 +1,11 @@
 // Place all the styles related to the gyms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.gyms_show{
+  h3{
+    text-align: center;
+  }
+}
 
 .x_gym{
   color:red !important;

@@ -4,7 +4,7 @@
   <tbody>
     <% @gyms.each do |gym| %>
       <tr>
-        <td><%= cl_image_tag gym.image, alt: gym.name, :height=>100,  :crop=>"scale" %></td>
+        <td><%= cl_image_tag gym.image, alt: gym.name, :width=>"200",  :crop=>"scale" %></td>
         <td><%= link_to gym.name, gym.web %></td>
         <td><%= link_to 'Detail', gym, class: "btn btn-info" %></td>
         <% if current_user && current_user.admin? %>
