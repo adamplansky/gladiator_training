@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <% if @user.image.file %>
+      <% if @user.image.file &&  @user.image.file.filename != "x"%>
         <%= cl_image_tag (@user.image  ), alt: @user.image, :crop=>"scale", width: 500,style: 'width:100%;height:auto;',class:"img-thumbnail" %>
       <% else %>
         <%= cl_image_tag ("default-image.png"  ), alt: @user.image, :crop=>"scale", width: 500,style: 'width:100%;height:auto;',class:"img-thumbnail" %>
