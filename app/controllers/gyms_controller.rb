@@ -1,7 +1,7 @@
 class GymsController < ApplicationController
   layout 'gymwars'
   before_action :set_gym, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_admin, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_admin, only: [:new,:create, :edit, :update, :destroy]
   # GET /gyms
   # GET /gyms.json
   def index
@@ -11,7 +11,7 @@ class GymsController < ApplicationController
   # GET /gyms/1
   # GET /gyms/1.json
   def show
-    
+
   end
 
   # GET /gyms/new
