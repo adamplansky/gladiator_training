@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :gymwars, controller: 'user_gym_wars' do
       collection do
         get 'index'
+        get 'edit' => 'user_gym_wars#edit', :as => :edit_user_gym_wars
+        put 'edit' => 'user_gym_wars#update'
       end
     end
   end

@@ -20,6 +20,7 @@
         <tr>
           <td><%= user.fullname %></td>
           <td><%= link_to "profil", user_gymwars_path(user), class: "btn btn-primary" %></td>
+          <td><%= link_to "edit", edit_user_gym_wars_user_gymwars_path(user) %></td>
         </tr>
         <% end %>
       </tbody>
