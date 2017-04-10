@@ -6,6 +6,7 @@ class GymsController < ApplicationController
   # GET /gyms.json
   def index
     @gyms = Gym.all
+    @bez_gymu = Gym.find_by_name("Bez Gymu")
   end
 
   # GET /gyms/1

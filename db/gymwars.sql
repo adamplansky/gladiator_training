@@ -117,7 +117,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
         group by challenge_id
       )
       SELECT
-          Rank() over (Partition by cs.challenge_id Order by cs.challenge_time, user_id, cs.challenge_id) as ranks,
+          Rank() over (Partition by cs.challenge_id Order by cs.challenge_time DESC, user_id, cs.challenge_id ) as ranks,
           cs.challenge_time, cs.challenge_id, user_id, ccs.cnt
       FROM
           challenge_scores as cs
@@ -127,7 +127,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
       Group By
           cs.challenge_time, user_id, cs.challenge_id, challenge_time, ccs.cnt
       Order by
-          ranks asc)
+          ranks)
   select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
   select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
   from x as res
@@ -147,7 +147,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
           group by challenge_id
         )
         SELECT
-            Rank() over (Partition by cs.challenge_id Order by cs.challenge_time, user_id, cs.challenge_id) as ranks,
+            Rank() over (Partition by cs.challenge_id Order by cs.challenge_time DESC, user_id, cs.challenge_id) as ranks,
             cs.challenge_time, cs.challenge_id, user_id, ccs.cnt
         FROM
             challenge_scores as cs
@@ -157,7 +157,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
         Group By
             cs.challenge_time, user_id, cs.challenge_id, challenge_time, ccs.cnt
         Order by
-            ranks asc)
+            ranks)
     select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
     select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
     from x as res
@@ -177,7 +177,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
             group by challenge_id
           )
           SELECT
-              Rank() over (Partition by cs.challenge_id Order by cs.challenge_time, team_id, cs.challenge_id) as ranks,
+              Rank() over (Partition by cs.challenge_id Order by cs.challenge_time DESC, team_id, cs.challenge_id) as ranks,
               cs.challenge_time, cs.challenge_id, team_id, ccs.cnt
           FROM
               challenge_scores as cs
@@ -187,7 +187,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
           Group By
               cs.challenge_time, team_id, cs.challenge_id, challenge_time, ccs.cnt
           Order by
-              ranks asc)
+              ranks )
       select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
       select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.team_id, u.gym_id, res.challenge_id, challenges.season_id
       from x as res

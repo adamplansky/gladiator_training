@@ -4,6 +4,10 @@ class Team < ActiveRecord::Base
   has_many :user_teams
   has_many :users, :through => :user_teams
 
+  has_many :challenge_scores
+  has_many :challenges, :through => :challenge_scores
+
+
   default_scope { order('name') }
   def max_users_in_one_team
     3

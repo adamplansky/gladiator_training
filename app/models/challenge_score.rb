@@ -2,6 +2,7 @@ class ChallengeScore < ActiveRecord::Base
   belongs_to :user
   belongs_to :challenge
   belongs_to :gym
+  belongs_to :team
 
   validates :challenge_time, presence: {message: "Musíte uvést čast výzvy ve formátu mm:ss"}
   validates :url, presence: {message: "Musíte uvést odkaz na video"}

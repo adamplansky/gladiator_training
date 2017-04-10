@@ -23,10 +23,10 @@
       <tbody>
         <% @user.challenge_scores.each do |u_cs| %>
         <tr>
-          <td><%= u_cs.challenge.name %></td>
+          <td><%= link_to u_cs.challenge.name, challenge_path(u_cs.challenge) %></td>
           <td><%= u_cs.challenge_time %></td>
           <td><%= link_to "video", u_cs.url %></td>
-          <td><%= u_cs.gym.name %></td>
+          <td><%= link_to u_cs.gym.name, gym_path(u_cs.gym) %></td>
           <% if u_cs.user == current_user || admin_in?%>
             <td><%= link_to 'Smazat', u_cs, method: :delete, data: { confirm: 'Opravdu chcete smazat položku?' } %></td>
           <% end %>

@@ -25,7 +25,7 @@
   <thead>
     <tr>
       <th>Název týmu</th>
-      <th>Kontakt</th>
+      <th>Gym</th>
       <th>Počet členů</th>
       <th></th>
       <th></th>
@@ -35,8 +35,8 @@
   <tbody>
     <% @my_teams.each do |team| %>
     <tr>
-      <td><%= team.name_with_gym %></td>
-      <td><%= link_to team.user.fullname, user_gymwars_path(team.user) %></td>
+      <td><%= link_to team.name, team_path(team) %></td>
+      <td><%= link_to team.gym.name, gym_path(team.gym) %></td>
       <td><%= team.get_capacity %></td>
       <td><%= link_to 'Více', team, class: 'btn btn-info' %></td>
       <% status = UserTeam.where(user: current_user, team: team).first.status %>
@@ -58,7 +58,7 @@
   <thead>
     <tr>
       <th>Název týmu</th>
-      <th>Kontakt</th>
+      <th>Gym</th>
       <th>Počet členů</th>
       <th colspan="3"></th>
     </tr>
@@ -67,8 +67,8 @@
   <tbody>
     <% @teams.each do |team| %>
     <tr>
-      <td><%= team.name_with_gym%></td>
-      <td><%= link_to team.user.fullname, user_gymwars_path(team.user) %></td>
+      <td><%= link_to team.name, team_path(team) %></td>
+      <td><%= link_to team.gym.name, gym_path(team.gym) %></td>
       <td><%= team.get_capacity %></td>
       <td><%= link_to 'Více', team, class: 'btn btn-info' %></td>
       <td><%= link_to 'Přihlásit se do týmu',{ user_team: { user_id: current_user, team_id: team }, controller: "user_teams", action: "create"}, method: :post,  class: 'btn btn-success'%></td>

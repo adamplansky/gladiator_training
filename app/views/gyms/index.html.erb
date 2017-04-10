@@ -3,6 +3,7 @@
 
   <tbody>
     <% @gyms.each do |gym| %>
+      <%# if @bez_gymu == gym && current_user && current_user.admin_in?%>
       <tr>
         <td><%= cl_image_tag gym.image, alt: gym.name, :width=>"200",  :crop=>"scale" %></td>
         <td><%= link_to gym.name, gym.web %></td>
