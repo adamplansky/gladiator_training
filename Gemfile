@@ -26,6 +26,8 @@ gem 'react-rails', '~> 1.7.0'
 gem 'will_paginate-bootstrap'
 gem 'trix'
 gem 'youtube_addy'
+gem 'youtube', git: 'https://github.com/copyrightly/youtube'
+
 # important gems for developments
 gem 'pry-rails', group: 'development'
 gem 'bullet', group: 'development'
