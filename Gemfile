@@ -34,11 +34,11 @@ gem 'bullet', group: 'development'
 gem 'brakeman', group: 'development', :require => false
 group :development, :test do
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'factory_girl_rails'
 end
 group :development do
+  gem 'web-console', '~> 2.0'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'hub', :require=>nil

@@ -16,7 +16,6 @@ class ChallengeScore < ActiveRecord::Base
   default_scope { order('created_at DESC') }
 
   def challenge_time=(value)
-
     value = value.split(':').inject(0){|a, m| a = a * 60 + m.to_i }
     write_attribute(:challenge_time, value)
   end
@@ -24,7 +23,7 @@ class ChallengeScore < ActiveRecord::Base
   def challenge_time
     if read_attribute(:challenge_time)
       a = read_attribute(:challenge_time)
-      "#{a/60}:#{(a%60).to_s.ljust(2,'0')}"
+      "#{a/60}:#{(a%60).to_s.rjust(2,'0')}"
     end
   end
 
