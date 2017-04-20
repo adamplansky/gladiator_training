@@ -33,14 +33,17 @@ class ChallengeScoresController < ApplicationController
     @challenge_score.user = current_user
     @challenge = Challenge.find(params[:challenge_score][:challenge_id])
     @client = Youtube::Client.new(developer_key: 'AIzaSyCDbKLlLcN3IXKQxKyqdKA5L7XnLaPwWAg')
-    @url_yb = YouTubeAddy.extract_video_id(params[:challenge_score][:url])
-    @video = @client.video(id: @url_yb)
-    unless @video.channel_id == "UC0dNtyaDFvIhxCw_GLEMwCA"
-      @challenge_score.errors.add(:url, "Video musí být z kanálu Gym Wars Games")
+    valid = true
+    unless Rails.env.development?
+      @url_yb = YouTubeAddy.extract_video_id(params[:challenge_score][:url])
+      @video = @client.video(id: @url_yb)
+      unless @video.channel_id == "UC0dNtyaDFvIhxCw_GLEMwCA"
+        @challenge_score.errors.add(:url, "Video musí být z kanálu Gym Wars Games")
+      end
+      valid = false if @video.channel_id != "UC0dNtyaDFvIhxCw_GLEMwCA"
     end
-    #UC0dNtyaDFvIhxCw_GLEMwCA
     respond_to do |format|
-      if @video.channel_id == "UC0dNtyaDFvIhxCw_GLEMwCA" && @challenge_score.save
+      if valid && @challenge_score.save
         format.html { redirect_to challenge_path(@challenge), notice: 'Challenge score was successfully created.' }
         format.json { render :show, status: :created, location: @challenge_score }
       else
