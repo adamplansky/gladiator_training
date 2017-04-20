@@ -23,7 +23,7 @@ class ChallengeScore < ActiveRecord::Base
   def challenge_time
     if read_attribute(:challenge_time)
       a = read_attribute(:challenge_time)
-      "#{a/60}:#{(a%60).to_s.rjust(2,'0')}"
+      return "#{a/60}:#{(a%60).to_s.rjust(2,'0')}"
     end
   end
 
