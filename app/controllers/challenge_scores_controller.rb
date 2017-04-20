@@ -26,6 +26,7 @@ class ChallengeScoresController < ApplicationController
   end
 
   def edit
+    @challenge = @challenge_score.challenge
   end
 
   def create
