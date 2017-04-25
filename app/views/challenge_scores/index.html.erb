@@ -27,12 +27,14 @@
         <% end %>
 
         <td><%= link_to challenge_score.gym.name, gym_path(challenge_score.gym) %></td>
+        <% if admin_in? ||challenge_score.user == current_user %>
+          <td><%= link_to 'Editovat', edit_challenge_score_path(challenge_score) %></td>
+        <% end %>
+
         <% if challenge_score.user == current_user || admin_in?%>
           <td><%= link_to 'Smazat', challenge_score, method: :delete, data: { confirm: 'Opravdu chcete smazat položku?' } %></td>
         <% end %>
-        <% if admin_in?%>
-          <td><%= link_to 'editovat', edit_challenge_score_path(challenge_score) %></td>
-        <% end %>
+
       </tr>
     <% end %>
   </tbody>

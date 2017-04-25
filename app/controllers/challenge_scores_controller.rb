@@ -71,11 +71,15 @@ class ChallengeScoresController < ApplicationController
   # DELETE /challenge_scores/1
   # DELETE /challenge_scores/1.json
   def destroy
-    @challenge_score.destroy
-    respond_to do |format|
-      format.html { redirect_to challenge_scores_url, notice: 'Challenge score was successfully destroyed.' }
-      format.json { head :no_content }
+    if @challenge_score.user == current_user || current_user.admin?
+      @challenge_score.destroy
+      respond_to do |format|
+        format.html { redirect_to challenge_scores_url, notice: 'Challenge score was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
+
   end
 
   private
