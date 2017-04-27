@@ -4,10 +4,11 @@
   <tr>
     <th>Pořadí</th>
     <th>Body</th>
-    <% if data_set.first && (data_set.first["user_id"] || data_set.first["team_id"]) %>
-      <th>Název</th>
-      <% end %>
     <th>Gym</th>
+    <% if data_set.first && (data_set.first["user_id"] || data_set.first["team_id"]) %>
+      <th></th>
+    <% end %>
+
   </tr>
 
   <% data_set.each do |data| %>
