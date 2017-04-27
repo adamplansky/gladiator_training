@@ -1,3 +1,5 @@
+
+
 <table class="table table-striped table-hover">
   <tr>
     <th>Pořadí</th>
@@ -15,10 +17,8 @@
     <td><%= link_to @gyms.find(data["gym_id"]).name, gym_path(data["gym_id"]) %></td>
     <% if data["team_id"] %>
       <td><%= link_to @teams.find(data["team_id"]).name, team_path(data["team_id"])  %></td>
-      <td><%= link_to 'video', ChallengeScore.where(challenge: @challenge, team_id: data["team_id"]).first.url %></td>
     <% elsif data["user_id"] %>
       <td><%= link_to @users.find(data["user_id"]).fullname, user_gymwars_path(data["user_id"]) %></td>
-      <td><%= link_to 'video', ChallengeScore.where(challenge: @challenge, user_id: data["user_id"]).first.url %></td>
     <% end %>
   </tr>
   <% end %>

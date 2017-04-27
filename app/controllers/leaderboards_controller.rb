@@ -81,6 +81,7 @@ class LeaderboardsController < ApplicationController
       @season = Season.find(params[:season_id])
       @users = User.all
       @gyms = Gym.all
+      @teams = Team.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
