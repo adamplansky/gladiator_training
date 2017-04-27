@@ -248,7 +248,7 @@ with full_men_and_women_points as (
   UNION ALL
   select * from get_full_leaderboard_men_gyms_wars($1)
   UNION ALL
-  select * from get_full_leaderboard_women_gyms_wars($1)
+  select * from get_full_leaderboard_mixes_gyms_wars($1)
 
 ) select rank() over (ORDER BY sum(points) DESC) as rrank, sum(points) as sum_points, gym_id from full_men_and_women_points group by gym_id;
 $function$

@@ -9,15 +9,17 @@
   </tr>
 
   <% data_set.each do |data| %>
-    <tr>
-      <td><%= data["rank"] %>.</td>
-      <td><%= data["points"] %></td>
-      <% if data["user_id"] %>
-        <td><%= link_to @users.find(data["user_id"]).fullname, user_gymwars_path(data["user_id"]) %></td>
-      <% elsif data["team_id"] %>
-      <td><%= @users.find(data["team_id"]).fullname  %></td>
-      <% end %>
-      <td><%= link_to @gyms.find(data["gym_id"]).name, gym_path(data["gym_id"]) %></td>
-    </tr>
+  <tr>
+    <td><%= data["rank"] %>.</td>
+    <td><%= data["points"] %></td>
+    <td><%= link_to @gyms.find(data["gym_id"]).name, gym_path(data["gym_id"]) %></td>
+    <% if data["team_id"] %>
+      <td><%= link_to @teams.find(data["team_id"]).name, team_path(data["team_id"])  %></td>
+      <td><%= link_to 'video', ChallengeScore.where(challenge: @challenge, team_id: data["team_id"]).first.url %></td>
+    <% elsif data["user_id"] %>
+      <td><%= link_to @users.find(data["user_id"]).fullname, user_gymwars_path(data["user_id"]) %></td>
+      <td><%= link_to 'video', ChallengeScore.where(challenge: @challenge, user_id: data["user_id"]).first.url %></td>
+    <% end %>
+  </tr>
   <% end %>
 </table>
