@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   resources :challenge_categories
   resources :gym_wars
   resources :challenge_scores
@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   resources :password_resets,only: [:new, :create, :edit, :update]
   resources :registrations, only: [:edit, :update, :show, :create, :destroy]
   resources :statistics, only: [:index, :show]
-  match '/signup', to: 'users#new', via: 'get', as:"signup"
+  match '/signup', to: 'users#new', via: 'get', as: "signup"
   match '/signin', to: 'sessions#new', via: 'get', as: "signin"
   match '/signout', to: 'sessions#destroy', via: 'delete'
   get '/.well-known/acme-challenge/:id' => 'welcome#letsencrypt'
