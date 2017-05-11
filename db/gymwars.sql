@@ -42,7 +42,7 @@ with rank_sorted_time_by_gender_and_challenge_id as (
     order by cs.challenge_time DESC
   )
   select (rank() OVER (ORDER BY challenge_time DESC) - (select count(*) from sorted_time_by_gender_and_challenge_id ) + 10) AS POINTS, * from sorted_time_by_gender_and_challenge_id )
-  select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.team_id, res.gym_id  from rank_sorted_time_by_gender_and_challenge_id as res order by rrank;
+  select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2+1 as points, res.challenge_time AS REDUCED_POINTS, res.team_id, res.gym_id  from rank_sorted_time_by_gender_and_challenge_id as res order by rrank;
 
   $function$
   LANGUAGE sql;
@@ -61,7 +61,7 @@ with rank_sorted_time_by_gender_and_challenge_id as (
       order by cs.challenge_time DESC
     )
     select (rank() OVER (ORDER BY challenge_time DESC) - (select count(*) from sorted_time_by_gender_and_challenge_id ) + 10) AS POINTS, * from sorted_time_by_gender_and_challenge_id )
-    select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.uid, res.gym_id  from rank_sorted_time_by_gender_and_challenge_id as res order by rrank;
+    select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2+1 as points, res.challenge_time AS REDUCED_POINTS, res.uid, res.gym_id  from rank_sorted_time_by_gender_and_challenge_id as res order by rrank;
 
     $function$
     LANGUAGE sql;
@@ -95,7 +95,7 @@ with mega_super_query as(
     Order by
         ranks asc)
 select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
-select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id from x as res
+select (rank() over (ORDER BY POINTS DESC)) as rrank, (ABS(POINTS)+POINTS)/2+1 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id from x as res
 inner join users as u
 on u.id = res.user_id
 order by rrank
@@ -129,7 +129,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
       Order by
           ranks)
   select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
-  select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
+  select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2+1 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
   from x as res
   inner join users as u on u.id = res.user_id
   inner join challenges on res.challenge_id = challenges.id
@@ -159,7 +159,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
         Order by
             ranks)
     select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
-    select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
+    select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2+1 as points, res.challenge_time AS REDUCED_POINTS, res.user_id, u.gym_id, res.challenge_id, challenges.season_id
     from x as res
     inner join users as u on u.id = res.user_id
     inner join challenges on res.challenge_id = challenges.id
@@ -189,7 +189,7 @@ CREATE OR REPLACE VIEW leaderboard_men AS
           Order by
               ranks )
       select (ranks - (cnt ) + 10) AS POINTS, * from mega_super_query )
-      select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2 as points, res.challenge_time AS REDUCED_POINTS, res.team_id, u.gym_id, res.challenge_id, challenges.season_id
+      select (rank() over (ORDER BY res.POINTS DESC)) as rrank, (ABS(res.POINTS)+res.POINTS)/2+1 as points, res.challenge_time AS REDUCED_POINTS, res.team_id, u.gym_id, res.challenge_id, challenges.season_id
       from x as res
       inner join teams as u on u.id = res.team_id
       inner join challenges on res.challenge_id = challenges.id
