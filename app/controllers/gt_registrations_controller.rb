@@ -74,6 +74,6 @@ class GtRegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gt_registration_params
-      params.require(:gt_registration).permit(:firstname, :surname, :gt_race_id, :price, :street, :city, :psc, :phone_number, :code, :birth, :sex, :notes, :email)
+      params.require(:gt_registration).permit(:firstname, :surname, :gt_race_id, :price, :street, :city, :psc, :phone_number, :code, :birth, :sex, :notes, :email, :team)
     end
 end
