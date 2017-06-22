@@ -1,0 +1,2 @@
+module GtPricesHelper
+end

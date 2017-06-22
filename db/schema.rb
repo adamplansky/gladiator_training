@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330190956) do
+ActiveRecord::Schema.define(version: 20170622162118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,59 @@ ActiveRecord::Schema.define(version: 20170330190956) do
     t.string   "place_url"
     t.string   "contact_url"
   end
+
+  create_table "foo", id: false, force: :cascade do |t|
+    t.integer "fooid"
+    t.integer "foosubid"
+    t.text    "fooname"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gt_prices", force: :cascade do |t|
+    t.date     "until"
+    t.integer  "gt_race_id"
+    t.decimal  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "gt_prices", ["gt_race_id"], name: "index_gt_prices_on_gt_race_id", using: :btree
+
+  create_table "gt_races", force: :cascade do |t|
+    t.string   "name"
+    t.date     "published"
+    t.text     "text"
+    t.text     "place"
+    t.text     "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gt_registrations", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "surname"
+    t.integer  "gt_race_id"
+    t.decimal  "price"
+    t.string   "street"
+    t.string   "city"
+    t.integer  "psc"
+    t.integer  "phone_number"
+    t.integer  "code"
+    t.date     "birth"
+    t.string   "sex"
+    t.text     "notes"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "email"
+  end
+
+  add_index "gt_registrations", ["gt_race_id"], name: "index_gt_registrations_on_gt_race_id", using: :btree
 
   create_table "gym_wars", force: :cascade do |t|
     t.text     "description"
@@ -252,6 +305,11 @@ ActiveRecord::Schema.define(version: 20170330190956) do
     t.string   "image"
   end
 
+  create_table "workouts", force: :cascade do |t|
+    t.string "name"
+    t.text   "description"
+  end
+
   add_foreign_key "challenge_scores", "challenges"
   add_foreign_key "challenge_scores", "gyms"
   add_foreign_key "challenge_scores", "teams"
@@ -260,6 +318,8 @@ ActiveRecord::Schema.define(version: 20170330190956) do
   add_foreign_key "challenges", "seasons"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
+  add_foreign_key "gt_prices", "gt_races"
+  add_foreign_key "gt_registrations", "gt_races"
   add_foreign_key "registrations", "events"
   add_foreign_key "registrations", "users"
   add_foreign_key "reservations_users", "reservations"

@@ -1,0 +1,29 @@
+Dobrý den,<br />
+potvrzujeme Vaši registraci na "Gladiator Challenge" 9.9.2017.<br />
+<br />
+Registrační číslo: <%= @u.id %><br />
+<br />
+Rekapitulace Vaší objednávky:<br />
+---------------------------------------------------------------------------------<br />
+Jméno a příjmení: <%= @u.firstname %> <%= @u.surname %><br />
+Datum narození: <%= @u.birth %>;<br />
+Telefon: +<%= @u.code %><%= @u.phone_number %><br />
+<br />
+Adresa: <%= @u.city %><br />
+<%= @u.city %><br />
+<br />
+<br />
+Startovné: <%= @u.price %>,-<br />
+<br />
+Platbu prosím proveďte převodem na náš účet:<br />
+-------------------------------------------<br />
+<br />
+Číslo účtu: 2200920441/8330<br />
+IBAN: SK6283300000002200920441<br />
+BIC (SWIFT): FIOZSKBAXXX<br />
+<br />
+<br />
+Konstantní symbol*: 0308<br />
+Variabilní symbol*: <%= @u.id %><br />
+Částka: <%= @u.price %>,-<br />
+<br />

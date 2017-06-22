@@ -6,8 +6,12 @@ class Notifier < ApplicationMailer
      mail(to: user.email, subject: "Password reset")
    end
 
-   # def ask_email
-   #   mail(to: "adamplansky@gmail.com", subject: "gladiator test")
-   # end
+   def race_registration(user)
+     puts user.inspect
+     @u = user
+     mail(to: user.email, subject: "Potvrzení registrace Gladiator Challenge")
+     mail(to: "adamplansky@gmail.com", subject: "registrace Gladiator Challenge")
+     #mail(to: "hege8400@seznam.cz", subject: "registrace Gladiator Challenge")
+   end
 
 end

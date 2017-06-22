@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Until:</strong>
+  <%= @gt_price.until %>
+</p>
+
+<p>
+  <strong>Gtrace:</strong>
+  <%= @gt_price.gt_race.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @gt_price.price %>
+</p>
+
+<%= link_to 'Edit', edit_gt_price_path(@gt_price) %> |
+<%= link_to 'Back', gt_prices_path %>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class='col-sm-12'>
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Gt Races</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Published</th>
+      <th>Text</th>
+      <th>Place</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gt_races.each do |gt_race| %>
+      <tr>
+        <td><%= gt_race.name %></td>
+        <td><%= gt_race.published %></td>
+        <td><%= gt_race.text %></td>
+        <td><%= gt_race.place %></td>
+        <td><%= gt_race.url %></td>
+        <td><%= link_to 'Show', gt_race %></td>
+        <td><%= link_to 'Edit', edit_gt_race_path(gt_race) %></td>
+        <td><%= link_to 'Destroy', gt_race, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if admin_in? %>
+<%= link_to 'New Gt race', new_gt_race_path %>
+<% end %>
+
+</div>
+</div>

@@ -1,0 +1,38 @@
+<%= form_for(@gt_race) do |f| %>
+  <% if @gt_race.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gt_race.errors.count, "error") %> prohibited this gt_race from being saved:</h2>
+
+      <ul>
+      <% @gt_race.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :published %><br>
+    <%= f.date_select :published %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.trix_editor :text %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :place %><br>
+    <%= f.text_area :place %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_area :url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

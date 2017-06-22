@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :gt_registrations
+  resources :gt_prices
+  resources :gt_races
   resources :challenge_categories
   resources :gym_wars
   resources :challenge_scores

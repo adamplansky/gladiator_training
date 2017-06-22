@@ -1,0 +1,29 @@
+<%= form_for(@gt_price) do |f| %>
+  <% if @gt_price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gt_price.errors.count, "error") %> prohibited this gt_price from being saved:</h2>
+
+      <ul>
+      <% @gt_price.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Do toho data:" %><br>
+    <%= f.date_select :until %>
+  </div>
+  <div class="field">
+    <%= f.label :gt_race_id %><br>
+    <%= f.text_field :gt_race_id, value: @gt_race %>
+  </div>
+  <div class="field">
+    <%= f.label "Cena" %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

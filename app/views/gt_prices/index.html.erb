@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Gt Prices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Until</th>
+      <th>Gtrace</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gt_prices.each do |gt_price| %>
+      <tr>
+        <td><%= gt_price.until %></td>
+        <td><%= gt_price.GTRace %></td>
+        <td><%= gt_price.price %></td>
+        <td><%= link_to 'Show', gt_price %></td>
+        <td><%= link_to 'Edit', edit_gt_price_path(gt_price) %></td>
+        <td><%= link_to 'Destroy', gt_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gt price', new_gt_price_path %>
