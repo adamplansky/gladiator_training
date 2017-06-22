@@ -14,8 +14,9 @@ class GtRegistrationsController < ApplicationController
 
   # GET /gt_registrations/new
   def new
-    @price =  params[:price]
     @gt_race = GtRace.find(params[:race])
+    @price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: @gt_race.id).order('until ASC').first.price.to_f
+
     @gt_registration = GtRegistration.new
   end
 
@@ -27,8 +28,8 @@ class GtRegistrationsController < ApplicationController
   # POST /gt_registrations.json
   def create
     @gt_registration = GtRegistration.new(gt_registration_params)
-    puts "@gt_registration.gt_race_id: #{@gt_registration.gt_race_id}"
-    @gt_registration.price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: @gt_registration.gt_race_id).order('until ASC').first.price.to_f
+    # puts "@gt_registration.gt_race_id: #{@gt_registration.gt_race_id}"
+    # @gt_registration.price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: @gt_registration.gt_race_id).order('until ASC').first.price.to_f
     respond_to do |format|
       if @gt_registration.save
         format.html { redirect_to @gt_registration, notice: 'Gt registration was successfully created.' }
