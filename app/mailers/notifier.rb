@@ -9,7 +9,13 @@ class Notifier < ApplicationMailer
    def race_registration(user)
      puts user.inspect
      @u = user
-     mail(to: "#{user.email},adamplansky@seznam.cz,hege8400@seznam.cz,jiricimler@centrum.cz", subject: "registrace Gladiator Challenge")
+     mail(to: "#{user.email}", subject: "registrace Gladiator Challenge")
+   end
+
+   def race_registration_direct(user, email)
+     puts user.inspect
+     @u = user
+     mail(to: email, subject: "registrace Gladiator Challenge")
    end
 
 end
