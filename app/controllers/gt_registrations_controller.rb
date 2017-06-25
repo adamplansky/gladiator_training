@@ -40,7 +40,7 @@ class GtRegistrationsController < ApplicationController
       end
     end
     Notifier.race_registration(@gt_registration).deliver_now
-    Notifier.race_registration_direct(@gt_registration, "adamplansky@gmail.com, adamplansky@seznam.cz").deliver_now
+    Notifier.race_registration_direct(@gt_registration, "adamplansky@seznam.cz,hege8400@seznam.cz,jiricimler@centrum.cz").deliver_now
   end
 
   # PATCH/PUT /gt_registrations/1
