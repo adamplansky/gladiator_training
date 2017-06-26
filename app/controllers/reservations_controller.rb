@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  layout 'gt'
   before_action :set_reservation, only: [:edit, :update, :destroy]
   before_action :logged_in_user
   def index

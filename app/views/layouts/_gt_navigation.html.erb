@@ -1,0 +1,21 @@
+<div class="navbar subnav" role="navigation">
+  <div class="navbar-inner">
+    <div class="container sub-nav-container">
+      <ul class="nav navbar-nav ">
+        <li><%= link_to "O nás", about_us_index_path %></li>
+        <li><%= link_to "Slovník CF", dictionaries_path %></li>
+        <li><%= link_to "Rezervace", reservations_path, class: '___reservation' %></li>
+        <li><%= link_to "Gladiátor Kralup", trainings_path, class: '___yellow_font' %></li>
+        <li><%= link_to "Závody", events_path, class: '___white_font' %></li>
+        <li><%= link_to "Fotogalerie", "http://gladiatorstraining.rajce.idnes.cz/"%></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to  "https://www.facebook.com/gymwarsgames/", target: "_blank", alt: "facebook" do %>
+            <%= image_tag "fb_logo_black.png", width:"20px", class:'vertical-al'%>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
