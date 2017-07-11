@@ -18,7 +18,8 @@
           <p>
             <%= raw gt_race.text %>
           </p>
-          <p><%= link_to 'Registrace', new_gt_registration_path({race: gt_race}), class:"btn btn-info" %> <%= link_to 'Startovní listina', starting_list_index_path, class: "btn btn-info" %></p>
+          <p><%= link_to 'Registrace', new_gt_registration_path({race: gt_race}), class:"btn btn-info" %>
+          <%= link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
 
 
         </div>

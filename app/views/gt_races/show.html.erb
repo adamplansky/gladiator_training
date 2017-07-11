@@ -1,44 +1,6 @@
 <div class="container">
   <div class='col-sm-12'>
     <p id="notice"><%= notice %></p>
-
-      <h1><%= @gt_race.name %></h1>
-
-    <p>
-      <strong>Datum:</strong>
-      <%= @gt_race.published.strftime("%d.%m.%Y") %>
-    </p>
-    <p>
-      <strong>Místo:</strong>
-      <%= link_to @gt_race.place, @gt_race.url %>
-    </p>
-
-    <p>
-      <%= raw @gt_race.text %>
-    </p>
-    <p><%= link_to 'Registrace', new_gt_registration_path({race: @gt_race}), class:"btn btn-info" %></p>
-
-    <div class='col-sm-6'>
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Do</th>
-        <th>Cena</th>
-        <th></th>
-      </tr>
-
-      <% @prices.each do |price| %>
-      <tr>
-        <td><%= price.until.strftime("%d.%m.%Y") %></td>
-        <td><%= price.price %>,-</td>
-
-      </tr>
-      <% end %>
-
-    </table>
-  </div>
-    <% if admin_in? %>
-      <%= link_to 'Edit', edit_gt_race_path(@gt_race) %><br />
-      <%= link_to 'Nova cena', new_gt_price_path(@gt_race) %>
-    <% end %>
+    <h1>Nahrazeno</h1>
   </div>
 </div>

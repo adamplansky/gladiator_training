@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  get 'starting_list/index'
+
 
   match '/gt_registrations/index_with_payed', to: 'gt_registrations#index_with_payed', via: 'get'
   resources :gt_registrations
   resources :gt_prices
-  resources :gt_races
+
+  resources :gt_races do
+    resources :starting_list do
+    end
+  end
+
   resources :challenge_categories
   resources :gym_wars
   resources :challenge_scores
@@ -60,10 +65,7 @@ Rails.application.routes.draw do
   resources :places
   get 'welcome/index'
   get 'reservations_users/index'
-
   get 'sessions/index'
-
-
 
   resources :trainings do
     member do
@@ -71,7 +73,6 @@ Rails.application.routes.draw do
       get :edit_super
     end
   end
-
 
   resources :reservations
   resources :sessions, only: [:new, :create, :destroy]

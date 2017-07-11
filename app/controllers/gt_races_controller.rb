@@ -69,6 +69,7 @@ class GtRacesController < ApplicationController
       @gt_race = GtRace.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def gt_race_params
       params.require(:gt_race).permit(:name, :published, :text, :place, :url)
