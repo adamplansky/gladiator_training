@@ -1,5 +1,7 @@
 class GtPricesController < ApplicationController
+  layout 'races'
   before_action :set_gt_price, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_admin
 
   # GET /gt_prices
   # GET /gt_prices.json

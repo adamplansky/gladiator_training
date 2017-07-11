@@ -1,41 +1,48 @@
 <div class="container">
   <div class='col-sm-12'>
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Gt Races</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Published</th>
-      <th>Text</th>
-      <th>Place</th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <p id="notice"><%= notice %></p>
     <% @gt_races.each do |gt_race| %>
-      <tr>
-        <td><%= gt_race.name %></td>
-        <td><%= gt_race.published %></td>
-        <td><%= gt_race.text %></td>
-        <td><%= gt_race.place %></td>
-        <td><%= gt_race.url %></td>
-        <td><%= link_to 'Show', gt_race %></td>
-        <td><%= link_to 'Edit', edit_gt_race_path(gt_race) %></td>
-        <td><%= link_to 'Destroy', gt_race, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="panel panel-default panel-info">
+      <div class="panel-heading"><h1><%= gt_race.name %></h1></div>
+      <div class="panel-body">
+        <div class='col-sm-6'>
+          <p>
+            <strong>Datum:</strong>
+            <%= gt_race.published.strftime("%d.%m.%Y") %>
+          </p>
+          <p>
+            <strong>Místo:</strong>
+            <%= link_to gt_race.place, gt_race.url %>
+          </p>
+
+          <p>
+            <%= raw gt_race.text %>
+          </p>
+          <p><%= link_to 'Registrace', new_gt_registration_path({race: gt_race}), class:"btn btn-info" %> <%= link_to 'Startovní listina', starting_list_index_path, class: "btn btn-info" %></p>
+
+
+        </div>
+        <div class='col-sm-6'>
+          <table class="table table-striped table-hover">
+            <tr>
+              <th>Do</th>
+              <th>Cena</th>
+              <th></th>
+            </tr>
+            <% gt_race.gt_prices.each do |price| %>
+            <tr>
+              <td><%= price.until.strftime("%d.%m.%Y") %></td>
+              <td><%= price.price %>,-</td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if admin_in? %>
-<%= link_to 'New Gt race', new_gt_race_path %>
-<% end %>
-
-</div>
+    <br>
+    <% if admin_in? %>
+    <%= link_to 'Nový závod', new_gt_race_path, class: "btn btn-success" %>
+    <% end %>
+  </div>
 </div>

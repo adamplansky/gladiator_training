@@ -1,10 +1,11 @@
 class GtRacesController < ApplicationController
+  layout 'races'
   before_action :set_gt_race, only: [:show, :edit, :update, :destroy]
 
   # GET /gt_races
   # GET /gt_races.json
   def index
-    redirect_to action: "show", id: GtRace.last.id
+    #redirect_to action: "show", id: GtRace.last.id
     @gt_races = GtRace.all
   end
 
@@ -27,7 +28,6 @@ class GtRacesController < ApplicationController
   # POST /gt_races.json
   def create
     @gt_race = GtRace.new(gt_race_params)
-
     respond_to do |format|
       if @gt_race.save
         format.html { redirect_to @gt_race, notice: 'Gt race was successfully created.' }

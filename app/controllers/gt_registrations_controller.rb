@@ -1,9 +1,14 @@
 class GtRegistrationsController < ApplicationController
+  layout 'races'
   before_action :set_gt_registration, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_admin, only: [:index_with_payed, :edit, :update, :destroy]
   # GET /gt_registrations
   # GET /gt_registrations.json
   def index
+    @gt_registrations = GtRegistration.all.where(payed: true)
+  end
+
+  def index_with_payed
     @gt_registrations = GtRegistration.all
   end
 
@@ -48,7 +53,7 @@ class GtRegistrationsController < ApplicationController
   def update
     respond_to do |format|
       if @gt_registration.update(gt_registration_params)
-        format.html { redirect_to @gt_registration, notice: 'Gt registration was successfully updated.' }
+        format.html { redirect_to gt_registrations_index_with_payed_path, notice: 'Gt registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @gt_registration }
       else
         format.html { render :edit }
@@ -75,6 +80,6 @@ class GtRegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gt_registration_params
-      params.require(:gt_registration).permit(:firstname, :surname, :gt_race_id, :price, :street, :city, :psc, :phone_number, :code, :birth, :sex, :notes, :email, :team)
+      params.require(:gt_registration).permit(:firstname, :surname, :gt_race_id, :price, :street, :city, :psc, :phone_number, :code, :birth, :sex, :notes, :email, :team, :payed)
     end
 end
