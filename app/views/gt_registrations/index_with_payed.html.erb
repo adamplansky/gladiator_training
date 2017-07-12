@@ -9,6 +9,7 @@
         <tr>
           <th>VS</th>
           <th>Jméno</th>
+          <th>Team</th>
           <th>Gt race</th>
           <th>Price</th>
           <th>Sex</th>
@@ -23,7 +24,8 @@
         <tr>
           <td><%= gt_registration.id %></td>
           <td><%= gt_registration.firstname %> <%= gt_registration.surname %></td>
-          <td><%= gt_registration.gt_race.name %>///</td>
+          <td><%= gt_registration.gt_race.team %></td>
+          <td><%= gt_registration.gt_race.name %></td>
           <td><%= gt_registration.price %></td>
           <td><%= gt_registration.sex %></td>
           <td><%= gt_registration.notes %></td>
