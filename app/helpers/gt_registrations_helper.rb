@@ -6,4 +6,12 @@ module GtRegistrationsHelper
       "NE"
     end
   end
+
+  def zaplaceno_cls(zaplaceno)
+    if zaplaceno == true
+      "btn-success"
+    else
+      "btn-danger"
+    end
+  end
 end

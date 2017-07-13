@@ -29,7 +29,7 @@
           <td><%= gt_registration.price %></td>
           <td><%= gt_registration.sex %></td>
           <td><%= gt_registration.notes %></td>
-          <td><%= zaplaceno(gt_registration.payed) %></td>
+          <td class="btn <%= zaplaceno_cls(gt_registration.payed)%>"><%= zaplaceno(gt_registration.payed)%></td>
           <td><%= link_to 'Show', gt_registration %></td>
           <td><%= link_to 'Edit', edit_gt_registration_path(gt_registration) %></td>
           <td><%= link_to 'Destroy', gt_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>

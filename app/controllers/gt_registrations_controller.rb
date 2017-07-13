@@ -1,5 +1,6 @@
 class GtRegistrationsController < ApplicationController
   layout 'races'
+  include GtRegistrationsHelper
   before_action :set_gt_registration, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_admin, only: [:index_with_payed, :edit, :update, :destroy]
   # GET /gt_registrations
