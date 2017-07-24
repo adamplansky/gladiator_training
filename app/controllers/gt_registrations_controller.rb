@@ -10,7 +10,7 @@ class GtRegistrationsController < ApplicationController
   end
 
   def index_with_payed
-    @gt_registrations = GtRegistration.all
+    @gt_registrations = GtRegistration.order(:id)
   end
 
   # GET /gt_registrations/1
