@@ -27,7 +27,7 @@ gem 'will_paginate-bootstrap'
 gem 'trix'
 gem 'youtube_addy'
 gem 'youtube', git: 'https://github.com/copyrightly/youtube'
-
+gem 'sentry-raven'
 # important gems for developments
 gem 'pry-rails', group: 'development'
 gem 'bullet', group: 'development'
