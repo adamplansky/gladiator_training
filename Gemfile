@@ -28,6 +28,7 @@ gem 'trix'
 gem 'youtube_addy'
 gem 'youtube', git: 'https://github.com/copyrightly/youtube'
 gem 'sentry-raven'
+gem 'validates_email_format_of'
 # important gems for developments
 gem 'pry-rails', group: 'development'
 gem 'bullet', group: 'development'

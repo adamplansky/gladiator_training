@@ -1,15 +1,17 @@
-<%= form_for(@gt_registration, html: {class: 'form-signin'}) do |f| %>
-  <% if @gt_registration.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@gt_registration.errors.count, "error") %> prohibited this gt_registration from being saved:</h2>
+<h1 class="text-center"><%= @gt_race.name %></h1>
+<%= form_for([@gt_race,@gt_registration],
+    html: {class: 'form-signin'}) do |f| %>
+<% if @gt_registration.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@gt_registration.errors.count, "error") %> prohibited this gt_registration from being saved:</h2>
 
-    <ul>
-      <% @gt_registration.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
+  <ul>
+    <% @gt_registration.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
   <div class="form-group">
     <%= f.label "Cena" %><br>
     <%= f.text_field :price, :value => @price  , class: 'form-control' ,:disabled=>true%>
@@ -23,10 +25,6 @@
     <%= f.label "Příjmení" %><br>
     <%= f.text_field :surname , class: 'form-control' %>
   </div>
-  <% if @gt_registration.new_record? %>
-  <%= f.hidden_field :gt_race_id, :value => @gt_race.id %>
-  <%= f.hidden_field :price, :value => @price  %>
-  <% end %>
   <div class="form-group">
     <%= f.label "Email" %><br>
     <%= f.text_field :email, class: 'form-control' %>
@@ -51,7 +49,7 @@
   <div class="form-group">
     <%= f.label "Telefon" %><br>
     +<%= f.text_field :code, class: "code_phone form-control" %>
-    <%= f.text_field :phone_number , class: 'form-control phone' %>
+    <%= f.text_field :phone_number, class: 'form-control phone' %>
   </div>
   <div class="form-group">
     <%= f.label "Datum narození" %><br>
@@ -62,29 +60,29 @@
 
   <div class="form-group">
 
-  <%= f.radio_button(:sex, "M") %>
-  <%= label_tag(:sex, "Muž") %>
-  <%= f.radio_button(:sex, "F") %>
-  <%= label_tag(:sex, "Žena") %>
-</div>
-<div class="form-group">
-  <%= f.label "Poznámka" %><br>
-  <%= f.text_area :notes , class: 'form-control' %>
-</div>
-<% if !@gt_registration.new_record? %>
-<div class="form-group">
-  <%= f.label :payed, "zaplaceno" %>    <br />
-  <%= f.check_box :payed %>
-</div>
-<% end %>
+    <%= f.radio_button(:sex, "M") %>
+    <%= label_tag(:sex, "Muž") %>
+    <%= f.radio_button(:sex, "F") %>
+    <%= label_tag(:sex, "Žena") %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Poznámka" %><br>
+    <%= f.text_area :notes , class: 'form-control' %>
+  </div>
+  <% if !@gt_registration.new_record? %>
+  <div class="form-group">
+    <%= f.label :payed, "zaplaceno" %>    <br />
+    <%= f.check_box :payed %>
+  </div>
+  <% end %>
 
-<% if @gt_registration.new_record? %>
-<div class="actions">
-  <%= f.submit "Registrovat", class: 'btn btn-success' %>
-</div>
-<% else %>
-<div class="actions">
-  <%= f.submit "Potvrdit", class: 'btn btn-success' %>
-</div>
-<% end %>
+  <% if @gt_registration.new_record? %>
+    <div class="actions">
+      <%= f.submit "Registrovat", class: 'btn btn-success' %>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= f.submit "Potvrdit", class: 'btn btn-success' %>
+    </div>
+  <% end %>
 <% end %>

@@ -20,10 +20,9 @@ class GtRegistrationsController < ApplicationController
 
   # GET /gt_registrations/new
   def new
-    @gt_race = GtRace.find(params[:race])
-    @price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: @gt_race.id).order('until ASC').first.price.to_f
-
-    @gt_registration = GtRegistration.new
+    @gt_race = GtRace.find(params[:gt_race_id])
+    @gt_registration = @gt_race.gt_registrations.build
+    @price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
   end
 
   # GET /gt_registrations/1/edit
@@ -34,19 +33,22 @@ class GtRegistrationsController < ApplicationController
   # POST /gt_registrations.json
   def create
     @gt_registration = GtRegistration.new(gt_registration_params)
-    # puts "@gt_registration.gt_race_id: #{@gt_registration.gt_race_id}"
-    # @gt_registration.price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: @gt_registration.gt_race_id).order('until ASC').first.price.to_f
+    @gt_race = GtRace.find(params[:gt_race_id])
     respond_to do |format|
       if @gt_registration.save
-        format.html { redirect_to @gt_registration, notice: 'Gt registration was successfully created.' }
+        format.html { redirect_to [@gt_race,@gt_registration], notice: 'Gt registration was successfully created.' }
         format.json { render :show, status: :created, location: @gt_registration }
+        Notifier.race_registration(@gt_registration).deliver_now
+        if Rails.env.production?
+          Notifier.race_registration_direct(@gt_registration, "adamplansky@seznam.cz,hege8400@seznam.cz,jiricimler@centrum.cz").deliver_now
+        end
       else
-        format.html { render :new }
+        puts @race
+        format.html { render :new, race: @race  }
         format.json { render json: @gt_registration.errors, status: :unprocessable_entity }
       end
     end
-    Notifier.race_registration(@gt_registration).deliver_now
-    Notifier.race_registration_direct(@gt_registration, "adamplansky@seznam.cz,hege8400@seznam.cz,jiricimler@centrum.cz").deliver_now
+
   end
 
   # PATCH/PUT /gt_registrations/1
@@ -77,6 +79,9 @@ class GtRegistrationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_gt_registration
       @gt_registration = GtRegistration.find(params[:id])
+      #@gt_race = GtRace.find(params[:gt_race_id])
+      #@price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
+      #@price = 1
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

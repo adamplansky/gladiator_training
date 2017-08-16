@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
 
   match '/gt_registrations/index_with_payed', to: 'gt_registrations#index_with_payed', via: 'get'
-  resources :gt_registrations
+
   resources :gt_prices
 
   resources :gt_races do
-    resources :starting_list do
-    end
+    resources :starting_list
+    resources :gt_registrations
   end
 
   resources :challenge_categories
