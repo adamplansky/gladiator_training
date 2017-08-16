@@ -73,7 +73,7 @@ class GtRegistrationsController < ApplicationController
   def destroy
     @gt_registration.destroy
     respond_to do |format|
-      format.html { redirect_to gt_registrations_url, notice: 'Gt registration was successfully destroyed.' }
+      format.html { redirect_to index_with_payed_gt_race_gt_registrations_path(@gt_race), notice: 'Gt registration was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
