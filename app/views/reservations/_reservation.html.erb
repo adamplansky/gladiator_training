@@ -7,6 +7,10 @@
   <td><%= reservation.time_from.strftime("%H:%M") %> - <%= reservation.time_to.strftime("%H:%M") %></td>
   <td> <%= link_to reservation.place.name,reservation.place.map_url  %></td>
   <td><%= reservation.users.count %> / <%= reservation.capacity %></td>
+  <td>
+    <%= content_tag("span", ">#{reservation.min_people}", class: "btn btn-success",:data => {:content => 'Minimum lidí pro trénínk.', :toggle => "popover"}) %>
+  </td>
+
   <td><strong><%= reservation.category.name %> </strong></td>
 
   <% if @my_index < reservation.capacity && @my_index >= 0%>
@@ -25,3 +29,8 @@
   <td><%= link_to 'Smazat', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <% end%>
 </tr>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
