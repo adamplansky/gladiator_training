@@ -36,14 +36,12 @@
         <td><%= gt_registration.birth %></td>
         <td><%= gt_registration.sex %></td>
         <td><%= gt_registration.notes %></td>
-        <td><%= link_to 'Show', gt_registration %></td>
-        <td><%= link_to 'Edit', edit_gt_registration_path(gt_registration) %></td>
-        <td><%= link_to 'Destroy', gt_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', gt_race_gt_registrations_path(@gt_race,gt_registration) %></td>
+        <td><%= link_to 'Edit', edit_gt_race_gt_registration_path(@gt_race,gt_registration) %></td>
+        <td><%= link_to 'Destroy', gt_race_gt_registration_path(@gt_race, gt_registration), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Gt registration', new_gt_registration_path %>

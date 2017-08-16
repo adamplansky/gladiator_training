@@ -19,9 +19,9 @@
             <%= raw gt_race.text %>
           </p>
           <p><%= link_to 'Registrace', new_gt_race_gt_registration_path(gt_race), class:"btn btn-info" %>
-          <%= link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
+            <%= link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
           <% if admin_in? %>
-          <p><%= link_to 'Placeno/Neplaceno', gt_registrations_index_with_payed_path(gt_race), class: "btn btn-danger" %></p>
+            <p><%= link_to 'Placeno/Neplaceno', index_with_payed_gt_race_gt_registrations_path(gt_race), class: "btn btn-danger" %></p>
           <% end %>
 
         </div>

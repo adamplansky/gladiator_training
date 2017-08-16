@@ -24,11 +24,13 @@
     <strong>Kapacita:</strong>
     <%= @reservation.users.count %> / <%= @reservation.capacity %>
   </p>
+  <p>
+    <strong>Minimum lidí:</strong>
+    <%= @reservation.min_people %>
+  </p>
   <%= render 'reservations_users/show' %>
   <% if admin_in? %>
   <%# link_to 'editace', edit_reservation_path(@reservation), class:"btn btn-success" %>
   <% end %>
   </div>
 </div>
-
-

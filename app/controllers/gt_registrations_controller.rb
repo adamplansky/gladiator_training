@@ -7,9 +7,11 @@ class GtRegistrationsController < ApplicationController
   # GET /gt_registrations.json
   def index
     @gt_registrations = GtRegistration.all.where(payed: true)
+    @gt_race = GtRace.find(params[:gt_race_id])
   end
 
   def index_with_payed
+    @gt_race = GtRace.find(params[:gt_race_id])
     @gt_registrations = GtRegistration.order(:id)
   end
 
@@ -54,9 +56,10 @@ class GtRegistrationsController < ApplicationController
   # PATCH/PUT /gt_registrations/1
   # PATCH/PUT /gt_registrations/1.json
   def update
+    @gt_race = GtRace.find(params[:gt_race_id])
     respond_to do |format|
       if @gt_registration.update(gt_registration_params)
-        format.html { redirect_to gt_registrations_index_with_payed_path, notice: 'Gt registration was successfully updated.' }
+        format.html { redirect_to index_with_payed_gt_race_gt_registrations_path(@gt_race,@gt_registration), notice: 'Gt registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @gt_registration }
       else
         format.html { render :edit }
@@ -79,6 +82,7 @@ class GtRegistrationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_gt_registration
       @gt_registration = GtRegistration.find(params[:id])
+      @gt_race = GtRace.find(params[:gt_race_id])
       #@gt_race = GtRace.find(params[:gt_race_id])
       #@price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
       #@price = 1
