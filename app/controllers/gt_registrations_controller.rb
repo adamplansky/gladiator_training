@@ -25,6 +25,7 @@ class GtRegistrationsController < ApplicationController
     @gt_race = GtRace.find(params[:gt_race_id])
     @gt_registration = @gt_race.gt_registrations.build
     @price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
+    @gt_registration.price = @price
   end
 
   # GET /gt_registrations/1/edit
@@ -36,6 +37,9 @@ class GtRegistrationsController < ApplicationController
   def create
     @gt_registration = GtRegistration.new(gt_registration_params)
     @gt_race = GtRace.find(params[:gt_race_id])
+    @gt_registration.price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
+    @gt_registration.gt_race = @gt_race
+    puts "create: #{@gt_registration.inspect}"
     respond_to do |format|
       if @gt_registration.save
         format.html { redirect_to [@gt_race,@gt_registration], notice: 'Gt registration was successfully created.' }
