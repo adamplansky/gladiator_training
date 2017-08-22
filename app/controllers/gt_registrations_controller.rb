@@ -35,6 +35,7 @@ class GtRegistrationsController < ApplicationController
   # POST /gt_registrations
   # POST /gt_registrations.json
   def create
+    return
     @gt_registration = GtRegistration.new(gt_registration_params)
     @gt_race = GtRace.find(params[:gt_race_id])
     @gt_registration.price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
