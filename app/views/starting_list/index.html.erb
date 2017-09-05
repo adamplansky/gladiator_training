@@ -6,6 +6,10 @@
     <th class="text-center">Jméno</th>
     <th class="text-center">Tým</th>
     <th class="text-center">Zaplaceno</th>
+
+    <% if admin_in? %>
+      <th class="text-center">email</th>
+    <% end %>
   </tr>
   <% @gt_registrations.each do |reg| %>
   <tr>
@@ -14,6 +18,9 @@
     <td class="text-center"><%= reg.firstname %> <%= reg.surname %></td>
     <td class="text-center"><%= reg.team %></td>
     <td class="text-center <%= zaplaceno_cls(reg.payed) %> w30"><%= zaplaceno(reg.payed)%></td>
+    <% if admin_in? %>
+      <td class="text-center"><%= reg.email %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>
