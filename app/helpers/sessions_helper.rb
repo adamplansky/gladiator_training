@@ -12,9 +12,12 @@ module SessionsHelper
 
   # Returns the user corresponding to the remember token cookie.
   def current_user
+
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
+      puts "called current_user session"
     elsif (user_id = cookies.signed[:user_id])
+      puts "called current_user cookie"
       user = User.find_by(id: user_id)
       if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user

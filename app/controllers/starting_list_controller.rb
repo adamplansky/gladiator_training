@@ -5,6 +5,7 @@ class StartingListController < ApplicationController
 
   def index
     @gt_registrations = @gt_race.gt_registrations.order(:id)
+    #@gt_registrations = @gt_race.joins(gt_registrations).order(:id)
   end
 
   private
