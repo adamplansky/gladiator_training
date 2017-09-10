@@ -1,4 +1,5 @@
 <% cnt = 1 %>
+<% admin_yes = admin_in? %>
 <h1>Startovni listina</h1>
 <table class="table table-striped table-hover">
   <tr>
@@ -7,7 +8,7 @@
     <th class="text-center">Tým</th>
     <th class="text-center">Zaplaceno</th>
 
-    <% if admin_in? %>
+    <% if admin_yes %>
       <th class="text-center">email</th>
     <% end %>
   </tr>
@@ -18,7 +19,7 @@
     <td class="text-center"><%= reg.firstname %> <%= reg.surname %></td>
     <td class="text-center"><%= reg.team %></td>
     <td class="text-center <%= zaplaceno_cls(reg.payed) %> w30"><%= zaplaceno(reg.payed)%></td>
-    <% if admin_in? %>
+    <% if admin_yes %>
       <td class="text-center"><%= reg.email %></td>
     <% end %>
   </tr>
