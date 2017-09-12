@@ -6,7 +6,7 @@
         <li role=""><%= link_to challenges_path do %><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Výzvy<% end %></li>
         <li role=""><%= link_to challenge_scores_path do %><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>Zapsané výzvy<% end %></li>
         <li role=""><%= link_to teams_path do %><span class="glyphicon glyphicon-tower" aria-hidden="true"></span>Týmy<% end %></li>
-        <li role=""><%= link_to season_leaderboards_path(Season.current_season) do %><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Aktuální pořadí<% end %></li>
+        <li role=""><%= link_to season_leaderboards_path(Season.current_season || Season.last) do %><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Aktuální pořadí<% end %></li>
         <li role=""><%= link_to gyms_path do %><span class="glyphicon glyphicon-king" aria-hidden="true"></span>Gyms<% end %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
