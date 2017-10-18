@@ -29,9 +29,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :updating_password
 
-  validates :image, presence: true
-  validates_processing_of :image
-  validate :image_size_validation
+  # validates :image, presence: true
+  # validates_processing_of :image
+  # validate :image_size_validation
 
   def fullname
     "#{self.first_name} #{self.surname}"

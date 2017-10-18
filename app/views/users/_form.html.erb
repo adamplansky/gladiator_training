@@ -37,11 +37,11 @@
 <div class="form-group">
   <%= f.select :gender, options_for_select([['Muž',1], ['Žena',2]], selected: @user.gender), {}, { class: 'form-control' } %>
 </div>
-<div class="form-group">
-  <%= f.label "foto"%>
-  <%= f.hidden_field :image_cache %>
-  <%= f.file_field :image, class:"btn btn-default btn-file" %>
-</div>
+<!-- <div class="form-group">
+  <%# f.label "foto"%>
+  <%# f.hidden_field :image_cache %>
+  <%# f.file_field :image, class:"btn btn-default btn-file" %>
+</div> -->
 <div class="actions">
   <%= f.submit "Potvrdit", class: "btn btn-lg btn-primary btn-block" %>
 </div>
