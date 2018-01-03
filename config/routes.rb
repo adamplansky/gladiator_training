@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
 
-
+  get 'memberships/all_members'
+  get 'memberships/member'
+  get 'memberships/notmember'
+  get 'memberships/others'
 
   resources :gt_prices
 
@@ -21,11 +24,15 @@ Rails.application.routes.draw do
   resources :user_teams
   resources :teams
   resources :users do
+    collection do
+      put 'complete'
+    end
     resources :gymwars, controller: 'user_gym_wars' do
       collection do
         get 'index'
         get 'edit' => 'user_gym_wars#edit', :as => :edit_user_gym_wars
         put 'edit' => 'user_gym_wars#update'
+
       end
     end
   end

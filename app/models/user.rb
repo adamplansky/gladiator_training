@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.surname}"
   end
 
+  def last_training
+    ReservationUser.where(user: self).try(:last).try(:created_at) || DateTime.new(2000)
+  end
+
   def my_points
     Training.where(user: self).map(&:points).reduce(:+).try(:round,2)
   end
