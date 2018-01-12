@@ -1,33 +1,33 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require bootstrap-table
- *= require trix
- *= require_tree .
- *= require_self
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any styles
+* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+* file per style scope.
+*
+*= require bootstrap-table
+*= require trix
+*= require_tree .
+*= require_self
+*/
 
 
 
 @font-face {
-    font-family: 'urban_jungleregular';
-    src: font-url('urbanjungledemo-webfont.woff2') format('woff2'),
-         font-url('urbanjungledemo-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'urban_jungleregular';
+  src: font-url('urbanjungledemo-webfont.woff2') format('woff2'),
+  font-url('urbanjungledemo-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
 .gym_wars{
-   font-family:'urban_jungleregular';
+  font-family:'urban_jungleregular';
 }
 .btn-lg{
   margin:10px
@@ -37,4 +37,7 @@
 }
 .green{
   color:green !important;
+}
+body, a:hover{
+  cursor: asset-url('nat927.ani'), asset-url('nat927.png'), default !important;
 }
