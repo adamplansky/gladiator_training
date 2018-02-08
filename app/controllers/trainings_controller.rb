@@ -29,6 +29,7 @@ class TrainingsController < ApplicationController
 
     @training.update(training_params)
     @training.period = Period.where("time_from < ? AND time_to > ?", @training.created_at, @training.created_at).first
+
     respond_to do |format|
       if @training.save
         format.html { redirect_to trainings_url, notice: 'Training was successfully created.' }
@@ -63,11 +64,16 @@ class TrainingsController < ApplicationController
 
     @training.points = @category.points if @category.koef == 0
     @training.period = Period.where("time_from < ? AND time_to > ?", Time.now, Time.now).first
+
     respond_to do |format|
       if @training.save
         format.html { redirect_to trainings_url, notice: 'Training was successfully created.' }
         format.json { render :show, status: :created, location: @training }
       else
+        @categories = TrainingCategory.all
+        unless @training.period
+          flash[:error] = "Neni vytvorena nova sezona, kontaktuje administratora"
+        end
         format.html { render :new }
         format.json { render json: @training.errors, status: :unprocessable_entity }
       end

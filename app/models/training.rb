@@ -7,7 +7,7 @@ class Training < ActiveRecord::Base
   default_scope { order('created_at DESC') }
 
   validates :user, presence: true
-  validates :period, presence: true
+  validates :period, presence: { message: "Není vytvořena nová sezóna, kontaktuje administrátora" }
 
   def distance=(val)
     val.sub!(',', '.') if val.is_a?(String)
