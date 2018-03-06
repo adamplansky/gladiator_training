@@ -13,7 +13,7 @@ class ReservationsUsersController < ApplicationController
   def destroy
     r = Reservation.find_by_id(params[:id])
     u = User.find_by_id(params[:format]) if current_user.admin?
-    if r.time_from - 40.minutes < Time.now
+    if !current_user.admin? && r.time_from - 40.minutes < Time.now
       flash[:success] = "Odhlášení zamítnuto."
       redirect_to reservations_path
       return
