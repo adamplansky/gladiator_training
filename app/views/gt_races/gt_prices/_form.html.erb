@@ -17,10 +17,10 @@
   </div>
   <div class="field">
     <%= f.label :gt_race_id %><br>
-    <%= f.text_field :gt_race_id, value: @gt_race.id, disabled: true %>
+    <%= f.text_field :gt_race_id, value: @gt_race.id, readonly: true %>
   </div>
   <div class="field">
-    <%= f.label :gt_category_id %><br>
+    <%= f.label "kategory id" %><br>
     <%= f.collection_select :gt_category_id, GtCategory.all, :id, :name %>
   </div>
 
