@@ -1,0 +1,47 @@
+<div class="form-group">
+  <%= f.label "Název týmu" %><br>
+  <%= f.text_field :team_name , class: 'form-control' %>
+</div>
+<div class="zavodnik">
+  <h2>Závodník 1</h2>
+  <div class="form-group">
+    <%= f.label "Jméno" %><br>
+    <%= f.text_field :firstname , class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Příjmení" %><br>
+    <%= f.text_field :surname , class: 'form-control' %>
+  </div>
+  <div class="form-group">
+
+    <%= f.radio_button(:sex, "M") %>
+    <%= label_tag(:sex, "Muž") %>
+    <%= f.radio_button(:sex, "F") %>
+    <%= label_tag(:sex, "Žena") %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Datum narození" %><br>
+    <%= f.date_select :birth , class: 'form-control',:start_year => 1901 %>
+  </div>
+</div>
+<div class="zavodnik">
+  <h2>Závodník 2</h2>
+  <div class="form-group">
+    <%= f.label "Jméno" %><br>
+    <%= f.text_field :teammate_firstname , class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Příjmení" %><br>
+    <%= f.text_field :teammate_surname, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.radio_button(:teammate_sex, "M") %>
+    <%= label_tag(:teammate_sex, "Muž") %>
+    <%= f.radio_button(:teammate_sex, "F") %>
+    <%= label_tag(:teammate_sex, "Žena") %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Datum narození" %><br>
+    <%= f.date_select :teammate_birth , class: 'form-control',:start_year => 1901 %>
+  </div>
+</div>

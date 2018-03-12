@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103071520) do
+ActiveRecord::Schema.define(version: 20180312124602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,14 +95,37 @@ ActiveRecord::Schema.define(version: 20180103071520) do
     t.string   "contact_url"
   end
 
-  create_table "gt_prices", force: :cascade do |t|
-    t.date     "until"
-    t.integer  "gt_race_id"
-    t.decimal  "price"
+  create_table "foo", id: false, force: :cascade do |t|
+    t.integer "fooid"
+    t.integer "foosubid"
+    t.text    "fooname"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "gt_categories", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "single"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
+  end
+
+  create_table "gt_prices", force: :cascade do |t|
+    t.date     "until"
+    t.integer  "gt_race_id"
+    t.decimal  "price"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "gt_category_id"
+  end
+
+  add_index "gt_prices", ["gt_category_id"], name: "index_gt_prices_on_gt_category_id", using: :btree
   add_index "gt_prices", ["gt_race_id"], name: "index_gt_prices_on_gt_race_id", using: :btree
 
   create_table "gt_races", force: :cascade do |t|
@@ -128,13 +151,22 @@ ActiveRecord::Schema.define(version: 20180103071520) do
     t.date     "birth"
     t.string   "sex"
     t.text     "notes"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "email"
     t.string   "team"
-    t.boolean  "payed",        default: false
+    t.boolean  "payed",              default: false
+    t.string   "teammate_firstname"
+    t.string   "teammate_surname"
+    t.string   "teammate_sex"
+    t.string   "team_name"
+    t.integer  "gt_category_id"
+    t.integer  "age"
+    t.integer  "teammate_age"
+    t.date     "teammate_birth"
   end
 
+  add_index "gt_registrations", ["gt_category_id"], name: "index_gt_registrations_on_gt_category_id", using: :btree
   add_index "gt_registrations", ["gt_race_id"], name: "index_gt_registrations_on_gt_race_id", using: :btree
 
   create_table "gym_wars", force: :cascade do |t|
@@ -294,6 +326,11 @@ ActiveRecord::Schema.define(version: 20180103071520) do
     t.integer  "gender"
     t.string   "image"
     t.boolean  "is_member",       default: false
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.string "name"
+    t.text   "description"
   end
 
   add_foreign_key "challenge_scores", "challenges"

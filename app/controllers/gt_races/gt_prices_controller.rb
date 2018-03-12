@@ -1,6 +1,7 @@
-class GtPricesController < ApplicationController
+class GtRaces::GtPricesController < ApplicationController
   layout 'races'
   before_action :set_gt_price, only: [:show, :edit, :update, :destroy]
+  before_action :set_gt_race #, only: [:index, :create, :new, :show, :edit, :update, :destroy]
   before_action :logged_in_admin
 
   # GET /gt_prices
@@ -16,7 +17,7 @@ class GtPricesController < ApplicationController
 
   # GET /gt_prices/new
   def new
-    @gt_race = params[:format]#new_gt_price_path(@gt_race)
+    # @gt_race = params[:format]#new_gt_price_path(@gt_race)
     @gt_price = GtPrice.new
   end
 
@@ -28,7 +29,7 @@ class GtPricesController < ApplicationController
   # POST /gt_prices.json
   def create
     @gt_price = GtPrice.new(gt_price_params)
-
+    @gt_price.gt_race_id = @gt_race.id
     respond_to do |format|
       if @gt_price.save
         format.html { redirect_to gt_race_path(@gt_price.gt_race_id), notice: 'Gt price was successfully created.' }
@@ -70,8 +71,12 @@ class GtPricesController < ApplicationController
       @gt_price = GtPrice.find(params[:id])
     end
 
+    def set_gt_race
+      @gt_race = GtRace.find(params[:gt_race_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def gt_price_params
-      params.require(:gt_price).permit(:until, :gt_race_id, :price)
+      params.require(:gt_price).permit(:until, :gt_race_id, :price, :gt_category_id)
     end
 end

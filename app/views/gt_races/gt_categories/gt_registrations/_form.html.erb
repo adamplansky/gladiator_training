@@ -1,0 +1,74 @@
+<h1 class="text-center"><%= @gt_race.name %></h1>
+<%= form_for([@gt_race,@gt_category,@gt_registration],
+  html: {class: 'form-signin'}) do |f| %>
+  <% if @gt_registration.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@gt_registration.errors.count, "error") %> prohibited this gt_registration from being saved:</h2>
+
+    <ul>
+      <% @gt_registration.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <h1><%= @gt_category.name %></h1>
+  <div class="form-group">
+    <%= f.label "Cena" %><br>
+    <%= f.text_field :price, :value => @price  , class: 'form-control' ,:readonly=>true %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Email" %><br>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <% if @gt_category.single  %>
+    <%= render "single", :f => f %>
+  <% else %>
+    <%= render 'teams', :f => f %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Název klubu" %><br>
+    <%= f.text_field :team , class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Město" %><br>
+    <%= f.text_field :city , class: 'form-control' %>
+  </div>
+
+
+
+
+  <!-- <div class="form-group">
+  <%# f.label "Telefon" %><br>
+  +<%# f.text_field :code, class: "code_phone form-control" %>
+  <%# f.text_field :phone_number, class: 'form-control phone' %>
+</div> -->
+
+
+
+
+
+<div class="form-group">
+  <%= f.label "Poznámka" %><br>
+  <%= f.text_area :notes , class: 'form-control' %>
+</div>
+<% if !@gt_registration.new_record? %>
+<div class="form-group">
+  <%= f.label :payed, "zaplaceno" %>    <br />
+  <%= f.check_box :payed %>
+</div>
+<% end %>
+
+<% if @gt_registration.new_record? %>
+<div class="actions">
+  <%= f.submit "Registrovat", class: 'btn btn-success' %>
+</div>
+<% else %>
+<div class="actions">
+  <%= f.submit "Potvrdit", class: 'btn btn-success' %>
+</div>
+<% end %>
+<% end %>

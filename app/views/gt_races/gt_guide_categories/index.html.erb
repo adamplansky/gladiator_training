@@ -1,0 +1,22 @@
+<div >
+  <h1>Jednotlivci</h1>
+  <% @singles.each do |gt_category| %>
+  <div class="card col-sm-6 col-md-4">
+    <div class="inside">
+      <h1><%= link_to gt_category.name, new_gt_race_gt_category_gt_registration_path(@gt_race, gt_category) %></h1>
+      <h4><%= gt_category.description %></h4>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div>
+  <h1>Týmy</h1>
+  <% @teams.each do |gt_category| %>
+  <div class="card col-sm-6 col-md-6">
+    <div class="inside">
+      <h1><%= link_to gt_category.name, new_gt_race_gt_category_gt_registration_path(@gt_race, gt_category) %></h1>
+      <h4><%= gt_category.description %></h4>
+    </div>
+  </div>
+  <% end %>
+</div>

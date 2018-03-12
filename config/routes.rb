@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
 
 
+  resources :gt_categories
   get 'memberships/all_members'
   get 'memberships/member'
   get 'memberships/notmember'
   get 'memberships/others'
 
-  resources :gt_prices
 
+  resources :gt_categories
   resources :gt_races do
-    resources :starting_list
-    resources :gt_registrations do
-      collection do
-        get 'index_with_payed'# => 'gt_registrations#index_with_payed'
+    # scope module: :gt_races do
+    resources :gt_prices, controller: "gt_races/gt_prices"
+    # end
+    #resources :gt_categories, controller: "gt_races/gt_categories"
+    resources :starting_list, controller: "gt_races/starting_list"
+
+    resources :gt_categories, controller: "gt_races/gt_guide_categories" do
+      resources :gt_registrations, controller: "gt_races/gt_categories/gt_registrations" do
+        collection do
+          get 'index_with_payed'
+        end
       end
     end
 

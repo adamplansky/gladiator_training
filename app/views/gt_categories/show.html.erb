@@ -1,0 +1,23 @@
+<div class="container">
+  <div class='col-sm-12'>
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @gt_category.name %>
+    </p>
+
+    <p>
+      <strong>Single:</strong>
+      <%= @gt_category.single %>
+    </p>
+
+    <p>
+      <strong>description:</strong>
+      <%= @gt_category.description %>
+    </p>
+
+    <%= link_to 'Edit', edit_gt_category_path(@gt_category) %> |
+    <%= link_to 'Back', gt_categories_path %>
+  </div>
+</div>

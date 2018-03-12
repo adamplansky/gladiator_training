@@ -1,17 +1,17 @@
-class GtRegistrationsController < ApplicationController
+class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   layout 'races'
   include GtRegistrationsHelper
   before_action :set_gt_registration, only: [:show, :edit, :update, :destroy]
+  before_action :set_gt_race, only: [:index_with_payed, :index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_gt_guide_category, only: [:index_with_payed, :index, :new, :create, :show, :edit, :update, :destroy]
   before_action :logged_in_admin, only: [:index_with_payed, :edit, :update, :destroy]
   # GET /gt_registrations
   # GET /gt_registrations.json
   def index
     @gt_registrations = GtRegistration.all.where(payed: true)
-    @gt_race = GtRace.find(params[:gt_race_id])
   end
 
   def index_with_payed
-    @gt_race = GtRace.find(params[:gt_race_id])
     @gt_registrations = GtRegistration.order(:id)
   end
 
@@ -22,9 +22,12 @@ class GtRegistrationsController < ApplicationController
 
   # GET /gt_registrations/new
   def new
-    @gt_race = GtRace.find(params[:gt_race_id])
     @gt_registration = @gt_race.gt_registrations.build
-    @price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
+    @price = GtPrice.where(gt_race: @gt_race, gt_category: @gt_category).where("DATE(until) >= ?", Date.today ).order('until ASC').first.try(:price).to_f
+    if @price == 0
+      flash[:alert] = "Omlouvame se, ale stala se chyba pri vypoctu ceny. Tato chyba bude opravena do 24h"
+      Notifier.error_admin("adamplansky@gmail.com", "GtRaces::GtCategories::GtRegistrationsController#new @price == 0 @gt_race: #{@gt_race.inspect} @gt_category: #{@gt_category.inspect} Date.today: #{Date.today}" ).deliver_now
+    end
     @gt_registration.price = @price
   end
 
@@ -35,23 +38,22 @@ class GtRegistrationsController < ApplicationController
   # POST /gt_registrations
   # POST /gt_registrations.json
   def create
-    return
     @gt_registration = GtRegistration.new(gt_registration_params)
-    @gt_race = GtRace.find(params[:gt_race_id])
-    @gt_registration.price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
+    puts "#{@gt_registration.inspect}"
+    puts gt_registration_params
     @gt_registration.gt_race = @gt_race
-    puts "create: #{@gt_registration.inspect}"
+    @gt_registration.gt_category = @gt_category
     respond_to do |format|
       if @gt_registration.save
-        format.html { redirect_to [@gt_race,@gt_registration], notice: 'Gt registration was successfully created.' }
+        format.html { redirect_to [@gt_race,@gt_category,@gt_registration], notice: 'Gt registration was successfully created.' }
         format.json { render :show, status: :created, location: @gt_registration }
         Notifier.race_registration(@gt_registration).deliver_now
         if Rails.env.production?
           Notifier.race_registration_direct(@gt_registration, "adamplansky@seznam.cz,hege8400@seznam.cz,jiricimler@centrum.cz").deliver_now
         end
       else
-        puts @race
-        format.html { render :new, race: @race  }
+        #format.html { render :new,  :params => { gt_race: @gt_race, gt_category: @gt_category } }
+        format.html { render :new }
         format.json { render json: @gt_registration.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +63,6 @@ class GtRegistrationsController < ApplicationController
   # PATCH/PUT /gt_registrations/1
   # PATCH/PUT /gt_registrations/1.json
   def update
-    @gt_race = GtRace.find(params[:gt_race_id])
     respond_to do |format|
       if @gt_registration.update(gt_registration_params)
         format.html { redirect_to index_with_payed_gt_race_gt_registrations_path(@gt_race,@gt_registration), notice: 'Gt registration was successfully updated.' }
@@ -84,17 +85,21 @@ class GtRegistrationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gt_registration
-      @gt_registration = GtRegistration.find(params[:id])
-      @gt_race = GtRace.find(params[:gt_race_id])
-      #@gt_race = GtRace.find(params[:gt_race_id])
-      #@price = GtPrice.where("DATE(until) >= ?", Date.today ).where(gt_race_id: params[:gt_race_id]).order('until ASC').first.price.to_f
-      #@price = 1
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_gt_registration
+    @gt_registration = GtRegistration.find(params[:id])
+  end
+  def set_gt_race
+    @gt_race = GtRace.find(params[:gt_race_id])
+  end
+  def set_gt_guide_category
+    @gt_category = GtCategory.find(params[:gt_category_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def gt_registration_params
-      params.require(:gt_registration).permit(:firstname, :surname, :gt_race_id, :price, :street, :city, :psc, :phone_number, :code, :birth, :sex, :notes, :email, :team, :payed)
-    end
+
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def gt_registration_params
+    params.require(:gt_registration).permit(:firstname, :surname,:gt_race_id, :price, :street, :city, :psc, :phone_number,:code, :birth, :sex, :notes, :email, :team, :payed,:teammate_firstname, :teammate_surname, :teammate_sex,:team_name, :gt_category_id, :teammate_birth)
+  end
 end

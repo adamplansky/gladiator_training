@@ -1,0 +1,30 @@
+<%= form_for(@gt_category) do |f| %>
+  <% if @gt_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gt_category.errors.count, "error") %> prohibited this gt_category from being saved:</h2>
+
+      <ul>
+      <% @gt_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :single %><br>
+    <%= f.check_box :single %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

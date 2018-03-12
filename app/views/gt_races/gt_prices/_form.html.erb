@@ -1,4 +1,4 @@
-<%= form_for(@gt_price) do |f| %>
+<%= form_for([@gt_race, @gt_price]) do |f| %>
   <% if @gt_price.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gt_price.errors.count, "error") %> prohibited this gt_price from being saved:</h2>
@@ -17,8 +17,13 @@
   </div>
   <div class="field">
     <%= f.label :gt_race_id %><br>
-    <%= f.text_field :gt_race_id, value: @gt_race %>
+    <%= f.text_field :gt_race_id, value: @gt_race.id, disabled: true %>
   </div>
+  <div class="field">
+    <%= f.label :gt_category_id %><br>
+    <%= f.collection_select :gt_category_id, GtCategory.all, :id, :name %>
+  </div>
+
   <div class="field">
     <%= f.label "Cena" %><br>
     <%= f.text_field :price %>

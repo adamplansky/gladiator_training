@@ -6,13 +6,13 @@ class GtRacesController < ApplicationController
   # GET /gt_races.json
   def index
     #redirect_to action: "show", id: GtRace.last.id
-    @gt_races = GtRace.all
+    @gt_races = GtRace.where("published > ?", DateTime.now)
   end
 
   # GET /gt_races/1
   # GET /gt_races/1.json
   def show
-     @prices = @gt_race.gt_prices
+     @gt_race = GtRace.find(params[:id])
   end
 
   # GET /gt_races/new

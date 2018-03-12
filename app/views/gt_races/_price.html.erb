@@ -1,0 +1,13 @@
+<h3><%= GtCategory.find(prices[0]).name %></h3>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Do</th>
+    <th>Cena</th>
+  </tr>
+  <% prices[1].each do |price| %>
+  <tr>
+    <td><%= price.until.strftime("%d.%m.%Y") %></td>
+    <td><%= price.price %>,-</td>
+  </tr>
+  <% end %>
+</table>

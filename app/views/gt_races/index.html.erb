@@ -1,49 +1,11 @@
+
+
+
 <div class="container">
   <div class='col-sm-12'>
     <p id="notice"><%= notice %></p>
     <% @gt_races.each do |gt_race| %>
-    <div class="panel panel-default panel-info">
-      <div class="panel-heading"><h1><%= gt_race.name %></h1></div>
-      <div class="panel-body">
-        <div class='col-sm-6'>
-          <p>
-            <strong>Datum:</strong>
-            <%= gt_race.published.strftime("%d.%m.%Y") %>
-          </p>
-          <p>
-            <strong>Místo:</strong>
-            <%= link_to gt_race.place, gt_race.url %>
-          </p>
-
-          <p>
-            <%= raw gt_race.text %>
-          </p>
-          <p><%= link_to 'Registrace uzavreny', nil, class:"btn btn-danger" %>
-            <%= link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
-          <% if admin_in? %>
-            <p><%= link_to 'Placeno/Neplaceno', index_with_payed_gt_race_gt_registrations_path(gt_race), class: "btn btn-danger" %></p>
-          <% end %>
-          <%= link_to "Výsledky Muži", "gt1_vysledky_muzi.pdf", class: "btn btn-success" %>
-          <%= link_to "Výsledky Ženy", "gt1_vysledky_zeny.pdf", class: "btn btn-success" %>
-
-        </div>
-        <div class='col-sm-6'>
-          <table class="table table-striped table-hover">
-            <tr>
-              <th>Do</th>
-              <th>Cena</th>
-              <th></th>
-            </tr>
-            <% gt_race.gt_prices.each do |price| %>
-            <tr>
-              <td><%= price.until.strftime("%d.%m.%Y") %></td>
-              <td><%= price.price %>,-</td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
+      <%= render "show", :gt_race => gt_race %>
     <% end %>
     <br>
     <% if admin_in? %>

@@ -1,3 +1,9 @@
-// Place all the styles related to the GTRaces controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.gt_races_index{
+  .prices{
+    h3{margin:0}
+    table{margin:0}
+    table tbody::before{
+      height:0;
+    }
+  }
+}
