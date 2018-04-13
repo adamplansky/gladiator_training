@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   before_action :print_request
   def print_request
     puts '------------------'
-    puts request.subdomain
+    if request.subdomain == 'gladiatorchallenge'
+      redirect_to gt_races_path
+    end
     puts request.domain
     puts request.path
     puts '------------------'

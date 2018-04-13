@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   # end
 
   constraints :subdomain => "gladiatorchallenge" do
+    get "*all", to: redirect { |params, req| "http://#{req.domain}/gt_races/" }
     # get "*all", to: redirect { |params, req| "http://#{req.domain}/gt_races/#{params[:all]}" }
-    get "*all", to: redirect { |params, req| "https://www.seznam.cz" }
   end
 
   resources :gt_categories
