@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def print_request
     puts '------------------'
     if request.subdomain == 'gladiatorchallenge' || request.domain == 'gladiatorchallenge.cz'
-      redirect_to gt_races_path
+      redirect_to 'https://gladiatortraining.cz/gt_races/'
     end
     puts request.domain
     puts request.path
