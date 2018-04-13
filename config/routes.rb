@@ -7,25 +7,27 @@ Rails.application.routes.draw do
   get 'memberships/notmember'
   get 'memberships/others'
 
-
+  constraints :subdomain => "gladiatorchallenge" do
+    match "*path" => 'gt_races#index', via: :all
+  end
+  
   resources :gt_categories
-  constraints subdomain: 'gladiatorchallenge' do
-    resources :gt_races do
-      # scope module: :gt_races do
-      resources :gt_prices, controller: "gt_races/gt_prices"
-      # end
-      #resources :gt_categories, controller: "gt_races/gt_categories"
-      resources :starting_list, controller: "gt_races/starting_list"
+  resources :gt_races do
+    # scope module: :gt_races do
+    resources :gt_prices, controller: "gt_races/gt_prices"
+    # end
+    #resources :gt_categories, controller: "gt_races/gt_categories"
+    resources :starting_list, controller: "gt_races/starting_list"
 
-      resources :gt_categories, controller: "gt_races/gt_guide_categories" do
-        resources :gt_registrations, controller: "gt_races/gt_categories/gt_registrations" do
-          collection do
-            get 'index_with_payed'
-          end
+    resources :gt_categories, controller: "gt_races/gt_guide_categories" do
+      resources :gt_registrations, controller: "gt_races/gt_categories/gt_registrations" do
+        collection do
+          get 'index_with_payed'
         end
       end
     end
   end
+
 
 
   resources :challenge_categories
