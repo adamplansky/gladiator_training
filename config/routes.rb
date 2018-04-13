@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   get 'memberships/notmember'
   get 'memberships/others'
 
+  # constraints :subdomain => "gladiatorchallenge" do
+  #   match "*path" => 'gt_races#index', via: :all
+  # end
+
   constraints :subdomain => "gladiatorchallenge" do
-    match "*path" => 'gt_races#index', via: :all
+    # get "*all", to: redirect { |params, req| "http://#{req.domain}/gt_races/#{params[:all]}" }
+    get "*all", to: redirect { |params, req| "https://www.seznam.cz" }
   end
-  
+
   resources :gt_categories
   resources :gt_races do
     # scope module: :gt_races do
