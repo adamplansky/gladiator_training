@@ -3,7 +3,8 @@ class ReservationsUsersController < ApplicationController
     r = Reservation.find_by_id(params[:id])
     if r.users << current_user
       flash[:success] = "Rezervace provedena."
-      redirect_to r
+      # redirect_to r
+      redirect_to reservations_path
     else
       flash[:success] = "Rezervace neprovedena."
       redirect_to reservations_path
