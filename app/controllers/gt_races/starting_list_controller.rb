@@ -1,4 +1,4 @@
-class StartingListController < ApplicationController
+class GtRaces::StartingListController < ApplicationController
   layout 'races'
   include GtRegistrationsHelper
   before_action :set_gt_race, only: [:index]

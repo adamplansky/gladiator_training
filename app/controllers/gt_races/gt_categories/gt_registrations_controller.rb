@@ -12,7 +12,7 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   end
 
   def index_with_payed
-    @gt_registrations = GtRegistration.order(:id)
+    @gt_registrations = GtRegistration.where(gt_race: @gt_race).order(:id)
   end
 
   # GET /gt_registrations/1
@@ -33,6 +33,7 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
 
   # GET /gt_registrations/1/edit
   def edit
+    @price = @gt_registration.price
   end
 
   # POST /gt_registrations
@@ -65,7 +66,7 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   def update
     respond_to do |format|
       if @gt_registration.update(gt_registration_params)
-        format.html { redirect_to index_with_payed_gt_race_gt_registrations_path(@gt_race,@gt_registration), notice: 'Gt registration was successfully updated.' }
+        format.html { redirect_to index_with_payed_gt_race_gt_category_gt_registrations_path(@gt_race,0), notice: 'Gt registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @gt_registration }
       else
         format.html { render :edit }
@@ -79,7 +80,7 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   def destroy
     @gt_registration.destroy
     respond_to do |format|
-      format.html { redirect_to index_with_payed_gt_race_gt_registrations_path(@gt_race), notice: 'Gt registration was successfully destroyed.' }
+      format.html { redirect_to index_with_payed_gt_race_gt_category_gt_registrations_path(@gt_race,0), notice: 'Gt registration was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -93,7 +94,11 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
     @gt_race = GtRace.find(params[:gt_race_id])
   end
   def set_gt_guide_category
-    @gt_category = GtCategory.find(params[:gt_category_id])
+    if params[:gt_category_id].to_i > 0
+      @gt_category = GtCategory.find(params[:gt_category_id])
+    else
+      @gt_category = GtCategory.all
+    end
   end
 
 

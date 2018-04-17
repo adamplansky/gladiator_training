@@ -22,6 +22,7 @@
       <tbody>
         <% @gt_registrations.each do |gt_registration| %>
         <tr>
+
           <td><%= gt_registration.id %></td>
           <td><%= gt_registration.firstname %> <%= gt_registration.surname %></td>
           <td><%= gt_registration.team %></td>
@@ -30,9 +31,10 @@
           <td><%= gt_registration.sex %></td>
           <td><%= gt_registration.notes %></td>
           <td class="btn <%= zaplaceno_cls(gt_registration.payed)%>"><%= zaplaceno(gt_registration.payed)%></td>
-          <td><%= link_to 'Show', gt_race_gt_registrations_path(@gt_race,gt_registration) %></td>
-          <td><%= link_to 'Edit', edit_gt_race_gt_registration_path(@gt_race,gt_registration) %></td>
-          <td><%= link_to 'Destroy', gt_race_gt_registration_path(@gt_race, gt_registration), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= gt_registration.gt_category_id %></td>
+          <!-- <td><%# link_to 'Show', gt_race_gt_category_gt_registration_path(@gt_race,gt_registration.gt_category_id,gt_registration) %></td> -->
+          <td><%= link_to 'Edit', edit_gt_race_gt_category_gt_registration_path(@gt_race,gt_registration.gt_category_id,gt_registration) %></td>
+          <td><%= link_to 'Destroy', gt_race_gt_category_gt_registration_path(@gt_race,gt_registration.gt_category_id, gt_registration), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
       </tbody>
