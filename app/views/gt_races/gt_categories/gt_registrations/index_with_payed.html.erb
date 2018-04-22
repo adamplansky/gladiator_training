@@ -20,22 +20,22 @@
       </thead>
 
       <tbody>
-        <% @gt_registrations.each do |gt_registration| %>
+        <% @grouped_by_gt_category.each do |gt_registrations| %>
         <tr>
-
-          <td><%= gt_registration.id %></td>
-          <td><%= gt_registration.firstname %> <%= gt_registration.surname %></td>
-          <td><%= gt_registration.team %></td>
-          <td><%= @gt_race.name %></td>
-          <td><%= gt_registration.price %></td>
-          <td><%= gt_registration.sex %></td>
-          <td><%= gt_registration.notes %></td>
-          <td class="btn <%= zaplaceno_cls(gt_registration.payed)%>"><%= zaplaceno(gt_registration.payed)%></td>
-          <!-- <td><%# link_to 'Show', gt_race_gt_category_gt_registration_path(@gt_race,gt_registration.gt_category_id,gt_registration) %></td> -->
-          <td><%= link_to 'Edit', edit_gt_race_gt_category_gt_registration_path(@gt_race,gt_registration.gt_category_id,gt_registration) %></td>
-          <td><%= link_to 'Destroy', gt_race_gt_category_gt_registration_path(@gt_race,gt_registration.gt_category_id, gt_registration), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <strong>
+            <%= @categories.find(gt_registrations[0]).name %>
+          </strong>
+          </td>
+        </tr>
+        <% gt_registrations[1].each do |gt_registration| %>
+        <tr>
+          <%= render "index_with_payed", :gt_registration => gt_registration %>
         </tr>
         <% end %>
+
+        <% end %>
+
       </tbody>
     </table>
     <br>

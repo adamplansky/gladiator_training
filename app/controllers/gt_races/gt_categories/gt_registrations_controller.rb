@@ -12,7 +12,10 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   end
 
   def index_with_payed
-    @gt_registrations = GtRegistration.where(gt_race: @gt_race).order(:id)
+    @gt_registrations = GtRegistration.where(gt_race: @gt_race).order(:id).to_a
+    @grouped_by_gt_category = @gt_registrations.group_by {|r| r.gt_category_id }
+    @categories = GtCategory.where(id: @grouped_by_gt_category.keys)
+    # @order_cat = GtPrice.joins(:gt_category).where(gt_category_id: @grouped_by_gt_category.keys ).order(:price)
   end
 
   # GET /gt_registrations/1
