@@ -15,17 +15,17 @@
           <th>Sex</th>
           <th>Notes</th>
           <th>Payed</th>
-          <th colspan="3"></th>
+          <th colspan="2"></th>
         </tr>
       </thead>
 
       <tbody>
         <% @grouped_by_gt_category.each do |gt_registrations| %>
         <tr>
-          <td>
+          <td colspan="10" class='tdheader-gtreg'>
             <strong>
-            <%= @categories.find(gt_registrations[0]).name %>
-          </strong>
+              <%= @categories.find(gt_registrations[0]).name %>
+            </strong>
           </td>
         </tr>
         <% gt_registrations[1].each do |gt_registration| %>
