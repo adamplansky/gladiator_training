@@ -82,14 +82,23 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
 
+  # config.action_mailer.smtp_settings = {
+  #   address: Rails.application.secrets.email_address,
+  #   port: "25",
+  #   domain: Rails.application.secrets.email_domain,
+  #   authentication: 'plain',
+  #   enable_starttls_auto: false,
+  #   user_name: Rails.application.secrets.email_username,
+  #   password: Rails.application.secrets.email_password,
+  # }
   config.action_mailer.smtp_settings = {
-    address: Rails.application.secrets.email_address,
-    port: "25",
-    domain: Rails.application.secrets.email_domain,
-    authentication: 'plain',
-    enable_starttls_auto: false,
-    user_name: Rails.application.secrets.email_username,
-    password: Rails.application.secrets.email_password,
+    :user_name => 'apikey',
+    :password => Rails.application.secrets.sendgrid_api_key,
+    :domain => 'gladiatortraining.cz',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
   config.i18n.available_locales = :cs
 end

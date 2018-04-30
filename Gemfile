@@ -33,6 +33,7 @@ gem 'validates_email_format_of'
 gem 'pry-rails', group: 'development'
 gem 'bullet', group: 'development'
 gem 'brakeman', group: 'development', :require => false
+gem 'sendgrid-ruby'
 group :development, :test do
   gem 'byebug'
   gem 'spring'

@@ -39,20 +39,34 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  #sendgrid
+  # gt_keys = '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'
+
+
+  config.action_mailer.smtp_settings = {
+    :user_name => 'apikey',
+    :password => Rails.application.secrets.sendgrid_api_key,
+    :domain => 'gladiatortraining.cz',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
   #ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'gladiatortraining.cz'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.smtp_settings = {
-    address: Rails.application.secrets.email_address,
-    port: "25",
-    domain: Rails.application.secrets.email_domain,
-    authentication: 'plain',
-    enable_starttls_auto: false,
-    user_name: Rails.application.secrets.email_username,
-    password: Rails.application.secrets.email_password,
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address: Rails.application.secrets.email_address,
+  #   port: "25",
+  #   domain: Rails.application.secrets.email_domain,
+  #   authentication: 'plain',
+  #   enable_starttls_auto: false,
+  #   user_name: Rails.application.secrets.email_username,
+  #   password: Rails.application.secrets.email_password,
+  # }
 
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
