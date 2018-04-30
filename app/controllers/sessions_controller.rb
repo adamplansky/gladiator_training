@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         flash[:notice] = "You have been successfully logged in"
         remember user
         #redirect_to reservations_path
-        redirect_back_or challenges_path
+        redirect_back_or gt_races_path
      else
        flash[:error] = 'Invalid email/password combination' # Not quite right!
        render 'new'
