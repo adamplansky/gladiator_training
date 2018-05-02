@@ -31,7 +31,8 @@
 
   <div class="field">
     <%= f.label :place, "Místo" %><br>
-     <%= f.collection_select(:place_id, Place.all, :id, :name, {}, {class: "form-control"}) %>
+    <%= f.collection_select(:place_id, Place.all, :id, :name, {}, {class: "form-control"}) %>
+    <%= link_to 'Vytvořit nové místo', new_place_path, class:"btn" %>
   </div>
 
   <div class="field">

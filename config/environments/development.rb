@@ -39,9 +39,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  #sendgrid
-  # gt_keys = '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'
-
 
   config.action_mailer.smtp_settings = {
     :user_name => 'apikey',
