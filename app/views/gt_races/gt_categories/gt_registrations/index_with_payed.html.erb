@@ -3,26 +3,26 @@
     <p id="notice"><%= notice %></p>
 
     <h1>Listing Gt Registrations</h1>
-
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>VS</th>
-          <th>Jméno</th>
-          <th>Team</th>
-          <th>Gt race</th>
-          <th>Price</th>
-          <th>Sex</th>
-          <th>Notes</th>
-          <th>Payed</th>
-          <th colspan="2"></th>
+          <th class="text-center">VS</th>
+          <th class="text-center">Email</th>
+          <th class="text-center">Jméno</th>
+          <th class="text-center">Team</th>
+          <th class="text-center">Gt race</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Sex</th>
+          <th class="text-center">Notes</th>
+          <th class="text-center">Payed</th>
+          <th class="text-center" colspan="2"></th>
         </tr>
       </thead>
 
       <tbody>
         <% @grouped_by_gt_category.each do |gt_registrations| %>
         <tr>
-          <td colspan="10" class='tdheader-gtreg'>
+          <td colspan="11" class='tdheader-gtreg'>
             <strong>
               <%= @categories.find(gt_registrations[0]).name %>
             </strong>
