@@ -23,7 +23,7 @@
     <%= f.label :text %><br>
     <%= f.trix_editor :text %>
   </div>
-  
+
   <div class="field">
     <%= f.label :place %><br>
     <%= f.text_area :place %>
@@ -31,6 +31,16 @@
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_area :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :max_junior_capacity %><br>
+    <%= f.text_area :max_junior_capacity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :max_others_capacity %><br>
+    <%= f.text_area :max_others_capacity %>
   </div>
   <div class="actions">
     <%= f.submit %>

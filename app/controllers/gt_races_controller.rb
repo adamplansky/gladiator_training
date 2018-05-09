@@ -72,6 +72,6 @@ class GtRacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gt_race_params
-      params.require(:gt_race).permit(:name, :published, :text, :place, :url)
+      params.require(:gt_race).permit(:name, :published, :text, :place, :url, :max_junior_capacity, :max_others_capacity)
     end
 end
