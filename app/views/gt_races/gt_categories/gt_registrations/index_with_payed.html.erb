@@ -28,6 +28,9 @@
             </strong>
           </td>
         </tr>
+        <!-- x.inject {|sum, n| sum + n } -->
+        <tr><td colspan="8">zaplaceno: <%= gt_registrations[1].inject(0){|sum, registr| registr.payed == true ? sum + 1 : sum  } %> z <%= gt_registrations[1].size %></td></tr>
+
         <% gt_registrations[1].each do |gt_registration| %>
         <tr>
           <%= render "index_with_payed", :gt_registration => gt_registration %>
