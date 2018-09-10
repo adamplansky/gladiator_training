@@ -22,6 +22,15 @@ class Notifier < ApplicationMailer
      mail(to: email, subject: "registrace Gladiator Challenge")
    end
 
+   def race_registration_reminder(gt_registration)
+     puts gt_registration.inspect
+     @registration = gt_registration
+     @gt_race = @registration.gt_race
+     @gt_category = @registration.gt_category
+     mail(to: "#{@registration.email}", subject: "nezaplacená registrace Gladiator Challenge")
+   end
+
+
    def error_admin(email, text)
      @error = text
      mail(to: email, subject: "ERROR gladiator training")

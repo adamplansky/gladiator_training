@@ -1,0 +1,33 @@
+Dobrý den,<br />
+do dnešního dne jsme neobdrželi Vaší platbu na závod "Gladiator Challenge" <%= @gt_race.published%><br />
+Pokud máte o závod stále zájem, tak prosím uhraďte startovné viz. platební údaje níže.<br />
+<br />
+<!-- Registrační číslo: <%# @registration.id %><br /> -->
+<br />
+Rekapitulace Vaší objednávky:<br />
+---------------------------------------------------------------------------------<br />
+<% if @gt_category.single %>
+  Kategorie: <%= @gt_category.name %> <%= @gt_category.description if  @gt_category.description %><br />
+  Jméno a příjmení: <%= @registration.firstname %> <%= @registration.surname %><br /><br />
+  Datum narození: <%= @registration.birth %>;<br />
+  Klub: <%= @registration.team if @registration.team %>;<br />
+<% else %>
+  Kategorie: <%= @gt_category.name %> <%= @gt_category.description if  @gt_category.description %><br />
+  Název týmu: <%= @registration.team_name %><br />
+  Závodník 1: <%= @registration.firstname %> <%= @registration.surname %><br />
+  Závodník 2: <%= @registration.teammate_firstname %> <%= @registration.teammate_surname %><br />
+  Klub: <%= @registration.team if @registration.team %>;<br />
+<% end %>
+
+<br />
+<br />
+Startovné: <%= @registration.price %>,-<br />
+<br />
+Platbu prosím proveďte převodem na náš účet:<br />
+-------------------------------------------<br />
+<br />
+Číslo účtu: 273546412/0300<br />
+<br />
+Variabilní symbol*: <%= @registration.id %><br />
+Částka: <%= @registration.price %>,-<br />
+<br />

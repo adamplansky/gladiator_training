@@ -11,7 +11,8 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to "GYM WARS", challenges_path, class: "gym_wars x_gym"%></li>
+        <!-- <li><%# link_to "GYM WARS", challenges_path, class: "gym_wars x_gym"%></li> -->
+        <li><%= link_to 'O&nbsp;&nbsp;NAS'.html_safe, about_us_index_path, class: "gym_wars x_gym"%></li>
         <li><%= link_to "Gladiator training", reservations_path, class: "gym_wars x_gym yellow"%></li>
         <li><%= link_to "Zavod", gt_races_path, class: "gym_wars x_gym green"%></li>
         <!-- <li><%# link_to "O nás", about_us_index_path %></li> -->
@@ -21,7 +22,7 @@
         <!-- <li><%# link_to "Závody", events_path, class: 'white_font' %></li> -->
         <!-- <li><%# link_to "Fotogalerie", "http://gladiatorstraining.rajce.idnes.cz/"%></li> -->
 
-      </ul>  
+      </ul>
       <ul class="nav navbar-nav navbar-right">
          <%= render 'layouts/navigation_links' %>
 

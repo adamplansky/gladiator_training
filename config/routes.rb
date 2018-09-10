@@ -23,6 +23,11 @@ Rails.application.routes.draw do
     # end
     #resources :gt_categories, controller: "gt_races/gt_categories"
     resources :starting_list, controller: "gt_races/starting_list"
+    resources :mailers, controller: "gt_races/mailers" do
+      collection do
+        get 'send_unpaid_gt_races_mail'
+      end
+    end
 
     resources :gt_categories, controller: "gt_races/gt_guide_categories" do
       resources :gt_registrations, controller: "gt_races/gt_categories/gt_registrations" do

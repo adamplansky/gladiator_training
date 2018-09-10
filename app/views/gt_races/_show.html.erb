@@ -20,6 +20,7 @@
       <% if admin_in? %>
         <p><%= link_to 'Placeno/Neplaceno (pouze admin)', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0), class: "btn btn-danger" %></p>
         <p><%= link_to 'Kategorie (pouze admin)', gt_categories_path, class:"btn btn-danger" %>
+        <p><%= link_to 'Poslat emaily neplatičům (pouze admin)', send_unpaid_gt_races_mail_gt_race_mailers_path(gt_race), class:"btn btn-danger" %>
       <% end %>
       <%# link_to "Výsledky Muži", "gt1_vysledky_muzi.pdf", class: "btn btn-success" %>
       <%# link_to "Výsledky Ženy", "gt1_vysledky_zeny.pdf", class: "btn btn-success" %>
