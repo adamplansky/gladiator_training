@@ -5,7 +5,7 @@
   <td><%= l(reservation.time_from, format: "%A") %></td>
   <td><%= l reservation.time_from.to_date %></td>
   <td><%= reservation.time_from.strftime("%H:%M") %> - <%= reservation.time_to.strftime("%H:%M") %></td>
-  <td> <%= link_to reservation.place.name,reservation.place.map_url  %></td>
+  <td> <%= link_to reservation.place.try(:name),reservation.place.try(:map_url)  %></td>
   <td><%= reservation.users.count %> / <%= reservation.capacity %></td>
   <td>
     <%= content_tag("span", ">#{reservation.min_people}", class: "btn btn-success",:data => {:content => 'Minimum gladiátorů pro trénink.', :toggle => "popover"}) %>
