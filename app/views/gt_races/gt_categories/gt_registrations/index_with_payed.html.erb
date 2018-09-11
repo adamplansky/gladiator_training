@@ -2,7 +2,8 @@
   <div class='col-sm-12'>
     <p id="notice"><%= notice %></p>
 
-    <h1>Listing Gt Registrations</h1>
+    <h1>Registrace</h1>
+    <h2>vybráno: <%= @gt_registrations.inject(0){|sum, registr| registr.payed == true ? sum + registr.price : sum}%>,- z <%= @gt_registrations.inject(0){|sum, registr| sum + registr.price } %>,-</h2>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -30,6 +31,7 @@
         </tr>
         <!-- x.inject {|sum, n| sum + n } -->
         <tr><td colspan="8">zaplaceno: <%= gt_registrations[1].inject(0){|sum, registr| registr.payed == true ? sum + 1 : sum  } %> z <%= gt_registrations[1].size %></td></tr>
+        <tr><td colspan="8">vybráno: <%= gt_registrations[1].inject(0){|sum, registr| registr.payed == true ? sum + registr.price : sum  } %>,- z <%= gt_registrations[1].inject(0){|sum, registr| sum + registr.price } %>,-</td></tr>
 
         <% gt_registrations[1].each do |gt_registration| %>
         <tr>
