@@ -2,14 +2,15 @@
 <%= form_for([@gt_race,@gt_category,@gt_registration],
   html: {class: 'form-signin'}) do |f| %>
   <% if @gt_registration.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@gt_registration.errors.count, "error") %> prohibited this gt_registration from being saved:</h2>
-
-    <ul>
-      <% @gt_registration.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
+  <div id="error_explanation" class="form-group">
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@gt_registration.errors.count, "error") %></h2>
+      <ul>
+        <% @gt_registration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
   <% end %>
   <h1><%= @gt_category.name %></h1>
@@ -24,9 +25,9 @@
   </div>
 
   <% if @gt_category.single  %>
-    <%= render "single", :f => f %>
+  <%= render "single", :f => f %>
   <% else %>
-    <%= render 'teams', :f => f %>
+  <%= render 'teams', :f => f %>
   <% end %>
 
   <div class="form-group">

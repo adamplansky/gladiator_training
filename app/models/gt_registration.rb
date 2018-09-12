@@ -33,7 +33,7 @@ class GtRegistration < ActiveRecord::Base
 
     end
     if size >= capacity
-      errors.add(:kapacita, "Kapacita závodu je naplněna #{size} / #{capacity} ")
+      errors.add(:kapacita, "závodu je naplněna #{size} / #{capacity} ")
     end
 
   end
