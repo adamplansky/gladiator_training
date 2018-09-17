@@ -3,7 +3,7 @@ class GtRegistration < ActiveRecord::Base
   validates :email, :firstname, :surname, :price, presence: true
   #validates :email, :firstname, :surname, :price, presence: true
   validates :price, numericality:{ greater_than: 0, message: "nesmí být 0, hlášení o chybě bylo odesláno administrátorovi."}
-  validate :capacity_validation
+  validate :capacity_validation, :on => :create
   #validates :gt_category_id, :gt_race_id, presence: true
   belongs_to :gt_race
   belongs_to :gt_category
@@ -30,7 +30,6 @@ class GtRegistration < ActiveRecord::Base
     else
       size = GtRegistration.not_junior_category_size(gt_race.id)
       capacity = gt_race.max_others_capacity
-
     end
     if size >= capacity
       errors.add(:kapacita, "závodu je naplněna #{size} / #{capacity} ")
