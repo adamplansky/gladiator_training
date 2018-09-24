@@ -1,3 +1,5 @@
+
+
 class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   #  has_and_belongs_to_many :reservations
@@ -32,6 +34,7 @@ class User < ActiveRecord::Base
   # validates :image, presence: true
   # validates_processing_of :image
   # validate :image_size_validation
+
 
   def fullname
     "#{self.first_name} #{self.surname}"

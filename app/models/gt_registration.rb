@@ -1,3 +1,4 @@
+require 'csv'
 class GtRegistration < ActiveRecord::Base
   validates_email_format_of :email, :message => ' neexistuje!'
   validates :email, :firstname, :surname, :price, presence: true
@@ -9,6 +10,14 @@ class GtRegistration < ActiveRecord::Base
   belongs_to :gt_category
   before_save :set_age
   before_save :set_teammateage
+
+  def full_name
+    "#{firstname} #{surname}"
+  end
+
+  def full_name_teammate
+    "#{teammate_firstname} #{teammate_surname}"
+  end
 
   def get_age(_birth_date, _race_date)
     ((_race_date - _birth_date).to_i) / 365
@@ -57,6 +66,16 @@ class GtRegistration < ActiveRecord::Base
     gt = GtRace.find(race_id)
     gt.gt_registrations.where.not(gt_category_id: junior_category_id).size
   end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << %w{ id kategorie jmeno vek jmeno2 vek2 klub nazev_tymu mesto}
+      all.each do |reg|
+        csv << [reg.id, reg.gt_category.name, reg.full_name, reg.age, reg.full_name_teammate, reg.teammate_age, team, team_name, city]
+      end
+    end
+  end
+
 
 
 end

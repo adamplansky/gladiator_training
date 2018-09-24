@@ -19,6 +19,7 @@
          <p><%= link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
       <% if admin_in? %>
         <p><%= link_to 'Placeno/Neplaceno (pouze admin)', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0), class: "btn btn-danger" %></p>
+        <p><%= link_to 'Placeno/Neplaceno (pouze admin) EXCEL', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0, format: "csv"), class: "btn btn-danger" %></p>
         <p><%= link_to 'Kategorie (pouze admin)', gt_categories_path, class:"btn btn-danger" %>
         <p><%= link_to 'Poslat emaily neplatičům (pouze admin)', send_unpaid_gt_races_mail_gt_race_mailers_path(gt_race), class:"btn btn-danger" %>
       <% end %>
