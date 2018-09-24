@@ -69,7 +69,7 @@ class GtRegistration < ActiveRecord::Base
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << %w{ id kategorie jmeno vek jmeno2 vek2 klub nazev_tymu mesto}
+      csv << %w{ id kategorie jmeno vek nazev_tymu jmeno2 vek2 klub mesto}
       all.each do |reg|
         csv << [reg.id, reg.gt_category.name, reg.full_name, reg.age, reg.team_name, reg.full_name_teammate, reg.teammate_age, reg.team, reg.city]
       end
