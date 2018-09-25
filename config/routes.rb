@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :gt_registrations, controller: "gt_races/gt_categories/gt_registrations" do
         collection do
           get 'index_with_payed'
+          get 'sendgrid'
         end
       end
     end

@@ -76,6 +76,13 @@ class GtRegistration < ActiveRecord::Base
     end
   end
 
-
+  def self.to_csv_sendgrid
+    CSV.generate do |csv|
+      csv << %w{ email first_name last_name  }
+      all.each do |reg|
+        csv << [reg.email, reg.firstname, reg.surname]
+      end
+    end
+  end
 
 end

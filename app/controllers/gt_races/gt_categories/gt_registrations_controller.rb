@@ -2,9 +2,9 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   layout 'races'
   include GtRegistrationsHelper
   before_action :set_gt_registration, only: [:show, :edit, :update, :destroy]
-  before_action :set_gt_race, only: [:index_with_payed, :index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_gt_race, only: [:sendgrid, :index_with_payed, :index, :new, :create, :show, :edit, :update, :destroy]
   before_action :set_gt_guide_category, only: [:index_with_payed, :index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :logged_in_admin, only: [:index_with_payed, :edit, :update, :destroy]
+  before_action :logged_in_admin, only: [:sendgrid, :index_with_payed, :edit, :update, :destroy]
   # GET /gt_registrations
   # GET /gt_registrations.json
   def index
@@ -16,12 +16,20 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
     @grouped_by_gt_category = @gt_registrations.group_by {|r| r.gt_category_id }
     @categories = GtCategory.where(id: @grouped_by_gt_category.keys)
     @junior = GtCategory.find_by(name: "Junior")
-    @gt_registrations = GtRegistration.where(gt_race_id: 2).includes(:gt_category)
+    @gt_registrations = GtRegistration.where(gt_race: @gt_race).includes(:gt_category)
     respond_to do |format|
       format.html
       format.csv { send_data @gt_registrations.to_csv }
     end
     # @order_cat = GtPrice.joins(:gt_category).where(gt_category_id: @grouped_by_gt_category.keys ).order(:price)
+  end
+
+  def sendgrid
+    @gt_registrations = GtRegistration.where(gt_race: @gt_race)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @gt_registrations.to_csv_sendgrid }
+    end
   end
 
   # GET /gt_registrations/1
