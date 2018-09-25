@@ -68,12 +68,12 @@ class GtRegistration < ActiveRecord::Base
   end
 
   def self.to_csv
-    CSV.generate do |csv|
+    (CSV.generate do |csv|
       csv << %w{placeno id kategorie email jméno příjmení rok_narození pohlaví tým jméno2 příjmení2 rok_narození_2 pohlaví2 klub mesto }
       all.each do |reg|
         csv << [reg.payed, reg.id, reg.gt_category.name, reg.email, reg.firstname, reg.surname, reg&.birth&.year, reg.sex, reg.team_name, reg.teammate_firstname, reg.teammate_surname, reg&.teammate_birth&.year, reg.teammate_sex, reg.team, reg.city]
       end
-    end
+    end).encode('WINDOWS-1252', :undef => :replace, :replace => '')
   end
 
   def self.to_csv_sendgrid
