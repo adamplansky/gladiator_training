@@ -39,11 +39,21 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
 
   # GET /gt_registrations/new
   def new
+
+
     @gt_registration = @gt_race.gt_registrations.build
     @price = GtPrice.where(gt_race: @gt_race, gt_category: @gt_category).where("DATE(until) >= ?", Date.today ).order('until ASC').first.try(:price).to_f
     if @price == 0
       flash[:alert] = "Omlouvame se, ale stala se chyba pri vypoctu ceny. Tato chyba bude opravena do 24h"
       Notifier.error_admin("adamplansky@gmail.com", "GtRaces::GtCategories::GtRegistrationsController#new @price == 0 @gt_race: #{@gt_race.inspect} @gt_category: #{@gt_category.inspect} Date.today: #{Date.today}" ).deliver_now
+    end
+
+    if @gt_race.registration_end && @gt_race.registration_end < DateTime.now
+      flash[:alert] = "Registrace uzavreny"
+      flash[:notice] = "Registrace uzavreny"
+      flash[:error] = "Registrace uzavreny"
+      @price = 0
+      return
     end
     @gt_registration.price = @price
   end
@@ -56,13 +66,12 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   # POST /gt_registrations
   # POST /gt_registrations.json
   def create
+
     @gt_registration = GtRegistration.new(gt_registration_params)
-    puts "#{@gt_registration.inspect}"
-    puts gt_registration_params
     @gt_registration.gt_race = @gt_race
     @gt_registration.gt_category = @gt_category
     respond_to do |format|
-      if @gt_registration.save
+      if @gt_registration.save && !(@gt_race.registration_end && @gt_race.registration_end < DateTime.now)
         format.html { redirect_to [@gt_race,@gt_category,@gt_registration], notice: 'Gt registration was successfully created.' }
         format.json { render :show, status: :created, location: @gt_registration }
         Notifier.race_registration(@gt_registration).deliver_now
