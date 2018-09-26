@@ -1,7 +1,7 @@
 class GtRacesController < ApplicationController
   layout 'races'
   before_action :set_gt_race, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_admin, only: [:create, :new, :edit, :update, :destroy]
   # GET /gt_races
   # GET /gt_races.json
   def index
