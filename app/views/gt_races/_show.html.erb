@@ -15,9 +15,7 @@
         <%= raw gt_race.text %>
       </p>
 
-      <p>
-        <%= raw gt_race.registration_end %>
-      </p>
+      
       <% if gt_race.registration_end && gt_race.registration_end < DateTime.now %>
         <h2>Registrace uzavreny</h2>
       <% else %>
