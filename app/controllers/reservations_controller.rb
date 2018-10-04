@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:edit, :update, :destroy]
   before_action :logged_in_user
   def index
-    @reservations = Reservation.where("time_from > ?", Time.now )
+    @reservations = Reservation.where("time_from > ?", Time.now - 4.hours )
     @reservations = Reservation.where("time_from > ?", Time.now - 24.hours ) if current_user.admin?
   end
   def show
