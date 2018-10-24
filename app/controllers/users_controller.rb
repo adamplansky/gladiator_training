@@ -76,15 +76,15 @@ class UsersController < ApplicationController
 
   def complete
     User.update_all(is_member: false)
-    User.where(id: params[:user_ids][:id]).each do |user|
+    User.where(id: params.dig(:user_ids,:id)).each do |user|
       user.update_attribute(:is_member, true)
     end
     User.update_all(is_member_child_4: false)
-    User.where(id: params[:child_ids_4][:id]).each do |user|
+    User.where(id: params.dig(:child_ids_4,:id)).each do |user|
       user.update_attribute(:is_member_child_4, true)
     end
     User.update_all(is_member_child_9: false)
-    User.where(id: params[:child_ids_9][:id]).each do |user|
+    User.where(id: params.dig(:child_ids_9,:id)).each do |user|
       user.update_attribute(:is_member_child_9, true)
     end
 
