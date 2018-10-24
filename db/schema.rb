@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180926064100) do
+ActiveRecord::Schema.define(version: 20181024165225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180926064100) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "css_class"
   end
 
   create_table "challenge_categories", force: :cascade do |t|
@@ -318,17 +319,19 @@ ActiveRecord::Schema.define(version: 20180926064100) do
     t.string   "email"
     t.string   "first_name"
     t.string   "surname"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",             default: false
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.integer  "gym_id"
     t.integer  "gender"
     t.string   "image"
-    t.boolean  "is_member",       default: false
+    t.boolean  "is_member",         default: false
+    t.boolean  "is_member_child_4", default: false
+    t.boolean  "is_member_child_9", default: false
   end
 
   create_table "workouts", force: :cascade do |t|

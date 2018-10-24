@@ -4,9 +4,9 @@
   <tr>
     <td> <%= index + 1%>.</td>
     <% if ru.user == current_user %>
-      <td class="<%= ru.user.is_member.to_s.upcase %>"> <strong><%= ru.user.fullname %></strong></td>
+      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <strong><%= ru.user.fullname %></strong></td>
     <% else%>
-      <td class="<%= ru.user.is_member.to_s.upcase %>"> <%= ru.user.fullname %></td>
+      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <%= ru.user.fullname %></td>
     <% end %>
     <td> <%= (l ru.created_at, format: :short) %></td>
     <% if current_user.admin?%>
@@ -28,10 +28,11 @@
 <% end %>
   <tr>
     <td> <%= index + 1%>.</td>
+
     <% if ru.user == current_user %>
-      <td class="<%= ru.user.is_member.to_s.upcase %>"> <strong><%= ru.user.fullname %></strong></td>
+      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <strong><%= ru.user.fullname %></strong></td>
     <% else%>
-      <td class="<%= ru.user.is_member.to_s.upcase %>"> <%= ru.user.fullname %></td>
+      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <%= ru.user.fullname %></td>
     <% end %>
     <td> <%= (l ru.created_at, format: :short) %></td>
     <% if current_user && current_user.admin?%>

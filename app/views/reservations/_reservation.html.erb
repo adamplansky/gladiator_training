@@ -11,7 +11,7 @@
     <%= content_tag("span", ">#{reservation.min_people}", class: "btn btn-success",:data => {:content => 'Minimum gladiátorů pro trénink.', :toggle => "popover"}) %>
   </td>
 
-  <td><strong><%= reservation&.category&.name %> </strong></td>
+  <td class="<%= reservation&.category&.css_class%>"><strong><%= reservation&.category&.name %> </strong></td>
 
   <% if @my_index < reservation.capacity && @my_index >= 0%>
   <td class="success"><%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>

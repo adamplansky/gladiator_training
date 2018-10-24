@@ -104,6 +104,20 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  def is_some_member
+    case
+    when is_member == true
+      "IS_MEMBER"
+    when is_member_child_4 == true
+      "IS_MEMBER_CHILD_4"
+    when is_member_child_9 == true
+      "IS_MEMBER_CHILD_9"
+    else
+      return false
+    end
+  end
+
   private
 
   def create_remember_token
@@ -116,4 +130,6 @@ class User < ActiveRecord::Base
   def image_size_validation
     errors[:image] << "obrazek by musi mit maximalne 1MB " if image.size > 1.megabytes
   end
+
+
 end

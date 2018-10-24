@@ -7,7 +7,9 @@
       <tr>
         <th class="text-center">Jméno</th>
         <th class="text-center">Člen</th>
-        <th class="text-center"></th>
+        <th class="text-center">x</th>
+        <th class="text-center">4-8</th>
+        <th class="text-center">9-14</th>
       </tr>
     </thead>
 
@@ -16,8 +18,10 @@
       <% @users.each do |user| %>
       <tr>
         <td class="text-center"><%= user.fullname %></td>
-        <td class="text-center <%= user.is_member.to_s.upcase  %>"><%= user.is_member == true ? "ANO" : "NE" %></td>
-        <td><%= check_box_tag "user_ids[]", user.id %></td>
+        <td class="text-center <%= user.is_some_member.to_s.upcase  %>"> <%= user.is_some_member == false ? "NE" : "ANO" %></td>
+        <td class="text-center"><%= check_box_tag "user_ids[id][]", user.id, user.is_member %></td>
+        <td class="text-center"><%= check_box_tag "child_ids_4[id][]", user.id, user.is_member_child_4 %></td>
+        <td class="text-center"><%= check_box_tag "child_ids_9[id][]", user.id, user.is_member_child_9  %></td>
       </tr>
 
       <% end %>

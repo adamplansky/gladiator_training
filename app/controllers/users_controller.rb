@@ -75,11 +75,20 @@ class UsersController < ApplicationController
   end
 
   def complete
-    puts params
-    User.where(id: params[:user_ids]).each do |user|
-      user.update_attribute('is_member', !user.is_member)
+    User.update_all(is_member: false)
+    User.where(id: params[:user_ids][:id]).each do |user|
+      user.update_attribute(:is_member, true)
     end
-    redirect_to :back
+    User.update_all(is_member_child_4: false)
+    User.where(id: params[:child_ids_4][:id]).each do |user|
+      user.update_attribute(:is_member_child_4, true)
+    end
+    User.update_all(is_member_child_9: false)
+    User.where(id: params[:child_ids_9][:id]).each do |user|
+      user.update_attribute(:is_member_child_9, true)
+    end
+
+    redirect_to :memberships_all_members
     #User.update_all(["is_member=?", True] id: params[:user_ids])
     #User.update_all({:is_member => true}, {:id => params[:user_ids]})
 
@@ -93,6 +102,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :first_name, :surname, :password, :password_confirmation, :gym_id, :gender, :image, :is_member)
+      params.require(:user).permit(:email, :first_name, :surname, :password, :password_confirmation, :gym_id, :gender, :image, :is_member, :is_member_child_4, :is_member_child_9)
     end
 end
