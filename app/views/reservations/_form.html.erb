@@ -41,6 +41,18 @@
      <%= link_to 'Vytvořit novou kategorii', new_category_path, class:"btn" %>
   </div>
 
+  <div class="field">
+    <%= f.label :prohibit_sign_in, "Zakázat přihlašování" %><br>
+    <%= f.check_box :prohibit_sign_in %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prohibit_sign_in_text, "Text zákaz přihlašování" %><br>
+    <%= f.text_field :prohibit_sign_in_text %>
+  </div>
+
+
+
   <div class="actions">
     <%= f.submit 'submit', class:"btn btn-success" %>
   </div>

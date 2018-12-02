@@ -12,18 +12,20 @@
   </td>
 
   <td class="<%= reservation&.category&.css_class%>"><strong><%= reservation&.category&.name %> </strong></td>
-
-  <% if @my_index < reservation.capacity && @my_index >= 0%>
-  <td class="success"><%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
+  <% if reservation.prohibit_sign_in %>
+    <td class="success"><strong><%= reservation.prohibit_sign_in_text %></strong></td>
+  <% elsif @my_index < reservation.capacity && @my_index >= 0%>
+    <td class="success"><%= link_to "Odhlásit se", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
   <% elsif @my_index >=  reservation.capacity%>
-  <td class="info"><%= link_to "Odhlásit se (náhradník)", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
-
+    <td class="info"><%= link_to "Odhlásit se (náhradník)", {controller: "reservations_users", action: "destroy", id:reservation}, method: :delete %></td>
   <% elsif reservation.users.count < reservation.capacity %>
-  <td class="danger"><%= link_to "Přihlásit se", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
+    <td class="danger"><%= link_to "Přihlásit se", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
   <% else %>
-  <td class="info"><%= link_to "Přihlásit se jako náhradník", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
+    <td class="info"><%= link_to "Přihlásit se jako náhradník", {controller: "reservations_users", action: "create", id:reservation}, method: :post %></td>
   <% end %>
-  <td><%= link_to 'Detail', reservation %></td>
+  <% unless reservation.prohibit_sign_in %>
+    <td><%= link_to 'Detail', reservation %></td>
+  <% end %>
   <% if admin_in? %>
   <td><%= link_to 'Editovat', edit_reservation_path(reservation) %></td>
   <td><%= link_to 'Smazat', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
