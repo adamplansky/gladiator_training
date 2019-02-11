@@ -1,14 +1,19 @@
 class ReservationsController < ApplicationController
-  layout 'gt'
+  layout "gt"
   before_action :set_reservation, only: [:edit, :update, :destroy]
   before_action :logged_in_user
+
   def index
-    @reservations = Reservation.where("time_from > ?", Time.now - 4.hours )
-    @reservations = Reservation.where("time_from > ?", Time.now - 24.hours ) if current_user.admin?
+    if current_user.admin?
+      @reservations = Reservation.where("time_from > ?", Time.now - 24.hours)
+    else
+      @reservations = Reservation.where("time_from > ?", Time.now - 14.hours)
+    end
   end
+
   def show
     @reservation = Reservation.find(params[:id])
-    @regular_users =  @reservation.reservation_users.limit(@reservation.capacity)
+    @regular_users = @reservation.reservation_users.limit(@reservation.capacity)
     @nahradnici = @reservation.reservation_users.offset(@reservation.capacity)
     @nahradnici_include = @nahradnici.include? current_user
   end
@@ -18,7 +23,6 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
@@ -26,7 +30,7 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to reservations_path, notice: 'Rezervace vytvořena.' }
+        format.html { redirect_to reservations_path, notice: "Rezervace vytvořena." }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -38,7 +42,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -51,19 +55,20 @@ class ReservationsController < ApplicationController
     @reservation.users.delete_all
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Rezervace odstraněna.' }
+      format.html { redirect_to reservations_url, notice: "Rezervace odstraněna." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reservation_params
-      params.require(:reservation).permit(:min_people, :time_from, :time_to, :capacity, :place_id, :category_id, :prohibit_sign_in, :prohibit_sign_in_text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def reservation_params
+    params.require(:reservation).permit(:min_people, :time_from, :time_to, :capacity, :place_id, :category_id, :prohibit_sign_in, :prohibit_sign_in_text)
+  end
 end
