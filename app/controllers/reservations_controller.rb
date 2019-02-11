@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
     if current_user.admin?
       @reservations = Reservation.where("time_from > ?", Time.now - 24.hours)
     else
-      @reservations = Reservation.where("time_from > ?", Time.now - 14.hours)
+      @reservations = Reservation.where("time_from > ?", Time.now - 18.hours)
     end
   end
 
