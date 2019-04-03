@@ -1,6 +1,5 @@
 class ChallengesController < ApplicationController
   require "date"
-  require "youtube_addy"
 
   layout "gymwars"
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
