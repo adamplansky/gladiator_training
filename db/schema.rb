@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181202142138) do
+ActiveRecord::Schema.define(version: 20190403064634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20181202142138) do
     t.integer  "max_junior_capacity"
     t.integer  "max_others_capacity"
     t.datetime "registration_end"
+    t.string   "youtube_url"
   end
 
   create_table "gt_registrations", force: :cascade do |t|

@@ -10,37 +10,38 @@
         <strong>Místo:</strong>
         <%= link_to gt_race.place, gt_race.url %>
       </p>
-
       <p>
         <%= raw gt_race.text %>
+        <p><%= link_to 'Registrace dětí a jednotlivců', "https://irontime.cz/prihlaska1451/", class:"btn btn-info" %></p>
+        <p><%= link_to 'Registrace dvoučlenných týmů', "https://irontime.cz/prihlaska1451/?trat=2847&members=2", class:"btn btn-info" %></p>
+        <p><%= link_to 'Startovní listina', "https://irontime.cz/startovka1451/", class: "btn btn-info" %></p>
       </p>
-
       
       <% if gt_race.registration_end && gt_race.registration_end < DateTime.now %>
-        <h2>Registrace uzavreny</h2>
+         <%# <h2>Registrace uzavřeny</h2> %>
       <% else %>
-        <p><%= link_to 'Registrace', gt_race_gt_categories_path(gt_race), class:"btn btn-info" %></p>
+        <p><%# link_to 'Registrace', gt_race_gt_categories_path(gt_race), class:"btn btn-info" %></p>
       <% end %>
-      <p><%= link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
+      <p><%# link_to 'Startovní listina', gt_race_starting_list_index_path(gt_race), class: "btn btn-info" %></p>
       <% if admin_in? %>
-        <p><%= link_to 'Placeno/Neplaceno (pouze admin)', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0), class: "btn btn-danger" %></p>
-        <p><%= link_to 'Placeno/Neplaceno (pouze admin) EXCEL', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0, format: "csv"), class: "btn btn-danger" %></p>
-        <p><%= link_to 'export csv SEND GRID', sendgrid_gt_race_gt_category_gt_registrations_path(gt_race,0,format: "csv"), class: "btn btn-danger sendgrid" %></p>
-        <p><%= link_to 'Kategorie (pouze admin)', gt_categories_path, class:"btn btn-danger" %>
-        <p><%= link_to 'Poslat emaily neplatičům (pouze admin)', send_unpaid_gt_races_mail_gt_race_mailers_path(gt_race), class:"btn btn-danger" %>
+        <p><%# link_to 'Placeno/Neplaceno (pouze admin)', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0), class: "btn btn-danger" %></p>
+        <p><%# link_to 'Placeno/Neplaceno (pouze admin) EXCEL', index_with_payed_gt_race_gt_category_gt_registrations_path(gt_race,0, format: "csv"), class: "btn btn-danger" %></p>
+        <p><%# link_to 'export csv SEND GRID', sendgrid_gt_race_gt_category_gt_registrations_path(gt_race,0,format: "csv"), class: "btn btn-danger sendgrid" %></p>
+        <p><%# link_to 'Kategorie (pouze admin)', gt_categories_path, class:"btn btn-danger" %>
+        <p><%# link_to 'Poslat emaily neplatičům (pouze admin)', send_unpaid_gt_races_mail_gt_race_mailers_path(gt_race), class:"btn btn-danger" %>
       <% end %>
           <%# link_to "Výsledky Muži", "gt1_vysledky_muzi.pdf", class: "btn btn-success" %>
           <%# link_to "Výsledky Ženy", "gt1_vysledky_zeny.pdf", class: "btn btn-success" %>
 
     </div>
     <div class='col-sm-6 prices'>
+      <p><%= raw YouTubeAddy.youtube_embed_url(gt_race.youtube_url,420,315) %></p>
       <h1>Ceny</h1>
       <% GtPrice.grouped_by_id(gt_race.id).each do |price| %>
-      <%= render "price", prices: price %>
+        <%= render "price", prices: price %>
       <% end %>
-
       <% if admin_in? %>
-      <p><%= link_to 'Přidat Cenu (pouze admin)', new_gt_race_gt_price_path(gt_race), class: "btn btn-danger" %></p>
+        <p><%= link_to 'Přidat Cenu (pouze admin)', new_gt_race_gt_price_path(gt_race), class: "btn btn-danger" %></p>
       <% end %>
 
     </div>
