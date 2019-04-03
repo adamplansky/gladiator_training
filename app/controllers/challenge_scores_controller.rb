@@ -36,7 +36,7 @@ class ChallengeScoresController < ApplicationController
     @client = Youtube::Client.new(developer_key: 'AIzaSyCDbKLlLcN3IXKQxKyqdKA5L7XnLaPwWAg')
     valid = true
     unless Rails.env.development?
-      @url_yb = YouTubeAddy.extract_video_id(params[:challenge_score][:url])
+      @url_yb = YouTubeRails.extract_video_id(params[:challenge_score][:url])
       @video = @client.video(id: @url_yb)
       unless @video.channel_id == "UC0dNtyaDFvIhxCw_GLEMwCA"
         @challenge_score.errors.add(:url, "Video musí být z kanálu Gym Wars Games")

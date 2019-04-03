@@ -12,7 +12,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def url=(value)
-    write_attribute(:url, YouTubeAddy.extract_video_id(value) )
+    write_attribute(:url, YouTubeRails.extract_video_id(value) )
   end
 
 end

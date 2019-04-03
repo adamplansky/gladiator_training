@@ -29,7 +29,9 @@ gem 'bootstrap-table-rails'
 gem 'react-rails', '~> 1.7.0'
 gem 'will_paginate-bootstrap'
 gem 'trix'
-gem 'youtube_addy'
+# gem 'youtube_add' old shit
+gem 'youtube_rails'
+
 gem 'youtube', git: 'https://github.com/copyrightly/youtube'
 gem 'sentry-raven'
 gem 'validates_email_format_of'

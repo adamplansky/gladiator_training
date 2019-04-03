@@ -324,7 +324,7 @@ GEM
     will_paginate (3.1.6)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
-    youtube_addy (1.0.4)
+    youtube_rails (1.2.2)
 
 PLATFORMS
   ruby
@@ -372,7 +372,7 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate-bootstrap
   youtube!
-  youtube_addy
+  youtube_rails
 
 BUNDLED WITH
    1.16.2

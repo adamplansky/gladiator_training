@@ -35,7 +35,7 @@
 
     </div>
     <div class='col-sm-6 prices'>
-      <p><%= raw YouTubeAddy.youtube_embed_url(gt_race.youtube_url,420,315) %></p>
+      <p><%= raw YouTubeRails.youtube_embed_url(gt_race.youtube_url,420,315) %></p>
       <h1>Ceny</h1>
       <% GtPrice.grouped_by_id(gt_race.id).each do |price| %>
         <%= render "price", prices: price %>
