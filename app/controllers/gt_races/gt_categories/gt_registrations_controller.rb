@@ -38,25 +38,25 @@ class GtRaces::GtCategories::GtRegistrationsController < ApplicationController
   end
 
   # GET /gt_registrations/new
-  def new
+  # def new
 
 
-    @gt_registration = @gt_race.gt_registrations.build
-    @price = GtPrice.where(gt_race: @gt_race, gt_category: @gt_category).where("DATE(until) >= ?", Date.today ).order('until ASC').first.try(:price).to_f
-    if @price == 0
-      flash[:alert] = "Omlouvame se, ale stala se chyba pri vypoctu ceny. Tato chyba bude opravena do 24h"
-      Notifier.error_admin("adamplansky@gmail.com", "GtRaces::GtCategories::GtRegistrationsController#new @price == 0 @gt_race: #{@gt_race.inspect} @gt_category: #{@gt_category.inspect} Date.today: #{Date.today}" ).deliver_now
-    end
+  #   @gt_registration = @gt_race.gt_registrations.build
+  #   @price = GtPrice.where(gt_race: @gt_race, gt_category: @gt_category).where("DATE(until) >= ?", Date.today ).order('until ASC').first.try(:price).to_f
+  #   if @price == 0
+  #     flash[:alert] = "Omlouvame se, ale stala se chyba pri vypoctu ceny. Tato chyba bude opravena do 24h"
+  #     Notifier.error_admin("adamplansky@gmail.com", "GtRaces::GtCategories::GtRegistrationsController#new @price == 0 @gt_race: #{@gt_race.inspect} @gt_category: #{@gt_category.inspect} Date.today: #{Date.today}" ).deliver_now
+  #   end
 
-    if @gt_race.registration_end && @gt_race.registration_end < DateTime.now
-      flash[:alert] = "Registrace uzavreny"
-      flash[:notice] = "Registrace uzavreny"
-      flash[:error] = "Registrace uzavreny"
-      @price = 0
-      return
-    end
-    @gt_registration.price = @price
-  end
+  #   if @gt_race.registration_end && @gt_race.registration_end < DateTime.now
+  #     flash[:alert] = "Registrace uzavreny"
+  #     flash[:notice] = "Registrace uzavreny"
+  #     flash[:error] = "Registrace uzavreny"
+  #     @price = 0
+  #     return
+  #   end
+  #   @gt_registration.price = @price
+  # end
 
   # GET /gt_registrations/1/edit
   def edit
