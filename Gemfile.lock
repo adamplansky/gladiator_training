@@ -374,5 +374,8 @@ DEPENDENCIES
   youtube!
   youtube_rails
 
+RUBY VERSION
+   ruby 2.5.1p57
+
 BUNDLED WITH
    1.16.2

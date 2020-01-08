@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= reservation&.category&.css_class%>">
   <% x = ReservationUser.where(reservation: reservation).to_ary %>
   <% y = ReservationUser.where(reservation: reservation, user: current_user).first %>
   <% @my_index = (x.map{|x| x.user_id}.find_index(y.try(:user_id)))||-1  %>

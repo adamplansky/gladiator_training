@@ -96,19 +96,6 @@ ActiveRecord::Schema.define(version: 20190403064634) do
     t.string   "contact_url"
   end
 
-  create_table "foo", id: false, force: :cascade do |t|
-    t.integer "fooid"
-    t.integer "foosubid"
-    t.text    "fooname"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string   "name"
-    t.string   "image_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "gt_categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "single"
@@ -335,11 +322,6 @@ ActiveRecord::Schema.define(version: 20190403064634) do
     t.boolean  "is_member",         default: false
     t.boolean  "is_member_child_4", default: false
     t.boolean  "is_member_child_9", default: false
-  end
-
-  create_table "workouts", force: :cascade do |t|
-    t.string "name"
-    t.text   "description"
   end
 
   add_foreign_key "challenge_scores", "challenges"
