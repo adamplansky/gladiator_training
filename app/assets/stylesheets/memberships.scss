@@ -3,8 +3,15 @@
     background-color:#f2dede;
     color:#000;
   }
-  .IS_MEMBER_CHILD_4{background-color: #FFED00}
-  .IS_MEMBER_CHILD_9{ background-color: #00A0E3}
+  tr {
+    .IS_MEMBER_CHILD_4{ background-color: #ffc733; }
+    .IS_MEMBER_CHILD_9{ background-color: #148ad6; }
+  }
+
+  .red{
+    background-color: red !important;
+  }
+
 
   .IS_MEMBER, .TRUE{
 
