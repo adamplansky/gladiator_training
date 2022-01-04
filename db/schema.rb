@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190403064634) do
+ActiveRecord::Schema.define(version: 20220104190258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,6 +322,7 @@ ActiveRecord::Schema.define(version: 20190403064634) do
     t.boolean  "is_member",         default: false
     t.boolean  "is_member_child_4", default: false
     t.boolean  "is_member_child_9", default: false
+    t.boolean  "is_free_open",      default: false
   end
 
   add_foreign_key "challenge_scores", "challenges"

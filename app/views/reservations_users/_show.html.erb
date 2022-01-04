@@ -1,45 +1,64 @@
 <div class='col-sm-6'>
-<table class='table table-striped table-hover'>
-<% @regular_users.each_with_index do |ru,index|%>
-  <tr>
-    <td> <%= index + 1%>.</td>
-    <% if ru.user == current_user %>
-      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <strong><%= ru.user.fullname %></strong></td>
-    <% else%>
-      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <%= ru.user.fullname %></td>
-    <% end %>
-    <td> <%= (l ru.created_at, format: :short) %></td>
-    <% if current_user.admin?%>
-    <td>
-      <%= link_to 'Smazat', reservations_user_path(@reservation, ru.user), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </td>
-    <% end %>
+  <table class='table table-striped table-hover'>
+    <% @regular_users.each_with_index do |ru, index| %>
+      <tr>
+        <td> <%= index + 1 %>.</td>
+        <% if ru.user == current_user %>
+          <td class="<%= ru.user.is_some_member.to_s.upcase %>">
+            <strong><%= ru.user.fullname %> </strong>
+            <% if ru.user.is_free_open %>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+          </td>
+        <% else %>
+          <td class="<%= ru.user.is_some_member.to_s.upcase %>  <%= ru.user.fullname %>
+            <% if ru.user.is_free_open %>">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+          </td>
+        <% end %>
+        <td> <%= (l ru.created_at, format: :short) %></td>
+        <% if current_user.admin? %>
+          <td>
+            <%= link_to 'Smazat', reservations_user_path(@reservation, ru.user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
 
-  </tr>
-<% end%>
-</table>
+      </tr>
+    <% end %>
+  </table>
 </div>
 <div class='col-sm-6'>
 
-<table class='table table-striped table-hover'>
-<% @nahradnici.each_with_index do |ru,index|%>
-<% if index == 0%>
-<h2>Náhradníci</h2>
-<% end %>
-  <tr>
-    <td> <%= index + 1%>.</td>
+  <table class='table table-striped table-hover'>
+    <% @nahradnici.each_with_index do |ru, index| %>
+      <% if index == 0 %>
+        <h2>Náhradníci</h2>
+      <% end %>
+      <tr>
+        <td> <%= index + 1 %>.</td>
 
-    <% if ru.user == current_user %>
-      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <strong><%= ru.user.fullname %></strong></td>
-    <% else%>
-      <td class="<%= ru.user.is_some_member.to_s.upcase %>"> <%= ru.user.fullname %></td>
+        <% if ru.user == current_user %>
+          <td class="<%= ru.user.is_some_member.to_s.upcase %> <%= ru.user.free_open_css.to_s.upcase %>">
+            <strong><%= ru.user.fullname %></strong>
+            <% if ru.user.is_free_open %>">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+          </td>
+        <% else %>
+          <td class="<%= ru.user.is_some_member.to_s.upcase %>">
+            <%= ru.user.free_open_css.to_s.upcase %>
+            <% if ru.user.is_free_open %>">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+          </td>
+        <% end %>
+        <td> <%= (l ru.created_at, format: :short) %></td>
+        <% if current_user && current_user.admin? %>
+          <td><%= link_to 'Smazat', reservations_user_path(@reservation, ru.user), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
+      </tr>
     <% end %>
-    <td> <%= (l ru.created_at, format: :short) %></td>
-    <% if current_user && current_user.admin?%>
-    <td><%= link_to 'Smazat', reservations_user_path(@reservation, ru.user), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    </td>
-  </tr>
-<% end%>
-</table>
+  </table>
 </div>

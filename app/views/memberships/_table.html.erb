@@ -1,38 +1,31 @@
-
 <div>
   <%= form_tag complete_users_path, :method => :put do %>
-  <%= submit_tag "Ulož", class: 'btn btn-success' %>
-  <table class='table table-striped table-hover'>
-    <thead>
+    <%= submit_tag "Ulož", class: 'btn btn-success' %>
+    <table class='table table-striped table-hover'>
+      <thead>
       <tr>
         <th class="text-center">Jméno</th>
         <th class="text-center">Člen</th>
         <th class="text-center">x</th>
         <th class="text-center">4-8</th>
         <th class="text-center">9-14</th>
+        <th class="text-center">Free open</th>
       </tr>
-    </thead>
-
-
-    <tbody>
+      </thead>
+      <tbody>
       <% @users.each do |user| %>
-      <tr>
-        <td class="text-center"><%= user.fullname %></td>
-        <td class="text-center <%= user.is_some_member.to_s.upcase  %>"> <%= user.is_some_member == false ? "NE" : "ANO" %></td>
-        <td class="text-center"><%= check_box_tag "user_ids[id][]", user.id, user.is_member %></td>
-        <td class="text-center"><%= check_box_tag "child_ids_4[id][]", user.id, user.is_member_child_4 %></td>
-        <td class="text-center"><%= check_box_tag "child_ids_9[id][]", user.id, user.is_member_child_9  %></td>
-      </tr>
+        <tr>
+          <td class="text-center"><%= user.fullname %></td>
+          <td class="text-center <%= user.is_some_member.to_s.upcase %>"> <%= user.is_some_member == false ? "NE" : "ANO" %></td>
+          <td class="text-center"><%= check_box_tag "user_ids[id][]", user.id, user.is_member %></td>
+          <td class="text-center"><%= check_box_tag "child_ids_4[id][]", user.id, user.is_member_child_4 %></td>
+          <td class="text-center"><%= check_box_tag "child_ids_9[id][]", user.id, user.is_member_child_9 %></td>
+          <td class="text-center"><%= check_box_tag "free_open[id][]", user.id, user.is_free_open %></td>
+        </tr>
 
       <% end %>
-    </tbody>
-
-  </table>
-
-  <%= submit_tag "Ulož", class: 'btn btn-success' %>
-
+      </tbody>
+    </table>
+    <%= submit_tag "Ulož", class: 'btn btn-success' %>
   <% end %>
-
-
-
 </div>

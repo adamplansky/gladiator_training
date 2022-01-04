@@ -118,6 +118,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def free_open_css
+    if is_free_open
+      "FREE_OPEN"
+    else
+      ""
+    end
+  end
+
   private
 
   def create_remember_token

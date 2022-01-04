@@ -6616,12 +6616,9 @@ body, html {
 .table > tbody .FALSE {
   background-color: #f2dede;
   color: #000; }
-.table > tbody td .IS_MEMBER_CHILD_4 {
-  background-color: #ffc733; }
-.table > tbody td .IS_MEMBER_CHILD_9 {
-  background-color: #148ad6; }
-.table > tbody .red {
-  background-color: red; }
+.table > tbody td .IS_MEMBER_CHILD_4 {  background-color: #ffc733; }
+.table > tbody td .IS_MEMBER_CHILD_9 {  background-color: #148ad6; }
+.table > tbody .red {  background-color: red; }
 .table > tbody .IS_MEMBER, .table > tbody .TRUE {
   color: #000;
   background-color: #dff0d8 !important; }

@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: gladiator_training
+      POSTGRES_PASSWORD: gladiator_training
+      POSTGRES_DB: gladiator_training
+    ports:
+      - '5438:5432'
+    volumes:
+      - postgresdb-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+volumes:
+  postgresdb-data:

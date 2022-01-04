@@ -15,9 +15,14 @@ class UsersController < ApplicationController
     @trainings = @user.trainings.page(params[:page])
     @period = Period.where("time_from < ? AND time_to > ?", Time.now, Time.now).first
 
-    h = Training.unscope(:order).joins(:user).select('users.*, sum_points').where(user: @user, period_id: @period).group("training_category_id").sum(:points)
-    @ary = [['a','b']]
-    h.each {|k,v| @ary << [TrainingCategory.find(k).name, v]}
+    h = Training.unscope(:order).
+      joins(:user).
+      select('users.*, sum_points').
+      where(user: @user, period_id: @period).
+      group("training_category_id").
+      sum(:points)
+    @ary = [['a', 'b']]
+    h.each { |k, v| @ary << [TrainingCategory.find(k).name, v] }
   end
 
   # GET /users/new
@@ -76,16 +81,21 @@ class UsersController < ApplicationController
 
   def complete
     User.update_all(is_member: false)
-    User.where(id: params.dig(:user_ids,:id)).each do |user|
+    User.where(id: params.dig(:user_ids, :id)).each do |user|
       user.update_attribute(:is_member, true)
     end
     User.update_all(is_member_child_4: false)
-    User.where(id: params.dig(:child_ids_4,:id)).each do |user|
+    User.where(id: params.dig(:child_ids_4, :id)).each do |user|
       user.update_attribute(:is_member_child_4, true)
     end
     User.update_all(is_member_child_9: false)
-    User.where(id: params.dig(:child_ids_9,:id)).each do |user|
+    User.where(id: params.dig(:child_ids_9, :id)).each do |user|
       user.update_attribute(:is_member_child_9, true)
+    end
+
+    User.update_all(is_free_open: false)
+    User.where(id: params.dig(:free_open, :id)).each do |user|
+      user.update_attribute(:is_free_open, true)
     end
 
     redirect_to :memberships_all_members
@@ -95,13 +105,27 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:email, :first_name, :surname, :password, :password_confirmation, :gym_id, :gender, :image, :is_member, :is_member_child_4, :is_member_child_9)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(
+      :email,
+      :first_name,
+      :surname,
+      :password,
+      :password_confirmation,
+      :gym_id,
+      :gender,
+      :image,
+      :is_member,
+      :is_member_child_4,
+      :is_member_child_9,
+      :is_free_open
+    )
+  end
 end
