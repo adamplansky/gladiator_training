@@ -13,7 +13,7 @@
         <% else %>
           <td class="<%= ru.user.is_some_member.to_s.upcase %>">
             <%= ru.user.fullname %>
-            <% if ru.user.is_free_open %>">
+            <% if ru.user.is_free_open %>
               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
             <% end %>
           </td>
