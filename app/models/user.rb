@@ -3,17 +3,19 @@
 class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   #  has_and_belongs_to_many :reservations
-  has_many :reservations
-  has_many :reservations, :through => :reservations_users
+  has_many :reservation_user
+  has_many :reservations, through: :reservation_user, dependent: :delete_all
 
   has_many :user_teams
-  has_many :teams, :through => :user_teams
+  has_many :teams, through: :user_teams, dependent: :delete_all
 
   has_many :challenge_scores
-  has_many :challenges, :through => :challenge_scores
+  has_many :challenges, through: :challenge_scores, dependent: :delete_all
 
   has_many :trainings
-  has_many :events, through: :registration
+  has_many :registrations
+  has_many :events, through: :registrations, dependent: :delete_all
+
   belongs_to :gym
   belongs_to :team
 

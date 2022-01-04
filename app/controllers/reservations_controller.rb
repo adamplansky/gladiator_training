@@ -4,17 +4,17 @@ class ReservationsController < ApplicationController
   before_action :logged_in_user
 
   def index
-    if current_user.admin?
-      @reservations = Reservation.where("time_from > ?", Time.now - 24.hours)
-    else
-      @reservations = Reservation.where("time_from > ?", Time.now - 18.hours)
-    end
+    @reservations = if current_user.admin?
+                      Reservation.where("time_from > ?", Time.now - 24.hours)
+                    else
+                      Reservation.where("time_from > ?", Time.now - 18.hours)
+                    end
   end
 
   def show
     @reservation = Reservation.find(params[:id])
-    @regular_users = @reservation.reservation_users.limit(@reservation.capacity)
-    @nahradnici = @reservation.reservation_users.offset(@reservation.capacity)
+    @regular_users = @reservation.reservation_user.limit(@reservation.capacity)
+    @nahradnici = @reservation.reservation_user.offset(@reservation.capacity)
     @nahradnici_include = @nahradnici.include? current_user
   end
 
