@@ -29,6 +29,7 @@ gem 'bootstrap-table-rails'
 gem 'react-rails', '~> 1.7.0'
 gem 'will_paginate-bootstrap'
 gem 'trix'
+gem 'recaptcha', '~> 5.8', '>= 5.8.1'
 # gem 'youtube_add' old shit
 gem 'youtube_rails'
 
