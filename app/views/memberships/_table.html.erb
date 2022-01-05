@@ -10,6 +10,7 @@
         <th class="text-center">4-8</th>
         <th class="text-center">9-14</th>
         <th class="text-center">Free open</th>
+        <th class="text-center">SMAZAT</th>
       </tr>
       </thead>
       <tbody>
@@ -21,6 +22,7 @@
           <td class="text-center"><%= check_box_tag "child_ids_4[id][]", user.id, user.is_member_child_4 %></td>
           <td class="text-center"><%= check_box_tag "child_ids_9[id][]", user.id, user.is_member_child_9 %></td>
           <td class="text-center"><%= check_box_tag "free_open[id][]", user.id, user.is_free_open %></td>
+          <td class="text-center FALSE"><%= check_box_tag "smazat[id][]", user.id, false %></td>
         </tr>
 
       <% end %>

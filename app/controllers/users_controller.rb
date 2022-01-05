@@ -98,6 +98,10 @@ class UsersController < ApplicationController
       user.update_attribute(:is_free_open, true)
     end
 
+    User.where(id: params.dig(:smazat, :id)).each do |user|
+      user.destroy
+    end
+
     redirect_to :memberships_all_members
     #User.update_all(["is_member=?", True] id: params[:user_ids])
     #User.update_all({:is_member => true}, {:id => params[:user_ids]})
