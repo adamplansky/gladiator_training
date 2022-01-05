@@ -16,7 +16,7 @@
       <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td class="text-center"><%= user.fullname %></td>
+          <td class="text-center"><%= user.fullname %> (<%= user.email %>)</td>
           <td class="text-center <%= user.is_some_member.to_s.upcase %>"> <%= user.is_some_member == false ? "NE" : "ANO" %></td>
           <td class="text-center"><%= check_box_tag "user_ids[id][]", user.id, user.is_member %></td>
           <td class="text-center"><%= check_box_tag "child_ids_4[id][]", user.id, user.is_member_child_4 %></td>
