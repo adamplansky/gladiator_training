@@ -1,6 +1,13 @@
 <div>
   <%= form_tag complete_users_path, :method => :put do %>
-    <%= submit_tag "Ulož", class: 'btn btn-success' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"><%= submit_tag "Ulož", class: 'btn btn-success' %></div>
+        <div class="col-md-6 text-center">Počet uživatelů: <%= @users.count %></div>
+      </div>
+    </div>
+
+
     <table class='table table-striped table-hover'>
       <thead>
       <tr>
@@ -24,7 +31,6 @@
           <td class="text-center"><%= check_box_tag "free_open[id][]", user.id, user.is_free_open %></td>
           <td class="text-center FALSE"><%= check_box_tag "smazat[id][]", user.id, false %></td>
         </tr>
-
       <% end %>
       </tbody>
     </table>
