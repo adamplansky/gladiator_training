@@ -4,6 +4,7 @@ class ReservationsController < ApplicationController
   before_action :logged_in_user
 
   def index
+    redirect_to 'https://gladiatortraining.isportsystem.cz/'
     @reservations = if current_user.admin?
                       Reservation.where("time_from > ?", Time.now - 24.hours)
                     else
